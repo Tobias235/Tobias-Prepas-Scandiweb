@@ -1,0 +1,24 @@
+.navigationCurrency {
+  display: flex;
+  justify-content: flex-end;
+  width: 25%;
+  img {
+    vertical-align: middle;
+    margin-left: 10px;
+  }
+
+  .currencyOptions {
+    position: absolute;
+    top: 50px;
+    width: 110px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+      padding: 12px;
+    }
+  }
+}
