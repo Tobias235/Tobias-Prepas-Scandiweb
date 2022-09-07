@@ -25,9 +25,9 @@ const data = (
     {({ loading, error, data }) => {
       if (loading) return <p>Loading…</p>;
       if (error) return <p>Error :(</p>;
-      return data.category.products[0].prices.map((currency) => (
-        <span key={currency.currency.label}>
-          {currency.currency.symbol} {currency.currency.label}
+      return data.category.products[0].prices.map((currencies) => (
+        <span key={currencies.currency.label}>
+          {currencies.currency.symbol} {currencies.currency.label}
         </span>
       ));
     }}
