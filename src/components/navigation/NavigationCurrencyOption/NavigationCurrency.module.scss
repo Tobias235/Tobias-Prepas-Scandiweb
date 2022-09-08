@@ -1,10 +1,16 @@
 .navigationCurrency {
   display: flex;
   justify-content: flex-end;
-  width: 25%;
-  img {
-    vertical-align: middle;
-    margin-left: 10px;
+  width: 22%;
+
+  button {
+    background-color: transparent;
+    border: none;
+
+    img {
+      vertical-align: middle;
+      margin-left: 10px;
+    }
   }
 
   .currencyOptions {
