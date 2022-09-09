@@ -1,0 +1,13 @@
+.cartIcon {
+  position: relative;
+  top: -10%;
+
+  .showCartButton {
+    opacity: 0;
+    display: flex;
+    align-self: flex-end;
+    position: absolute;
+    width: 52px;
+    right: 8%;
+  }
+}
