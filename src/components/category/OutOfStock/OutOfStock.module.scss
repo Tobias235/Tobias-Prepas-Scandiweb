@@ -1,0 +1,13 @@
+.outOfStock {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  bottom: 45%;
+
+  span {
+    position: absolute;
+    font-weight: 400;
+    color: #8d8f9a;
+    text-align: center;
+  }
+}
