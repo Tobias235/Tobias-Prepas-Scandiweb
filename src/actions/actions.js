@@ -4,3 +4,10 @@ export const setChangeCurrency = (currentCurrency) => {
     payload: currentCurrency,
   };
 };
+
+export const setChangeCategory = (currentCategory) => {
+  return {
+    type: "SET_CATEGORY",
+    payload: currentCategory,
+  };
+};
