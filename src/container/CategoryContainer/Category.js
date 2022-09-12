@@ -1,9 +1,9 @@
-import { Component, PureComponent } from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
 import ProductGrid from "../../components/category/ProductGrid/ProductGrid";
 import styles from "./CategoryContainer.module.scss";
 
-class CategoryContainer extends PureComponent {
+class CategoryContainer extends Component {
   render() {
     return (
       <div className={styles.categoryContainer}>
