@@ -1,6 +1,7 @@
 const initialState = {
   currency: "$",
   category: "all",
+  productId: null,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -9,6 +10,8 @@ const Reducer = (state = initialState, action) => {
       return { ...state, currency: action.payload };
     case "SET_CATEGORY":
       return { ...state, category: action.payload };
+    case "SET_PRODUCT_ID":
+      return { ...state, productId: action.payload };
     default:
       return state;
   }

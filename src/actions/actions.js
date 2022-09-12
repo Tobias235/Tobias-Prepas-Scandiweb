@@ -11,3 +11,10 @@ export const setChangeCategory = (currentCategory) => {
     payload: currentCategory,
   };
 };
+
+export const setProductId = (productId) => {
+  return {
+    type: "SET_PRODUCT_ID",
+    payload: productId,
+  };
+};
