@@ -1,6 +1,6 @@
 const initialState = {
   currency: "$",
-  category: "All",
+  category: "all",
 };
 
 const Reducer = (state = initialState, action) => {
