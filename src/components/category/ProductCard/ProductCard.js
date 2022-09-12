@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import styles from "./ProductCard.module.scss";
 import CartIcon from "../ProductCartIcon/CartIcon";
 import OutOfStock from "../OutOfStock/OutOfStock";
+import { setProductId } from "../../../actions/actions";
 
 const GET_PRODUCTS = gql`
   query {
@@ -37,6 +38,9 @@ const GET_PRODUCTS = gql`
   }
 `;
 class ProductCard extends Component {
+  handleGetId = (e) => {
+    this.props.onGetProductId(e.target.id);
+  };
   render() {
     const { currency, category } = this.props;
     return (
@@ -56,16 +60,20 @@ class ProductCard extends Component {
                 product.inStock ? null : styles.noStock
               }`}
               key={product.id}
+              id={product.id}
               to={{
                 pathname: `/product/${product.id}`,
               }}
+              onClick={this.handleGetId}
             >
               <img
                 src={product.gallery[0]}
                 alt="product"
                 className={styles.productPicture}
               />
-              {product.inStock && <CartIcon className={styles.addCartButton} />}
+              {product.inStock && (
+                <CartIcon className={styles.addCartButton} id={product.id} />
+              )}
               {!product.inStock && <OutOfStock />}
               <span className={styles.productName}>{product.name}</span>
               <span className={styles.productPrice}>
@@ -83,9 +91,13 @@ class ProductCard extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  onGetProductId: (id) => dispatch(setProductId(id)),
+});
+
 const mapStateToProps = (state) => ({
   currency: state.currency,
   category: state.category,
 });
 
-export default connect(mapStateToProps)(ProductCard);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
