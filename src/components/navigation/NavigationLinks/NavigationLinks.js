@@ -1,6 +1,8 @@
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router";
 import { Component } from "react";
 import styles from "./NavigationLinks.module.scss";
 import { setChangeCategory } from "../../../actions/actions";
@@ -15,7 +17,6 @@ const GET_CATEGORIES = gql`
 
 class NavigationLinks extends Component {
   handleCategory = (e) => {
-    console.log(e.target.id);
     this.props.onChangeCategory(e.target.id);
   };
   render() {
@@ -26,11 +27,15 @@ class NavigationLinks extends Component {
             if (loading) return <p>Loading…</p>;
             if (error) return <p>Error :(</p>;
             return data.categories.map(({ name }) => (
-              <p
+              <NavLink
                 key={name}
                 id={name}
                 onClick={this.handleCategory}
-              >{`${name} `}</p>
+                className={styles.navLinks}
+                to={{
+                  pathname: `/category/${name}`,
+                }}
+              >{`${name} `}</NavLink>
             ));
           }}
         </Query>
@@ -43,4 +48,4 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeCategory: (category) => dispatch(setChangeCategory(category)),
 });
 
-export default connect(null, mapDispatchToProps)(NavigationLinks);
+export default connect(null, mapDispatchToProps)(withRouter(NavigationLinks));

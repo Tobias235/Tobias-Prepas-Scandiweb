@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-evenly;
 
-  p {
+  .navLinks {
     font-family: "raleway";
     font-size: 25px;
     font-weight: 400;
@@ -11,6 +11,7 @@
     color: #1d1f22;
     margin: 7px;
     text-transform: uppercase;
+    text-decoration: none;
 
     &:hover {
       font-weight: 600;
