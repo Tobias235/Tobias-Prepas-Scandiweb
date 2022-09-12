@@ -10,6 +10,7 @@ class CartIcon extends Component {
           src={cartButton}
           alt="Add to cart button"
           className={`${styles.showCartButton} ${this.props.className}`}
+          id={this.props.id}
         />
       </div>
     );
