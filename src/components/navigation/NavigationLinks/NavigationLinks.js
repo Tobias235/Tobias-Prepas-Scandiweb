@@ -33,7 +33,7 @@ class NavigationLinks extends Component {
                 onClick={this.handleCategory}
                 className={styles.navLinks}
                 to={{
-                  pathname: `/category/${name}`,
+                  pathname: `/${name}`,
                 }}
               >{`${name} `}</NavLink>
             ));
