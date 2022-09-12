@@ -1,6 +1,7 @@
 .cartIcon {
   position: relative;
   top: -10%;
+  width: 100%;
 
   .showCartButton {
     opacity: 0;
@@ -9,5 +10,6 @@
     position: absolute;
     width: 52px;
     right: 8%;
+    z-index: 2;
   }
 }
