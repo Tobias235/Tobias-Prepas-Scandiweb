@@ -16,7 +16,7 @@ class App extends Component {
           <Route exact path="/:name">
             <Category />
           </Route>
-          <Route exact path="product/:productId">
+          <Route exact path="/product/:productId">
             <Product />
           </Route>
           <Route exact path="/cart">
