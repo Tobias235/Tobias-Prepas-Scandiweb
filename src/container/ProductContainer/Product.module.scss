@@ -1,110 +1,16 @@
 .product {
-  width: 80%;
+  width: 85%;
   display: flex;
   margin: auto;
-  margin-top: 75px;
+  margin-top: 50px;
 
-  .galleryPics {
-    display: flex;
-    flex-direction: column;
-    width: 17%;
-    height: 100px;
-
-    .galleryImage {
-      width: 110px;
-      height: 90px;
-      margin-bottom: 15px;
-      box-shadow: 0 1px 5px rgba(110, 110, 110, 0.2);
-    }
-  }
-
-  .image {
-    max-width: 90%;
-    max-height: 560px;
-    align-self: flex-start;
-    box-shadow: 0 1px 5px rgba(110, 110, 110, 0.2);
-  }
-
-  .productPic {
-    width: 40%;
-    display: flex;
-    justify-content: center;
+  .spacer {
+    width: 10%;
   }
 
   .descriptionContainer {
-    width: 30%;
-    display: flex;
-    justify-content: center;
-  }
-  .productText {
+    width: 45%;
     display: flex;
     flex-direction: column;
-    .productTitles {
-      font-family: "raleway";
-      font-size: 30px;
-      margin-bottom: 25px;
-
-      h1 {
-        margin: 0;
-        font-weight: 600;
-        font-size: 30px;
-      }
-
-      h3 {
-        margin: 0;
-        font-weight: 300;
-        font-size: 30px;
-      }
-    }
   }
-
-  button {
-    height: 52px;
-    width: 40%;
-    background-color: #5ece7b;
-    color: white;
-    border: none;
-    margin: 20px;
-    margin-left: 0;
-  }
-}
-
-.attributes {
-  margin-bottom: 8px;
-}
-
-.attribute {
-  margin: 8px;
-  padding: 7px 15px 7px 15px;
-  border: 1px solid black;
-}
-
-.price {
-  font-family: "roboto condensed";
-  font-weight: 700;
-  font-size: 18px;
-  margin: 0;
-  margin-top: 20px;
-
-  .amount {
-    display: block;
-    font-family: "raleway";
-    font-weight: 700;
-    font-size: 24px;
-    margin-top: 10px;
-  }
-}
-
-.attributeName {
-  margin-bottom: 15px;
-  font-family: "roboto condensed";
-  font-weight: 700;
-  font-size: 18px;
-}
-
-.description {
-  margin-top: 20px;
-  font-family: "roboto";
-  font-weight: 16px;
-  font-weight: 400;
 }

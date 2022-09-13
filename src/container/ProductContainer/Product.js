@@ -2,9 +2,13 @@ import { Component } from "react";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
-import parse from "html-react-parser";
 import styles from "./Product.module.scss";
-import placeholder from "../../assets/images/placeholder.jpg";
+import ImageGallery from "../../components/productPage/imageGallery/ImageGallery";
+import ProductTitles from "../../components/productPage/productTitles/ProductTitles";
+import ProductAttributes from "../../components/productPage/productAttributes/ProductAttributes";
+import ProductPrice from "../../components/productPage/productPrice/ProductPrice";
+import ProductButton from "../../components/productPage/productButton/ProductButton";
+import ProductDescription from "../../components/productPage/productDescription/ProductDescription";
 
 const GET_PRODUCTS = gql`
   query {
@@ -52,74 +56,16 @@ class Product extends Component {
               : Array.from(data.category.products).filter(
                   (product) => product.id === productId
                 );
-          console.log(products[0].prices);
           return products.map((product) => (
             <div className={styles.product} key={product.id}>
-              <div className={styles.galleryPics}>
-                {product.gallery.map((picture) => {
-                  return (
-                    <img
-                      src={picture}
-                      alt="placeholder"
-                      className={styles.galleryImage}
-                      key={picture}
-                    />
-                  );
-                })}
-              </div>
-              <div className={styles.productPic}>
-                <img
-                  src={product.gallery[0]}
-                  alt="placeholder"
-                  className={styles.image}
-                />
-              </div>
+              <ImageGallery product={product.gallery} />
+              <div className={styles.spacer}></div>
               <div className={styles.descriptionContainer}>
-                <div className={styles.productText}>
-                  <div className={styles.productTitles}>
-                    <h1>{product.brand}</h1>
-                    <h3>{product.name}</h3>
-                  </div>
-                  {product.attributes.map((attribute) => {
-                    return (
-                      <div className={styles.attributes} key={Math.random()}>
-                        <p className={styles.attributeName}>
-                          {attribute.name}:
-                        </p>
-                        {attribute.items.map((item) => {
-                          return (
-                            <span
-                              className={styles.attribute}
-                              key={Math.random()}
-                            >
-                              {item.value}
-                            </span>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
-                  <span className={styles.price}>
-                    Price:
-                    {product.prices.map((cur) => {
-                      return (
-                        cur.currency.symbol === currency && (
-                          <span
-                            className={styles.amount}
-                            key={cur.currency.symbol}
-                          >
-                            {cur.currency.symbol}
-                            {cur.amount}
-                          </span>
-                        )
-                      );
-                    })}
-                  </span>
-                  <button>ADD TO CART</button>
-                  <span className={styles.description}>
-                    {parse(product.description)}
-                  </span>
-                </div>
+                <ProductTitles product={product} />
+                <ProductAttributes product={product} />
+                <ProductPrice product={product} currency={currency} />
+                <ProductButton />
+                <ProductDescription product={product} />
               </div>
             </div>
           ));
