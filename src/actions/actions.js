@@ -18,3 +18,10 @@ export const setProductId = (productId) => {
     payload: productId,
   };
 };
+
+export const setAddCart = (cart) => {
+  return {
+    type: "SET_ADD_CART",
+    payload: cart,
+  };
+};
