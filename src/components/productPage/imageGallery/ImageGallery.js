@@ -1,22 +1,18 @@
-import { Component, PureComponent } from "react";
+import { Component } from "react";
 import styles from "./ImageGallery.module.scss";
 
-class ImageGallery extends PureComponent {
+class ImageGallery extends Component {
   state = {
     showPicture: 0,
-    activePicture: false,
   };
 
   handleImageClick = (e) => {
-    this.setState({
-      showPicture: e.target.id,
-    });
+    this.setState({ showPicture: Number(e.target.id) });
   };
 
   render() {
     const { product } = this.props;
-    const { activePicture, showPicture } = this.state;
-    console.log();
+    const { showPicture } = this.state;
     return (
       <div className={styles.galleryPics}>
         <div className={styles.gallerySideBar}>
@@ -25,11 +21,9 @@ class ImageGallery extends PureComponent {
               <img
                 src={picture}
                 alt="placeholder"
-                className={styles.galleryImage}
-                style={{
-                  boxShadow:
-                    showPicture === i && "0 1px 5px rgba(94, 206, 123, 0.8)",
-                }}
+                className={`${styles.galleryImage} ${
+                  showPicture === i && styles.active
+                }`}
                 key={picture}
                 id={i}
                 onClick={this.handleImageClick}
