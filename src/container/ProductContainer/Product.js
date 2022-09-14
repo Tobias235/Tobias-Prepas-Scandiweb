@@ -64,7 +64,7 @@ class Product extends Component {
                 <ProductTitles product={product} />
                 <ProductAttributes product={product} />
                 <ProductPrice product={product} currency={currency} />
-                <ProductButton />
+                <ProductButton product={product} />
                 <ProductDescription product={product} />
               </div>
             </div>
