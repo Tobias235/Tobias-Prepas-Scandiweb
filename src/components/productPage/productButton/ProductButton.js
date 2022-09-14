@@ -15,6 +15,7 @@ class ProductButton extends Component {
 
       cartArray.push(...cart, product);
       this.props.onAddToCart(cartArray);
+      alert("Product added to cart");
     };
     return (
       <button

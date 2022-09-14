@@ -23,6 +23,7 @@ const GET_PRODUCTS = gql`
         category
         description
         attributes {
+          id
           type
           name
           items {

@@ -19,7 +19,9 @@ const GET_PRODUCTS = gql`
         gallery
         inStock
         category
+        description
         attributes {
+          id
           type
           name
           items {
