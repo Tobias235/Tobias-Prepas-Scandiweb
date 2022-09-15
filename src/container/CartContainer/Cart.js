@@ -1,8 +1,15 @@
 import { Component } from "react";
+import CartCard from "../../components/cart/CartCard";
+import styles from "./Cart.module.scss";
 
 class Cart extends Component {
   render() {
-    return <div></div>;
+    return (
+      <div className={styles.cart}>
+        <h1 className={styles.cartTitle}>CART</h1>
+        <CartCard />
+      </div>
+    );
   }
 }
 
