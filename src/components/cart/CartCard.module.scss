@@ -1,0 +1,27 @@
+.cartContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 35px;
+
+  .cartCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 25px;
+
+    .cartLeft {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: 15px;
+    }
+  }
+
+  .cartRight {
+    display: flex;
+    flex-direction: row;
+    margin: 15px;
+  }
+}
