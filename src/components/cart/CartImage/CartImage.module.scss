@@ -7,3 +7,20 @@
     width: 100%;
   }
 }
+
+.arrowContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
+  div {
+    display: flex;
+    position: absolute;
+    margin: 5px;
+    .arrowButton {
+      background-color: black;
+      padding: 5px;
+      margin: 5px;
+    }
+  }
+}
