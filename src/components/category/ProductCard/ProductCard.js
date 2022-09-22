@@ -45,6 +45,7 @@ class ProductCard extends Component {
             return activeAttribute;
           });
         }
+        return attribute;
       });
       return cart;
     });
