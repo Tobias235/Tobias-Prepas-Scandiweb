@@ -1,105 +1,117 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { Query } from "@apollo/client/react/components";
-import { gql } from "@apollo/client";
 import { Link } from "react-router-dom";
 import styles from "./ProductCard.module.scss";
 import CartIcon from "../ProductCartIcon/CartIcon";
 import OutOfStock from "../OutOfStock/OutOfStock";
-import { setProductId } from "../../../actions/actions";
+import ProductCardDescription from "../ProductCardDescription/ProductCardDescription";
+import { setAddCart, setProductId } from "../../../actions/actions";
+import { v4 as uuidv4 } from "uuid";
 
-const GET_PRODUCTS = gql`
-  query {
-    category {
-      name
-      products {
-        id
-        name
-        brand
-        gallery
-        inStock
-        category
-        description
-        attributes {
-          id
-          type
-          name
-          items {
-            value
-          }
-        }
-        prices {
-          currency {
-            symbol
-            label
-          }
-          amount
-        }
-      }
-    }
-  }
-`;
 class ProductCard extends Component {
-  handleGetId = (e) => {
-    this.props.onGetProductId(e.target.id);
+  state = {
+    attributes: [],
+    cartProduct: [],
+    cartArray: [],
   };
+  handleGetId = (productId) => {
+    this.props.onGetProductId(productId);
+  };
+
+  addToCartButton = () => {
+    const { product, cart } = this.props;
+    const { attributes, cartProduct, cartArray } = this.state;
+
+    product.attributes.map((attribute) => {
+      return attributes.push({
+        id: product.id,
+        name: attribute.name,
+        value: attribute.items[0].value,
+      });
+    });
+
+    console.log(attributes);
+    cart.map((item) => {
+      attributes.map((attribute) => {
+        if (item.id === attribute.id) {
+          item.activeAttributes.map((activeAttribute) => {
+            if (activeAttribute.value === attribute.value) {
+              let newQuantity = item.quantity + 1;
+              return {
+                ...item,
+                quantity: newQuantity,
+              };
+            }
+            return activeAttribute;
+          });
+        }
+      });
+      return cart;
+    });
+
+    cartProduct.push({
+      ...product,
+      activeAttributes: attributes,
+      uniqueId: uuidv4(),
+      quantity: 1,
+    });
+
+    cartArray.push(...cart, ...cartProduct);
+
+    this.props.onAddToCart(cartArray);
+    this.setState({
+      attributes: [],
+      cartProduct: [],
+      cartArray: [],
+    });
+    // alert("Product added to cart!");
+  };
+
   render() {
-    const { currency, category } = this.props;
+    const { currency, product } = this.props;
+
     return (
-      <Query query={GET_PRODUCTS}>
-        {({ loading, error, data }) => {
-          if (loading) return <p>Loading…</p>;
-          if (error) return <p>Error :(</p>;
-          const products =
-            category === "all"
-              ? data.category.products
-              : Array.from(data.category.products).filter(
-                  (cat) => cat.category === category
-                );
-          return products.map((product) => (
-            <Link
-              className={`${styles.productCard} ${
-                product.inStock ? null : styles.noStock
-              }`}
-              key={product.id}
-              id={product.id}
-              to={{
-                pathname: `/product/${product.id}`,
-              }}
-              onClick={this.handleGetId}
-            >
-              <img
-                src={product.gallery[0]}
-                alt="product"
-                className={styles.productPicture}
-              />
-              {product.inStock && (
-                <CartIcon className={styles.addCartButton} id={product.id} />
-              )}
-              {!product.inStock && <OutOfStock />}
-              <span className={styles.productName}>{product.name}</span>
-              <span className={styles.productPrice}>
-                {product.prices.map(
-                  (cur) =>
-                    cur.currency.symbol === currency &&
-                    ` ${cur.currency.symbol}${cur.amount}`
-                )}
-              </span>
-            </Link>
-          ));
-        }}
-      </Query>
+      <div
+        className={`${styles.productCard} ${
+          product.inStock ? null : styles.noStock
+        }`}
+      >
+        <Link
+          key={product.id}
+          id={product.id}
+          to={{ pathname: `/product/${product.id}` }}
+          onClick={() => this.handleGetId(product.id)}
+        >
+          <img
+            src={product.gallery[0]}
+            alt="product"
+            id={product.id}
+            className={styles.productPicture}
+          />
+
+          {!product.inStock && <OutOfStock />}
+          <ProductCardDescription product={product} currency={currency} />
+        </Link>
+        {product.inStock && (
+          <CartIcon
+            className={styles.addCartButton}
+            id={product.id}
+            onClick={this.addToCartButton}
+          />
+        )}
+      </div>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   onGetProductId: (id) => dispatch(setProductId(id)),
+  onAddToCart: (product) => dispatch(setAddCart(product)),
 });
 
 const mapStateToProps = (state) => ({
   currency: state.currency,
-  category: state.category,
+  cart: state.cart,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
