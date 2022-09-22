@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   font-family: "Raleway";
+  justify-content: center;
+  align-items: center;
   font-size: 18px;
 
   &:hover {
@@ -21,19 +23,9 @@
   .productPicture {
     object-fit: contain;
     margin: 15px;
-    max-width: 100%;
+    max-width: 90%;
     height: 330px;
     z-index: 1;
-  }
-
-  .productName {
-    margin: 10px 0 0 10px;
-    font-weight: 300;
-    text-overflow: clip;
-  }
-  .productPrice {
-    margin: 5px 0 15px 10px;
-    font-weight: 500;
   }
 }
 
