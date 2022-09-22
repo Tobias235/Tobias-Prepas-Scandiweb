@@ -11,6 +11,7 @@ class CartIcon extends Component {
           alt="Add to cart button"
           className={`${styles.showCartButton} ${this.props.className}`}
           id={this.props.id}
+          onClick={this.props.onClick}
         />
       </div>
     );
