@@ -1,56 +1,60 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import ProductAttributes from "../productPage/productAttributes/ProductAttributes";
 import ProductPrice from "../productPage/productPrice/ProductPrice";
+import ProductTitles from "../productPage/productTitles/ProductTitles";
 
 import styles from "./CartCard.module.scss";
-import CartProductAmount from "./CartProductAmount/CartProductAmount";
-import CartImageButton from "./CartImageButton/CartImageButton";
 import CartImage from "./CartImage/CartImage";
 import CartAmount from "./CartAmount/CartAmount";
-import ProductTitles from "../productPage/productTitles/ProductTitles";
 import CartBorder from "./CartBorder/CartBorder";
 import CartOrderButton from "./CartOrderButton/CartOrderButton";
+import CartAttributes from "./CartAttributes/CartAttributes";
+import CartProductQuantity from "./CartProductQuantity/CartProductQuantity";
 
 class CartCard extends Component {
   handleChangePicture = () => {};
   render() {
-    const { products, currency } = this.props;
+    const { cart, currency } = this.props;
 
     return (
-      <div className={styles.cartContainer}>
-        {products.map((product) => {
-          return (
-            <div className={styles.cartCard} key={product.id}>
-              <div className={styles.cartLeft}>
-                <ProductTitles product={product} />
-                <span>
-                  <ProductPrice
-                    product={product}
-                    currency={currency}
-                    cart={true}
-                  />
-                </span>
-                <ProductAttributes product={product} />
-              </div>
-              <div className={styles.cartRight}>
-                <CartProductAmount />
-                <CartImage gallery={product.gallery} />
-                <CartImageButton />
-              </div>
-            </div>
-          );
-        })}
-        <CartBorder />
-        <CartAmount />
-        <CartOrderButton />
-      </div>
+      <>
+        {cart.length ? (
+          <div className={styles.cartContainer}>
+            {cart.map((product) => {
+              return (
+                <div className={styles.cartCard} key={product.uniqueId}>
+                  <div className={styles.cartLeft}>
+                    <ProductTitles product={product} />
+                    <span>
+                      <ProductPrice
+                        product={product}
+                        currency={currency}
+                        cart={true}
+                      />
+                    </span>
+                    <CartAttributes product={product} />
+                  </div>
+                  <div className={styles.cartRight}>
+                    <CartProductQuantity product={product} />
+                    <CartImage product={product} />
+                  </div>
+                </div>
+              );
+            })}
+            <CartBorder />
+            <CartAmount cart={cart} />
+            <CartOrderButton />
+          </div>
+        ) : (
+          <p className={styles.emptyCart}>The cart is empty! :( </p>
+        )}
+      </>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  products: state.products,
+  cart: state.cart,
   currency: state.currency,
 });
 
