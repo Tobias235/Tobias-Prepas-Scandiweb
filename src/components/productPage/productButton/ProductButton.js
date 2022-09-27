@@ -1,37 +1,36 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
-import { setAddCart } from "../../../actions/actions";
+import {
+  setActiveAttributes,
+  setAddCart,
+  setChangeQuantity,
+} from "../../../actions/actions";
+import { handleAddToCart } from "../../../utils/HandleAddToCart";
 import styles from "./ProductButton.module.scss";
 
 class ProductButton extends Component {
-  state = {
-    cartItem: [],
-    cartArray: [],
-    countArray: [],
+  handleCartCheck = () => {
+    const { product, activeAttributes, cart } = this.props;
+
+    let result = handleAddToCart(product, activeAttributes, cart);
+
+    if (result.equal) {
+      this.props.onChangeQuantity(result.equal);
+      alert("Product with chosen attributes is already in cart");
+    } else {
+      this.props.onAddToCart(result);
+      alert("Product added to cart");
+    }
+
+    this.props.onGetActiveAttributes([]);
   };
 
   render() {
-    const { product, activeAttributes, cart } = this.props;
-    const { cartItem, cartArray } = this.state;
-
-    const handleAddToCart = () => {
-      cartItem.push({
-        ...product,
-        activeAttributes: activeAttributes,
-        uniqueId: uuidv4(),
-        quantity: 1,
-      });
-      cartArray.push(...cart, ...cartItem);
-      this.props.onAddToCart(cartArray);
-
-      alert("Product added to cart");
-    };
     return (
       <button
         type="button"
         className={styles.productButton}
-        onClick={handleAddToCart}
+        onClick={this.handleCartCheck}
       >
         ADD TO CART
       </button>
@@ -46,6 +45,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onAddToCart: (product) => dispatch(setAddCart(product)),
+  onGetActiveAttributes: (attribute) =>
+    dispatch(setActiveAttributes(attribute)),
+  onChangeQuantity: (uniqueId) => dispatch(setChangeQuantity(uniqueId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductButton);
