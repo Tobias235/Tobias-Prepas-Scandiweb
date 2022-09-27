@@ -1,21 +1,23 @@
 import { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { setShowMiniCart } from "../../../actions/actions";
 import styles from "./NavigationCartIcon.module.scss";
 import cartIcon from "../../../assets/images/cart.svg";
-
 class NavigationCartIcon extends Component {
   render() {
+    const handleOpenCart = () => {
+      this.props.onSetShowCart(true);
+    };
     return (
-      <NavLink
-        className={styles.navigationCartIcon}
-        to={{
-          pathname: `/cart/${Math.floor(Math.random() * 1000000)}`,
-        }}
-      >
+      <span className={styles.navigationCartIcon} onClick={handleOpenCart}>
         <img src={cartIcon} alt="Cart Icon" />
-      </NavLink>
+      </span>
     );
   }
 }
 
-export default NavigationCartIcon;
+const mapDispatchToProps = (dispatch) => ({
+  onSetShowCart: (showCart) => dispatch(setShowMiniCart(showCart)),
+});
+
+export default connect(null, mapDispatchToProps)(NavigationCartIcon);
