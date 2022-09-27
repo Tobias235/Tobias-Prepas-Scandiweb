@@ -8,9 +8,11 @@ class NavigationBar extends Component {
   render() {
     return (
       <nav className={styles.navigationBar}>
-        <NavigationLinks />
-        <NavigationLogo />
-        <NavigationCurrency />
+        <div className={styles.navContainer}>
+          <NavigationLinks />
+          <NavigationLogo />
+          <NavigationCurrency />
+        </div>
       </nav>
     );
   }
