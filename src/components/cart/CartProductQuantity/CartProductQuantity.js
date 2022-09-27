@@ -25,7 +25,7 @@ class CartProductQuantity extends Component {
     };
 
     return (
-      <div className={styles.buttonContainer}>
+      <div className={`${styles.buttonContainer} ${this.props.className}`}>
         <button type="button" onClick={handleIncrement}>
           +
         </button>
