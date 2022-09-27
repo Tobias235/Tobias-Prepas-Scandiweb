@@ -8,7 +8,7 @@ import styles from "./NavigationLinks.module.scss";
 import { setChangeCategory } from "../../../actions/actions";
 
 const GET_CATEGORIES = gql`
-  query {
+  query getCategories {
     categories {
       name
     }

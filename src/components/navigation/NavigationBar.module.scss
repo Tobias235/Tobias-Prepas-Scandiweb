@@ -1,8 +1,14 @@
 .navigationBar {
-  display: flex;
-  align-items: center;
+  position: relative;
   height: 80px;
-  width: 85%;
-  margin: auto;
+  width: 100%;
   background-color: #ffffff;
+  z-index: 25;
+
+  .navContainer {
+    width: 85%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+  }
 }
