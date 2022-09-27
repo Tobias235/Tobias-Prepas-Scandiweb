@@ -53,3 +53,17 @@ export const setDeleteProduct = (product) => {
     payload: product,
   };
 };
+
+export const setChangeQuantity = (quantity) => {
+  return {
+    type: "SET_CHANGE_QUANTITY",
+    payload: quantity,
+  };
+};
+
+export const setShowMiniCart = (showCart) => {
+  return {
+    type: "SET_SHOW_MINI_CART",
+    payload: showCart,
+  };
+};

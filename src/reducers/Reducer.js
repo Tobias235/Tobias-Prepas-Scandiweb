@@ -4,6 +4,7 @@ const initialState = {
   productId: null,
   cart: [],
   activeAttributes: [],
+  showCart: false,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -29,7 +30,6 @@ const Reducer = (state = initialState, action) => {
           return cart;
         }),
       };
-
     case "SET_DECREMENT_QUANTITY":
       return {
         ...state,
@@ -41,16 +41,26 @@ const Reducer = (state = initialState, action) => {
           return cart;
         }),
       };
-
     case "SET_DELETE_PRODUCT":
       return {
         ...state,
         cart: state.cart.filter((cart) => cart.uniqueId !== action.payload),
       };
-
+    case "SET_CHANGE_QUANTITY":
+      return {
+        ...state,
+        cart: state.cart.map((cart) => {
+          if (cart.uniqueId === action.payload) {
+            let quantity = cart.quantity + 1;
+            return { ...cart, quantity };
+          }
+          return cart;
+        }),
+      };
+    case "SET_SHOW_MINI_CART":
+      return { ...state, showCart: action.payload };
     default:
       return state;
   }
 };
-
 export default Reducer;
