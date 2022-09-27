@@ -5,67 +5,30 @@ import styles from "./ProductCard.module.scss";
 import CartIcon from "../ProductCartIcon/CartIcon";
 import OutOfStock from "../OutOfStock/OutOfStock";
 import ProductCardDescription from "../ProductCardDescription/ProductCardDescription";
-import { setAddCart, setProductId } from "../../../actions/actions";
-import { v4 as uuidv4 } from "uuid";
+import {
+  setAddCart,
+  setChangeQuantity,
+  setProductId,
+} from "../../../actions/actions";
+import { handleAddToCart } from "../../../utils/HandleAddToCart";
 
 class ProductCard extends Component {
-  state = {
-    attributes: [],
-    cartProduct: [],
-    cartArray: [],
-  };
   handleGetId = (productId) => {
     this.props.onGetProductId(productId);
   };
 
-  addToCartButton = () => {
-    const { product, cart } = this.props;
-    const { attributes, cartProduct, cartArray } = this.state;
+  handleAddCart = () => {
+    const { product, activeAttributes, cart } = this.props;
 
-    product.attributes.map((attribute) => {
-      return attributes.push({
-        id: product.id,
-        name: attribute.name,
-        value: attribute.items[0].value,
-      });
-    });
+    let result = handleAddToCart(product, activeAttributes, cart);
 
-    console.log(attributes);
-    cart.map((item) => {
-      attributes.map((attribute) => {
-        if (item.id === attribute.id) {
-          item.activeAttributes.map((activeAttribute) => {
-            if (activeAttribute.value === attribute.value) {
-              let newQuantity = item.quantity + 1;
-              return {
-                ...item,
-                quantity: newQuantity,
-              };
-            }
-            return activeAttribute;
-          });
-        }
-        return attribute;
-      });
-      return cart;
-    });
-
-    cartProduct.push({
-      ...product,
-      activeAttributes: attributes,
-      uniqueId: uuidv4(),
-      quantity: 1,
-    });
-
-    cartArray.push(...cart, ...cartProduct);
-
-    this.props.onAddToCart(cartArray);
-    this.setState({
-      attributes: [],
-      cartProduct: [],
-      cartArray: [],
-    });
-    // alert("Product added to cart!");
+    if (result.equal) {
+      this.props.onChangeQuantity(result.equal);
+      alert("Product with chosen attributes is already in cart");
+    } else {
+      this.props.onAddToCart(result);
+      alert("Product added to cart");
+    }
   };
 
   render() {
@@ -97,7 +60,7 @@ class ProductCard extends Component {
           <CartIcon
             className={styles.addCartButton}
             id={product.id}
-            onClick={this.addToCartButton}
+            onClick={this.handleAddCart}
           />
         )}
       </div>
@@ -108,11 +71,13 @@ class ProductCard extends Component {
 const mapDispatchToProps = (dispatch) => ({
   onGetProductId: (id) => dispatch(setProductId(id)),
   onAddToCart: (product) => dispatch(setAddCart(product)),
+  onChangeQuantity: (uniqueId) => dispatch(setChangeQuantity(uniqueId)),
 });
 
 const mapStateToProps = (state) => ({
   currency: state.currency,
   cart: state.cart,
+  activeAttributes: state.activeAttributes,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
