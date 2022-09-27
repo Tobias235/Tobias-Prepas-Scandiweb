@@ -13,8 +13,13 @@ class CartAttributes extends Component {
       <div>
         {product.attributes.map((attribute, i) => {
           return (
-            <div className={styles.attributes} key={i}>
-              <p className={styles.attributeName}>{attribute.name}:</p>
+            <div
+              className={`${styles.attributes} ${this.props.attributeOptions}`}
+              key={i}
+            >
+              <p className={`${styles.attributeName} ${this.props.className}`}>
+                {attribute.name}:
+              </p>
               {attribute.items.map((item, i) => {
                 const styleClass =
                   attribute.name === "swatch"
@@ -33,7 +38,9 @@ class CartAttributes extends Component {
                   <span
                     className={`${styles.attribute} ${styleClass} ${
                       active && styles.active
-                    } ${activeColor && styles.activeColor}`}
+                    } ${activeColor && styles.activeColor} ${
+                      this.props.attributeStyle
+                    }`}
                     key={i}
                     id={item.value}
                     style={{
