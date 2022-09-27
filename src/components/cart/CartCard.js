@@ -25,13 +25,7 @@ class CartCard extends Component {
                 <div className={styles.cartCard} key={product.uniqueId}>
                   <div className={styles.cartLeft}>
                     <ProductTitles product={product} />
-                    <span>
-                      <ProductPrice
-                        product={product}
-                        currency={currency}
-                        cart={true}
-                      />
-                    </span>
+                    <ProductPrice product={product} currency={currency} />
                     <CartAttributes product={product} />
                   </div>
                   <div className={styles.cartRight}>
