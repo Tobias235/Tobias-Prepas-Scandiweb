@@ -9,7 +9,6 @@ class CartAmount extends Component {
     quantity: 0,
     totalArray: [],
     totalQuantity: [],
-    isLoaded: false,
   };
 
   handleTotalValues = () => {
@@ -17,8 +16,6 @@ class CartAmount extends Component {
     const { cart, currency } = this.props;
     let total;
     let initial;
-
-    console.log(cart);
 
     this.setState({
       total: 0,
@@ -31,10 +28,12 @@ class CartAmount extends Component {
     cart.map((cart) => {
       totalQuantity.push(cart.quantity);
       initial = 0;
+
       const quantity = totalQuantity.reduce(
         (previousValue, currentValue) => previousValue + currentValue,
         initial
       );
+
       cart.prices.map((price) => {
         if (price.currency.symbol === currency) {
           totalArray.push(price.amount * cart.quantity);
