@@ -1,0 +1,76 @@
+.miniCartCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 10px;
+  .cartLeft {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    .miniCartTitles {
+      margin: 0;
+      h1 {
+        font-weight: 300;
+        font-size: 16px;
+      }
+      h3 {
+        font-size: 16px;
+      }
+    }
+
+    .price {
+      margin: 0;
+      span {
+        font-family: "raleway";
+        font-weight: 500;
+        font-size: 16px;
+        margin-top: 4px;
+      }
+    }
+
+    .attributes {
+      margin-bottom: 4px;
+    }
+    .attributeName {
+      font-size: 14px;
+      font-family: "raleway";
+      font-weight: 400;
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+
+    .attributeOptions {
+      padding: 2px 10px;
+      margin: 3px;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+  }
+
+  .cartRight {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    margin-left: 0;
+
+    .cartProductQuantity {
+      button {
+        width: 24px;
+        height: 24px;
+      }
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .productImage {
+    width: 121px;
+    height: 190px;
+    object-fit: contain;
+    box-shadow: 0 1px 5px rgba(110, 110, 110, 0.1);
+  }
+}
