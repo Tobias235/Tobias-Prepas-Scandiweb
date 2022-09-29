@@ -20,6 +20,7 @@ class NavigationLinks extends Component {
     this.props.onChangeCategory(e.target.id);
   };
   render() {
+    const { category } = this.props;
     return (
       <div className={styles.navigationLinks}>
         <Query query={GET_CATEGORIES}>
@@ -31,7 +32,9 @@ class NavigationLinks extends Component {
                 key={name}
                 id={name}
                 onClick={this.handleCategory}
-                className={styles.navLinks}
+                className={`${styles.navLinks} ${
+                  category === name ? styles.active : null
+                }`}
                 to={{
                   pathname: `/${name}`,
                 }}
@@ -48,4 +51,11 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeCategory: (category) => dispatch(setChangeCategory(category)),
 });
 
-export default connect(null, mapDispatchToProps)(withRouter(NavigationLinks));
+const mapStateToProps = (state) => ({
+  category: state.category,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(NavigationLinks));
