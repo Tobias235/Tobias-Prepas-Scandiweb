@@ -21,7 +21,6 @@ class ProductButton extends Component {
       this.props.onAddToCart(result);
       alert("Product added to cart");
     }
-
     this.props.onGetActiveAttributes([]);
   };
 
