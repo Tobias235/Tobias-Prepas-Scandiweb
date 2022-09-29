@@ -5,6 +5,7 @@ const initialState = {
   cart: [],
   activeAttributes: [],
   showCart: false,
+  showCurrencyModal: false,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -59,6 +60,10 @@ const Reducer = (state = initialState, action) => {
       };
     case "SET_SHOW_MINI_CART":
       return { ...state, showCart: action.payload };
+    case "SET_CURRENCY_MODAL":
+      return { ...state, showCurrencyModal: action.payload };
+    case "SET_CHECK_OUT":
+      return { ...initialState };
     default:
       return state;
   }
