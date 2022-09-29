@@ -43,6 +43,7 @@ class ProductCard extends Component {
         <Link
           key={product.id}
           id={product.id}
+          className={styles.link}
           to={{ pathname: `/product/${product.id}` }}
           onClick={() => this.handleGetId(product.id)}
         >
