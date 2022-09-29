@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
+import { HandleProductTotalValues } from "../../../utils/HandleProductTotalValues";
 import styles from "./CartAmount.module.scss";
 
 class CartAmount extends Component {
@@ -7,46 +8,17 @@ class CartAmount extends Component {
     total: 0,
     tax: 0,
     quantity: 0,
-    totalArray: [],
-    totalQuantity: [],
   };
 
   handleTotalValues = () => {
-    const { totalArray, totalQuantity } = this.state;
     const { cart, currency } = this.props;
-    let total;
-    let initial;
-
+    let result = HandleProductTotalValues(cart, currency);
     this.setState({
-      total: 0,
-      tax: 0,
-      quantity: 0,
-      totalArray: [],
-      totalQuantity: [],
+      total: result[0].total,
+      tax: result[0].tax,
+      quantity: result[0].quantity,
     });
-
-    cart.map((cart) => {
-      totalQuantity.push(cart.quantity);
-      initial = 0;
-
-      const quantity = totalQuantity.reduce(
-        (previousValue, currentValue) => previousValue + currentValue,
-        initial
-      );
-
-      cart.prices.map((price) => {
-        if (price.currency.symbol === currency) {
-          totalArray.push(price.amount * cart.quantity);
-          initial = 0;
-          total = totalArray.reduce(
-            (previousValue, currentValue) => previousValue + currentValue,
-            initial
-          );
-        }
-        return this.setState({ total: total, tax: total * 0.21 });
-      });
-      return this.setState({ quantity: quantity });
-    });
+    console.log(result);
   };
 
   componentDidMount() {
