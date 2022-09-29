@@ -67,3 +67,17 @@ export const setShowMiniCart = (showCart) => {
     payload: showCart,
   };
 };
+
+export const setShowCurrencyModal = (showCurrencyModal) => {
+  return {
+    type: "SET_CURRENCY_MODAL",
+    payload: showCurrencyModal,
+  };
+};
+
+export const setCheckOut = () => {
+  console.log("actions");
+  return {
+    type: "SET_CHECK_OUT",
+  };
+};
