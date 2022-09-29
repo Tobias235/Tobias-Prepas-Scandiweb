@@ -5,6 +5,8 @@ import {
   setDeleteProduct,
   setIncementQuantity,
 } from "../../../actions/actions";
+import negativeButton from "../../../assets/images/negativeButton.svg";
+import positiveButton from "../../../assets/images/positiveButton.svg";
 import styles from "./CartProductQuantity.module.scss";
 
 class CartProductQuantity extends Component {
@@ -26,13 +28,17 @@ class CartProductQuantity extends Component {
 
     return (
       <div className={`${styles.buttonContainer} ${this.props.className}`}>
-        <button type="button" onClick={handleIncrement}>
-          +
-        </button>
+        <img
+          src={positiveButton}
+          alt="Negative sign for increase quantity"
+          onClick={handleIncrement}
+        />
         <span>{product.quantity}</span>
-        <button type="button" onClick={handleDecrement}>
-          -
-        </button>
+        <img
+          src={negativeButton}
+          alt="Negative sign for decrease quantity"
+          onClick={handleDecrement}
+        />
       </div>
     );
   }
