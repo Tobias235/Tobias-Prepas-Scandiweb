@@ -5,8 +5,12 @@ import { connect } from "react-redux";
 import styles from "./NavigationCurrency.module.scss";
 import arrowUp from "../../../assets/images/arrowUp.svg";
 import arrowDown from "../../../assets/images/arrowDown.svg";
-import { setChangeCurrency } from "../../../actions/actions";
+import {
+  setChangeCurrency,
+  setShowCurrencyModal,
+} from "../../../actions/actions";
 import NavigationCartIcon from "../NavigationCart/NavigationCartIcon";
+import { Backdrop } from "../../../container/MiniCartContainer/MiniCartContainer";
 
 const GET_CURRENCIES = gql`
   query {
@@ -23,34 +27,40 @@ const GET_CURRENCIES = gql`
   }
 `;
 class NavigationCurrency extends Component {
-  state = {
-    showModal: false,
-  };
   handleButtonClick = () => {
-    this.setState((prev) => {
-      return { showModal: !prev.showModal };
-    });
+    if (this.props.showCart) return;
+    this.props.onShowCurrencyModal(!this.props.showCurrencyModal);
   };
 
   selectCurrency = (e) => {
     this.props.onChangeCurrency(e.target.id);
-    this.setState({
-      showModal: false,
-    });
+    this.props.onShowCurrencyModal(false);
+  };
+
+  handleCloseModal = () => {
+    this.props.onShowCurrencyModal(false);
   };
 
   render() {
-    const { showModal } = this.state;
-    const { currency } = this.props;
+    const { currency, showCurrencyModal } = this.props;
 
     return (
       <div className={styles.navigationCurrency}>
+        {showCurrencyModal && (
+          <Backdrop
+            onClose={this.handleCloseModal}
+            className={styles.background}
+          />
+        )}
         <button onClick={this.handleButtonClick}>
           {currency}
-          {showModal && <img src={arrowUp} alt="ArrowIcon Up" />}
-          {!showModal && <img src={arrowDown} alt="ArrowIcon Down" />}
+          {showCurrencyModal ? (
+            <img src={arrowUp} alt="ArrowIcon Up" />
+          ) : (
+            <img src={arrowDown} alt="ArrowIcon Down" />
+          )}
         </button>
-        {showModal && (
+        {showCurrencyModal && (
           <div className={styles.currencyOptions}>
             <Query query={GET_CURRENCIES}>
               {({ loading, error, data }) => {
@@ -77,10 +87,14 @@ class NavigationCurrency extends Component {
 
 const mapStateToProps = (state) => ({
   currency: state.currency,
+  showCart: state.showCart,
+  showCurrencyModal: state.showCurrencyModal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCurrency: (currency) => dispatch(setChangeCurrency(currency)),
+  onShowCurrencyModal: (currencyModal) =>
+    dispatch(setShowCurrencyModal(currencyModal)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationCurrency);

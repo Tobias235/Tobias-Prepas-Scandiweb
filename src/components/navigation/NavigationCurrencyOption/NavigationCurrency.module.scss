@@ -15,23 +15,32 @@
 
   .currencyOptions {
     position: absolute;
-    top: 50px;
-    width: 110px;
+    top: 80px;
     background-color: #ffffff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: 1s slideInFromLeft;
-    z-index: 1;
+    z-index: 30;
+    animation: 0.3s slideInFromTop;
 
     span {
-      padding: 12px;
+      width: 114px;
+      height: 45px;
+      text-align: center;
+      line-height: 45px;
+      &:hover {
+        background: #eeeeee;
+      }
     }
   }
 }
 
-@keyframes slideInFromLeft {
+.background {
+  background-color: transparent !important;
+}
+
+@keyframes slideInFromTop {
   0% {
     transform: translatey(-100%);
   }
