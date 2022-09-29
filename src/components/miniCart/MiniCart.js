@@ -1,8 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import MiniCartButton from "./MiniCartButton/MiniCartButton";
 import MiniCartHeader from "./MiniCartHeader/MiniCartHeader";
-import MiniCartTotal from "./MiniCartTotal/MiniCartTotal";
 import ProductTitles from "../productPage/productTitles/ProductTitles";
 import ProductPrice from "../productPage/productPrice/ProductPrice";
 import CartAttributes from "../cart/CartAttributes/CartAttributes";
@@ -14,7 +12,7 @@ class MiniCart extends Component {
     const { cart, currency } = this.props;
 
     return (
-      <>
+      <div className={styles.cartCardContainer}>
         <MiniCartHeader cart={cart} />
         {cart.map((product) => {
           return (
@@ -51,10 +49,7 @@ class MiniCart extends Component {
             </div>
           );
         })}
-
-        <MiniCartTotal currency={currency} cart={cart} />
-        <MiniCartButton />
-      </>
+      </div>
     );
   }
 }
