@@ -1,6 +1,8 @@
 import { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+
 import styles from "./MiniCartButton.module.scss";
 import { setCheckOut, setShowMiniCart } from "../../../actions/actions";
 
@@ -17,16 +19,16 @@ class MiniCartButton extends Component {
   render() {
     return (
       <div className={styles.miniCartButton}>
-        <NavLink
+        <Link
           type="button"
           className={styles.viewBag}
           onClick={this.handleCloseModal}
           to={{
-            pathname: `/cart/${Math.floor(Math.random() * 1000000)}`,
+            pathname: `/cart/${uuidv4()}`,
           }}
         >
           VIEW BAG
-        </NavLink>
+        </Link>
         <button
           type="button"
           className={styles.checkout}
