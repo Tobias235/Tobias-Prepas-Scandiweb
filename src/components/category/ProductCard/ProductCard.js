@@ -44,7 +44,7 @@ class ProductCard extends Component {
           key={product.id}
           id={product.id}
           className={styles.link}
-          to={{ pathname: `/product/${product.id}` }}
+          to={{ pathname: `/details/${product.id}` }}
           onClick={() => this.handleGetId(product.id)}
         >
           <img
@@ -76,9 +76,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  currency: state.currency,
-  cart: state.cart,
-  activeAttributes: state.activeAttributes,
+  currency: state.rootReducer.currency,
+  cart: state.rootReducer.cart,
+  activeAttributes: state.rootReducer.activeAttributes,
+  category: state.rootReducer.category,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
