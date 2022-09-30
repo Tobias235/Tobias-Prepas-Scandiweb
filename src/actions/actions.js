@@ -76,7 +76,6 @@ export const setShowCurrencyModal = (showCurrencyModal) => {
 };
 
 export const setCheckOut = () => {
-  console.log("actions");
   return {
     type: "SET_CHECK_OUT",
   };
