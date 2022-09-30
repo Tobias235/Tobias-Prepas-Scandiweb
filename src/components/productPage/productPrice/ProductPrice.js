@@ -11,7 +11,6 @@ class ProductPrice extends Component {
           return (
             cur.currency.symbol === currency && (
               <span className={`${styles.amount}`} key={cur.currency.symbol}>
-                {/* ${this.props.className} */}
                 {cur.currency.symbol}
                 {cur.amount}
               </span>
