@@ -6,6 +6,7 @@ import store from "./store";
 import "./index.module.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { PersistGate } from "redux-persist/integration/react";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
@@ -16,8 +17,10 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ApolloProvider client={client}>
-    <Provider store={store}>
-      <App />
+    <Provider store={store.store}>
+      <PersistGate persistor={store.persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </ApolloProvider>
 );
