@@ -62,8 +62,8 @@ class ProductGrid extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currency: state.currency,
-  category: state.category,
+  currency: state.rootReducer.currency,
+  category: state.rootReducer.category,
 });
 
 export default connect(mapStateToProps)(ProductGrid);

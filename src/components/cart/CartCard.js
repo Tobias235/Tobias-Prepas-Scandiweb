@@ -12,7 +12,6 @@ import CartAttributes from "./CartAttributes/CartAttributes";
 import CartProductQuantity from "./CartProductQuantity/CartProductQuantity";
 
 class CartCard extends Component {
-  handleChangePicture = () => {};
   render() {
     const { cart, currency } = this.props;
 
@@ -48,8 +47,8 @@ class CartCard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.cart,
-  currency: state.currency,
+  cart: state.rootReducer.cart,
+  currency: state.rootReducer.currency,
 });
 
 export default connect(mapStateToProps, null)(CartCard);

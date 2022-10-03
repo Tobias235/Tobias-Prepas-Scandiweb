@@ -23,7 +23,7 @@ class MiniCartQuantityCircle extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.cart,
+  cart: state.rootReducer.cart,
 });
 
 export default connect(mapStateToProps)(MiniCartQuantityCircle);

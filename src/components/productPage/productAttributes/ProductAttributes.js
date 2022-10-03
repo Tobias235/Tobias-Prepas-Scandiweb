@@ -92,7 +92,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  productId: state.productId,
+  productId: state.rootReducer.productId,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductAttributes);

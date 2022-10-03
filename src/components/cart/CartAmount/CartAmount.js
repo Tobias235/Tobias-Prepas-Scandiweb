@@ -57,7 +57,7 @@ class CartAmount extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  currency: state.currency,
+  currency: state.rootReducer.currency,
 });
 
 export default connect(mapStateToProps, null)(CartAmount);
