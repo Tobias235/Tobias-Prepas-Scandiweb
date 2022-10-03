@@ -14,49 +14,51 @@ class MiniCart extends Component {
     return (
       <div className={styles.cartCardContainer}>
         <MiniCartHeader cart={cart} />
-        {cart.map((product) => {
-          return (
-            <div key={product.uniqueId} className={styles.miniCartCard}>
-              <div className={styles.cartLeft}>
-                <ProductTitles
-                  product={product}
-                  className={styles.miniCartTitles}
-                />
-                <ProductPrice
-                  product={product}
-                  currency={currency}
-                  className={styles.price}
-                  miniCart={true}
-                />
-                <CartAttributes
-                  product={product}
-                  className={styles.attributeName}
-                  attributeStyle={styles.attributeOptions}
-                  attributeOptions={styles.attributes}
-                />
+        <div className={styles.cartProductContainer}>
+          {cart.map((product) => {
+            return (
+              <div key={product.uniqueId} className={styles.miniCartCard}>
+                <div className={styles.cartLeft}>
+                  <ProductTitles
+                    product={product}
+                    className={styles.miniCartTitles}
+                  />
+                  <ProductPrice
+                    product={product}
+                    currency={currency}
+                    className={styles.price}
+                    miniCart={true}
+                  />
+                  <CartAttributes
+                    product={product}
+                    className={styles.attributeName}
+                    attributeStyle={styles.attributeOptions}
+                    attributeOptions={styles.attributes}
+                  />
+                </div>
+                <div className={styles.cartRight}>
+                  <CartProductQuantity
+                    product={product}
+                    className={styles.cartProductQuantity}
+                  />
+                  <img
+                    src={product.gallery[0]}
+                    alt="product"
+                    className={styles.productImage}
+                  />
+                </div>
               </div>
-              <div className={styles.cartRight}>
-                <CartProductQuantity
-                  product={product}
-                  className={styles.cartProductQuantity}
-                />
-                <img
-                  src={product.gallery[0]}
-                  alt="product"
-                  className={styles.productImage}
-                />
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.cart,
-  currency: state.currency,
+  cart: state.rootReducer.cart,
+  currency: state.rootReducer.currency,
 });
 
 export default connect(mapStateToProps, null)(MiniCart);
