@@ -18,12 +18,6 @@ export class Backdrop extends Component {
   }
 }
 
-class ModalContainer extends Component {
-  render() {
-    return <div className={styles.modalContainer}>{this.props.children}</div>;
-  }
-}
-
 const portalElement = document.getElementById("overlays");
 
 class MiniCartContainer extends Component {
@@ -32,6 +26,7 @@ class MiniCartContainer extends Component {
       this.props.onSetShowCart(false);
     };
     const { showCart, cart, currency } = this.props;
+
     return (
       <>
         {showCart && (
@@ -41,13 +36,15 @@ class MiniCartContainer extends Component {
               portalElement
             )}
             {ReactDOM.createPortal(
-              <ModalContainer>
+              <div className={styles.modalContainer}>
                 <MiniCart />
                 <div>
-                  {cart && <MiniCartTotal currency={currency} cart={cart} />}
+                  {cart.length >= 1 && (
+                    <MiniCartTotal currency={currency} cart={cart} />
+                  )}
                   <MiniCartButton />
                 </div>
-              </ModalContainer>,
+              </div>,
               portalElement
             )}
           </div>
@@ -58,9 +55,9 @@ class MiniCartContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  showCart: state.showCart,
-  cart: state.cart,
-  currency: state.currency,
+  showCart: state.rootReducer.showCart,
+  cart: state.rootReducer.cart,
+  currency: state.rootReducer.currency,
 });
 
 const mapDispatchToProps = (dispatch) => ({
