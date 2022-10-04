@@ -6,6 +6,7 @@ import {
   setChangeQuantity,
 } from "../../../actions/actions";
 import { handleAddToCart } from "../../../utils/HandleAddToCart";
+import Button from "../../utils/Button/Button";
 import styles from "./ProductButton.module.scss";
 
 class ProductButton extends Component {
@@ -26,13 +27,11 @@ class ProductButton extends Component {
 
   render() {
     return (
-      <button
-        type="button"
+      <Button
+        text="ADD TO CART"
         className={styles.productButton}
         onClick={this.handleCartCheck}
-      >
-        ADD TO CART
-      </button>
+      />
     );
   }
 }
