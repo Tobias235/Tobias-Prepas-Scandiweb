@@ -10,7 +10,7 @@ import {
   setShowCurrencyModal,
 } from "../../../actions/actions";
 import NavigationCartIcon from "../NavigationCart/NavigationCartIcon";
-import { Backdrop } from "../../../container/MiniCartContainer/MiniCartContainer";
+import Backdrop from "../../utils/Backdrop/Backdrop";
 
 const GET_CURRENCIES = gql`
   query {
