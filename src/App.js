@@ -1,14 +1,13 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { Router, Route, Switch } from "react-router-dom";
-import styles from "./App.module.scss";
+import { createBrowserHistory } from "history";
+import { setChangeCategory, setProductId } from "./actions/actions";
 import NavigationBar from "./components/navigation/NavigationBar";
 import Category from "./container/CategoryContainer/Category";
 import Product from "./container/ProductContainer/Product";
 import Cart from "./container/CartContainer/Cart";
-import MiniCartContainer from "./container/MiniCartContainer/MiniCartContainer";
-import { createBrowserHistory } from "history";
-import { setChangeCategory, setProductId } from "./actions/actions";
+import MiniCartModal from "./container/MiniCartModal/MiniCartModal";
 
 const customHistory = createBrowserHistory();
 
@@ -39,9 +38,9 @@ class App extends Component {
   render() {
     return (
       <>
-        <Router history={customHistory} className={styles.app}>
+        <Router history={customHistory}>
           <NavigationBar />
-          <MiniCartContainer />
+          <MiniCartModal />
           <Switch>
             <Route exact path={["/", "/:name"]} component={Category} />
             <Route exact path="/details/:productId" component={Product} />
