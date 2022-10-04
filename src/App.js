@@ -20,7 +20,6 @@ class App extends Component {
       if (customHistory.action === "POP") {
         category = history.pathname.replace(/[/]/g, " ").trim().split(" ");
         arr.push(category);
-        console.log(arr[0].length);
         if (arr[0].length <= 1 && this.props.category !== arr[0].toString()) {
           let isStringEmpty =
             arr[0].toString() === "" ? "all" : arr[0].toString();
@@ -60,7 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  category: state.rootReducer.category,
+  category: state.activeReducer.category,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
