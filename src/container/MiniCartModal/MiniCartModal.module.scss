@@ -1,0 +1,31 @@
+.modalContainer {
+  position: absolute;
+  width: 325px;
+  max-height: 70vh;
+  margin: auto;
+  top: 80px;
+  right: 8%;
+  background-color: white;
+  z-index: 30;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  animation: 0.3s slideInFromTop;
+}
+
+.emptyCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translatey(-7%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
