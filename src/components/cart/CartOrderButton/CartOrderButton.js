@@ -1,18 +1,21 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { setCheckOut } from "../../../actions/actions";
+import Button from "../../utils/Button/Button";
 import styles from "./CartOrderButton.module.scss";
 
 class CartOrderButton extends Component {
+  handleCheckOut = () => {
+    this.props.onSetCheckOut();
+    alert("Your order has been placed!");
+  };
   render() {
-    const handleCheckOut = () => {
-      this.props.onSetCheckOut();
-      alert("Your order has been placed!");
-    };
     return (
-      <button className={styles.cartOrderButton} onClick={handleCheckOut}>
-        Order
-      </button>
+      <Button
+        text="Order"
+        className={styles.cartOrderButton}
+        onClick={this.handleCheckOut}
+      />
     );
   }
 }
