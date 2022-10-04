@@ -76,7 +76,7 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  productId: state.rootReducer.productId,
-  currency: state.rootReducer.currency,
+  productId: state.activeReducer.productId,
+  currency: state.activeReducer.currency,
 });
 export default connect(mapStateToProps)(Product);

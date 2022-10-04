@@ -52,7 +52,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  category: state.rootReducer.category,
+  category: state.activeReducer.category,
 });
 
 export default connect(

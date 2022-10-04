@@ -76,10 +76,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  currency: state.rootReducer.currency,
-  cart: state.rootReducer.cart,
-  activeAttributes: state.rootReducer.activeAttributes,
-  category: state.rootReducer.category,
+  currency: state.activeReducer.currency,
+  cart: state.cartReducer.cart,
+  activeAttributes: state.activeReducer.activeAttributes,
+  category: state.activeReducer.category,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);

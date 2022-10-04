@@ -44,7 +44,7 @@ class CartProductQuantity extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  cart: state.rootReducer.cart,
+  cart: state.cartReducer.cart,
 });
 
 const mapDispatchToProps = (dispatch) => ({

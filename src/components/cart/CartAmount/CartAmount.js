@@ -18,7 +18,6 @@ class CartAmount extends Component {
       tax: result[0].tax,
       quantity: result[0].quantity,
     });
-    console.log(result);
   };
 
   componentDidMount() {
@@ -57,7 +56,7 @@ class CartAmount extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  currency: state.rootReducer.currency,
+  currency: state.activeReducer.currency,
 });
 
 export default connect(mapStateToProps, null)(CartAmount);

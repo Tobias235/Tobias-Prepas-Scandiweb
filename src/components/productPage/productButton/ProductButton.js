@@ -38,8 +38,8 @@ class ProductButton extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.rootReducer.cart,
-  activeAttributes: state.rootReducer.activeAttributes,
+  cart: state.cartReducer.cart,
+  activeAttributes: state.activeReducer.activeAttributes,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -24,9 +24,9 @@ class NavigationCartIcon extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.rootReducer.cart,
-  showCart: state.rootReducer.showCart,
-  showCurrencyModal: state.rootReducer.showCurrencyModal,
+  cart: state.cartReducer.cart,
+  showCart: state.modalReducer.showCart,
+  showCurrencyModal: state.modalReducer.showCurrencyModal,
 });
 
 const mapDispatchToProps = (dispatch) => ({

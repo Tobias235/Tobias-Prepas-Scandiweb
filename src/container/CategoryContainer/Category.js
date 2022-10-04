@@ -15,7 +15,7 @@ class CategoryContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  category: state.rootReducer.category,
+  category: state.activeReducer.category,
 });
 
 export default connect(mapStateToProps)(CategoryContainer);

@@ -57,8 +57,8 @@ class MiniCart extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.rootReducer.cart,
-  currency: state.rootReducer.currency,
+  cart: state.cartReducer.cart,
+  currency: state.activeReducer.currency,
 });
 
 export default connect(mapStateToProps, null)(MiniCart);

@@ -55,9 +55,9 @@ class MiniCartContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  showCart: state.rootReducer.showCart,
-  cart: state.rootReducer.cart,
-  currency: state.rootReducer.currency,
+  showCart: state.modalReducer.showCart,
+  cart: state.cartReducer.cart,
+  currency: state.activeReducer.currency,
 });
 
 const mapDispatchToProps = (dispatch) => ({

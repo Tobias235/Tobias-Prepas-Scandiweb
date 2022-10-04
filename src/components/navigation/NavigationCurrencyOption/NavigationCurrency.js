@@ -86,9 +86,9 @@ class NavigationCurrency extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currency: state.rootReducer.currency,
-  showCart: state.rootReducer.showCart,
-  showCurrencyModal: state.rootReducer.showCurrencyModal,
+  currency: state.activeReducer.currency,
+  showCart: state.modalReducer.showCart,
+  showCurrencyModal: state.modalReducer.showCurrencyModal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
