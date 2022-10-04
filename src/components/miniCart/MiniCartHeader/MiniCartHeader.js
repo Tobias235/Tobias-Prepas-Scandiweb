@@ -6,8 +6,8 @@ class MiniCartHeader extends Component {
     const { cart } = this.props;
     const quantity = cart
       .map((product) => product.quantity)
-      .reduce((prevValue, currValue) => {
-        return prevValue + currValue;
+      .reduce((prevValue, currentValue) => {
+        return prevValue + currentValue;
       }, 0);
 
     const item = quantity === 1 ? "item" : "items";
