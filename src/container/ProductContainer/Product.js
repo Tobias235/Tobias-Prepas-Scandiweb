@@ -2,13 +2,13 @@ import { Component } from "react";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
-import styles from "./Product.module.scss";
 import ImageGallery from "../../components/productPage/imageGallery/ImageGallery";
-import ProductTitles from "../../components/productPage/productTitles/ProductTitles";
 import ProductAttributes from "../../components/productPage/productAttributes/ProductAttributes";
-import ProductPrice from "../../components/productPage/productPrice/ProductPrice";
 import ProductButton from "../../components/productPage/productButton/ProductButton";
 import ProductDescription from "../../components/productPage/productDescription/ProductDescription";
+import BrandName from "../../components/utils/BrandName/BrandName";
+import Price from "../../components/utils/Price/Price";
+import styles from "./Product.module.scss";
 
 const GET_PRODUCTS = gql`
   query {
@@ -61,9 +61,9 @@ class Product extends Component {
               <ImageGallery product={product.gallery} />
               <div className={styles.spacer}></div>
               <div className={styles.descriptionContainer}>
-                <ProductTitles product={product} />
+                <BrandName product={product} />
                 <ProductAttributes product={product} />
-                <ProductPrice product={product} currency={currency} />
+                <Price product={product} currency={currency} />
                 <ProductButton product={product} />
                 <ProductDescription product={product} />
               </div>
