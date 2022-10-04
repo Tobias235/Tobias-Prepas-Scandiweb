@@ -1,15 +1,15 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import MiniCartHeader from "./MiniCartHeader/MiniCartHeader";
-import ProductTitles from "../productPage/productTitles/ProductTitles";
-import ProductPrice from "../productPage/productPrice/ProductPrice";
-import CartAttributes from "../cart/CartAttributes/CartAttributes";
 import CartProductQuantity from "../cart/CartProductQuantity/CartProductQuantity";
+import CartAttributes from "../cart/CartAttributes/CartAttributes";
+import BrandName from "../utils/BrandName/BrandName";
+import Price from "../utils/Price/Price";
 import styles from "./MiniCart.module.scss";
 
 class MiniCart extends Component {
   render() {
-    const { cart, currency } = this.props;
+    const { cart } = this.props;
 
     return (
       <div className={styles.cartCardContainer}>
@@ -19,14 +19,13 @@ class MiniCart extends Component {
             return (
               <div key={product.uniqueId} className={styles.miniCartCard}>
                 <div className={styles.cartLeft}>
-                  <ProductTitles
+                  <BrandName
                     product={product}
-                    className={styles.miniCartTitles}
+                    className={styles.miniCartNames}
                   />
-                  <ProductPrice
+                  <Price
                     product={product}
-                    currency={currency}
-                    className={styles.price}
+                    className={styles.productPrice}
                     miniCart={true}
                   />
                   <CartAttributes
@@ -58,7 +57,6 @@ class MiniCart extends Component {
 
 const mapStateToProps = (state) => ({
   cart: state.cartReducer.cart,
-  currency: state.activeReducer.currency,
 });
 
 export default connect(mapStateToProps, null)(MiniCart);
