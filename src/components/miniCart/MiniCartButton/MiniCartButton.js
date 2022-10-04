@@ -2,14 +2,15 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-
-import styles from "./MiniCartButton.module.scss";
 import { setCheckOut, setShowMiniCart } from "../../../actions/actions";
+import Button from "../../utils/Button/Button";
+import styles from "./MiniCartButton.module.scss";
 
 class MiniCartButton extends Component {
   handleCheckOut = () => {
     this.props.onSetCheckOut();
     alert("Your order has been placed!");
+    this.props.onSetShowCart(false);
   };
 
   handleCloseModal = () => {
@@ -20,7 +21,6 @@ class MiniCartButton extends Component {
     return (
       <div className={styles.miniCartButton}>
         <Link
-          type="button"
           className={styles.viewBag}
           onClick={this.handleCloseModal}
           to={{
@@ -29,13 +29,7 @@ class MiniCartButton extends Component {
         >
           VIEW BAG
         </Link>
-        <button
-          type="button"
-          className={styles.checkout}
-          onClick={this.handleCheckOut}
-        >
-          CHECK OUT
-        </button>
+        <Button text="CHECK OUT" onClick={this.handleCheckOut} />
       </div>
     );
   }
