@@ -1,3 +1,5 @@
+@use "../../../assets/scss/components/attributes.module" as attributes;
+
 .attributes {
   margin-bottom: 8px;
 }
@@ -12,15 +14,10 @@
 }
 
 .attributeOptions {
-  padding: 7px 20px;
-  font-family: "Source Sans Pro";
-  font-weight: 400;
+  @include attributes.attributeOption;
 }
 .attributeName {
-  margin-bottom: 15px;
-  font-family: "roboto condensed";
-  font-weight: 700;
-  font-size: 18px;
+  @include attributes.attributeName;
 }
 
 .active {
