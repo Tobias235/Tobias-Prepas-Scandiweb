@@ -21,15 +21,15 @@ class CartCard extends Component {
             {cart.map((product) => {
               return (
                 <div className={styles.cartCard} key={product.uniqueId}>
-                  <div className={styles.cartLeft}>
+                  <section className={styles.cartLeft}>
                     <BrandName product={product} />
                     <Price product={product} currency={currency} />
                     <CartAttributes product={product} />
-                  </div>
-                  <div className={styles.cartRight}>
+                  </section>
+                  <section className={styles.cartRight}>
                     <CartProductQuantity product={product} />
                     <CartImage product={product} />
-                  </div>
+                  </section>
                 </div>
               );
             })}

@@ -18,7 +18,7 @@ class MiniCart extends Component {
           {cart.map((product) => {
             return (
               <div key={product.uniqueId} className={styles.miniCartCard}>
-                <div className={styles.cartLeft}>
+                <section className={styles.cartLeft}>
                   <BrandName
                     product={product}
                     className={styles.miniCartNames}
@@ -30,8 +30,8 @@ class MiniCart extends Component {
                     attributeStyle={styles.attributeOptions}
                     attributeOptions={styles.attributes}
                   />
-                </div>
-                <div className={styles.cartRight}>
+                </section>
+                <section className={styles.cartRight}>
                   <CartProductQuantity
                     product={product}
                     className={styles.cartProductQuantity}
@@ -41,7 +41,7 @@ class MiniCart extends Component {
                     alt="product"
                     className={styles.productImage}
                   />
-                </div>
+                </section>
               </div>
             );
           })}

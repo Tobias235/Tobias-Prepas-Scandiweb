@@ -57,18 +57,18 @@ class Product extends Component {
                   (product) => product.id === productId
                 );
           return products.map((product) => (
-            <div className={styles.product} key={product.id}>
+            <main className={styles.product} key={product.id}>
               <ImageGallery product={product.gallery} />
               <div className={styles.spacer}></div>
-              <div className={styles.descriptionContainer}>
+              <section className={styles.descriptionContainer}>
                 <BrandName product={product} />
                 <ProductAttributes product={product} />
                 <span className={styles.price}>Price:</span>
                 <Price product={product} currency={currency} />
                 <ProductButton product={product} />
                 <ProductDescription product={product} />
-              </div>
-            </div>
+              </section>
+            </main>
           ));
         }}
       </Query>

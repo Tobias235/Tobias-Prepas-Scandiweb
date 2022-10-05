@@ -6,10 +6,10 @@ import styles from "./CategoryContainer.module.scss";
 class CategoryContainer extends Component {
   render() {
     return (
-      <div className={styles.categoryContainer}>
+      <main className={styles.categoryContainer}>
         <h1>{this.props.category}</h1>
         <ProductGrid />
-      </div>
+      </main>
     );
   }
 }

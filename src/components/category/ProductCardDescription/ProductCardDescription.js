@@ -6,7 +6,7 @@ class ProductCardDescription extends Component {
     const { product, currency } = this.props;
 
     return (
-      <div className={styles.descriptionContainer}>
+      <section className={styles.descriptionContainer}>
         <span id={product.id} className={styles.productName}>
           {product.brand} {product.name}
         </span>
@@ -17,7 +17,7 @@ class ProductCardDescription extends Component {
               ` ${cur.currency.symbol}${cur.amount}`
           )}
         </span>
-      </div>
+      </section>
     );
   }
 }

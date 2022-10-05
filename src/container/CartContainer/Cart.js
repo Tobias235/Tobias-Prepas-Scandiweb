@@ -5,10 +5,10 @@ import styles from "./Cart.module.scss";
 class Cart extends Component {
   render() {
     return (
-      <div className={styles.cartContainer}>
+      <main className={styles.cartContainer}>
         <h1 className={styles.cartTitle}>CART</h1>
         <CartCard />
-      </div>
+      </main>
     );
   }
 }
