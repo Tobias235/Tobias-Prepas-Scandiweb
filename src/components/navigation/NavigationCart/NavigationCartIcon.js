@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { setShowMiniCart } from "../../../actions/actions";
+import { setShowMiniCart } from "../../../actions/ModalAction";
 import styles from "./NavigationCartIcon.module.scss";
 import cartIcon from "../../../assets/images/cart.svg";
 import MiniCartQuantityCircle from "../../miniCart/MiniCartQuantityCircle/MiniCartQuantityCircle";

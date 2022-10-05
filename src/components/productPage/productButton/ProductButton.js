@@ -1,10 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import {
-  setActiveAttributes,
-  setAddCart,
-  setChangeQuantity,
-} from "../../../actions/actions";
+import { setAddCart, setChangeQuantity } from "../../../actions/CartAction";
+import { setActiveAttributes } from "../../../actions/ActiveAction";
 import { handleAddToCart } from "../../../utils/HandleAddToCart";
 import Button from "../../utils/Button/Button";
 import styles from "./ProductButton.module.scss";
@@ -22,7 +19,10 @@ class ProductButton extends Component {
       this.props.onAddToCart(result);
       alert("Product added to cart");
     }
-    this.props.onGetActiveAttributes([]);
+
+    if (activeAttributes.length > 0) {
+      this.props.onGetActiveAttributes([]);
+    }
   };
 
   render() {

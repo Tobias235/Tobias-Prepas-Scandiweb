@@ -5,10 +5,8 @@ import { connect } from "react-redux";
 import styles from "./NavigationCurrency.module.scss";
 import arrowUp from "../../../assets/images/arrowUp.svg";
 import arrowDown from "../../../assets/images/arrowDown.svg";
-import {
-  setChangeCurrency,
-  setShowCurrencyModal,
-} from "../../../actions/actions";
+import { setChangeCurrency } from "../../../actions/ActiveAction";
+import { setShowCurrencyModal } from "../../../actions/ModalAction";
 import NavigationCartIcon from "../NavigationCart/NavigationCartIcon";
 import Backdrop from "../../utils/Backdrop/Backdrop";
 

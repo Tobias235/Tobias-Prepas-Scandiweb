@@ -5,11 +5,8 @@ import styles from "./ProductCard.module.scss";
 import CartIcon from "../ProductCartIcon/CartIcon";
 import OutOfStock from "../OutOfStock/OutOfStock";
 import ProductCardDescription from "../ProductCardDescription/ProductCardDescription";
-import {
-  setAddCart,
-  setChangeQuantity,
-  setProductId,
-} from "../../../actions/actions";
+import { setAddCart, setChangeQuantity } from "../../../actions/CartAction";
+import { setProductId } from "../../../actions/ActiveAction";
 import { handleAddToCart } from "../../../utils/HandleAddToCart";
 
 class ProductCard extends Component {

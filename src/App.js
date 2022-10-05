@@ -2,7 +2,7 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
-import { setChangeCategory, setProductId } from "./actions/actions";
+import { setProductId, setChangeCategory } from "./actions/ActiveAction";
 import NavigationBar from "./components/navigation/NavigationBar";
 import Category from "./container/CategoryContainer/Category";
 import Product from "./container/ProductContainer/Product";

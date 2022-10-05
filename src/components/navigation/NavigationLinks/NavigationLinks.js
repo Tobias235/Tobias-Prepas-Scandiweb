@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
 import { Component } from "react";
 import styles from "./NavigationLinks.module.scss";
-import { setChangeCategory } from "../../../actions/actions";
+import { setChangeCategory } from "../../../actions/ActiveAction";
 
 const GET_CATEGORIES = gql`
   query getCategories {
