@@ -1,6 +1,8 @@
 .imageSlider {
   width: 200px;
   height: 100%;
+  display: flex;
+  align-items: center;
   box-shadow: 0 1px 5px rgba(110, 110, 110, 0.1);
 
   .mainImage {
@@ -10,6 +12,7 @@
 
 .arrowContainer {
   display: flex;
+  height: 100%;
   justify-content: flex-end;
   align-items: flex-end;
   position: relative;
@@ -19,7 +22,6 @@
     margin: 5px;
     .arrowButton {
       background-color: black;
-      padding: 5px;
       margin: 5px;
     }
   }
