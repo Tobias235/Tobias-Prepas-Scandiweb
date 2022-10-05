@@ -6,9 +6,19 @@ export const handleAddToCart = (product, activeAttributes, cart) => {
   let attributes = [];
   let isEqual;
 
-  if (activeAttributes.length > 0) {
+  if (
+    activeAttributes.length > 0 &&
+    product.attributes.length === activeAttributes.length
+  ) {
     attributes = [...activeAttributes];
-  } else if (activeAttributes.length === 0 && product.attributes.length > 0) {
+  }
+
+  if (
+    product.attributes.length !== activeAttributes.length &&
+    window.confirm(
+      "Not all attributes were selected, Do you want to continue with default attributes?"
+    )
+  ) {
     product.attributes.map((attribute) => {
       return attributes.push({
         id: product.id,
