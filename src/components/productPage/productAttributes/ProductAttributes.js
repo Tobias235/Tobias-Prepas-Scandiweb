@@ -8,12 +8,6 @@ class ProductAttributes extends Component {
     options: [],
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.options !== this.state.options) {
-      this.updateState(this.state.options);
-    }
-  }
-
   updateState = (options) => {
     const { product } = this.props;
     this.setState({ ...options });
@@ -21,6 +15,12 @@ class ProductAttributes extends Component {
       this.props.onGetActiveAttributes(options);
     }
   };
+
+  handleAttributesAtPageMount() {
+    const { options } = this.state;
+    options.push(...this.props.activeAttributes);
+    this.updateState(options);
+  }
 
   handleActive = (e) => {
     const { options } = this.state;
@@ -43,6 +43,18 @@ class ProductAttributes extends Component {
     options.push({ id: productId, name: parentElement, value: e.target.id });
     this.updateState(options);
   };
+
+  componentDidMount() {
+    if (this.props.activeAttributes.length > 0) {
+      this.handleAttributesAtPageMount();
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.options !== this.state.options) {
+      this.updateState(this.state.options);
+    }
+  }
 
   render() {
     const { product } = this.props;
@@ -96,6 +108,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   productId: state.activeReducer.productId,
+  activeAttributes: state.activeReducer.activeAttributes,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductAttributes);
