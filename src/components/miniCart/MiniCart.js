@@ -23,11 +23,7 @@ class MiniCart extends Component {
                     product={product}
                     className={styles.miniCartNames}
                   />
-                  <Price
-                    product={product}
-                    className={styles.productPrice}
-                    miniCart={true}
-                  />
+                  <Price product={product} className={styles.productPrice} />
                   <CartAttributes
                     product={product}
                     className={styles.attributeName}
