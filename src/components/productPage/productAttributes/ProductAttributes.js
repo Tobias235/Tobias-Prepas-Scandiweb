@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { setActiveAttributes } from "../../../actions/actions";
+import { setActiveAttributes } from "../../../actions/ActiveAction";
 import styles from "./ProductAttributes.module.scss";
 
 class ProductAttributes extends Component {
@@ -15,8 +15,11 @@ class ProductAttributes extends Component {
   }
 
   updateState = (options) => {
+    const { product } = this.props;
     this.setState({ ...options });
-    this.props.onGetActiveAttributes(options);
+    if (product.attributes.length === options.length) {
+      this.props.onGetActiveAttributes(options);
+    }
   };
 
   handleActive = (e) => {
@@ -53,7 +56,7 @@ class ProductAttributes extends Component {
               <p className={styles.attributeName}>{attribute.name}:</p>
               {attribute.items.map((item, i) => {
                 const styleClass =
-                  attribute.name === "swatch"
+                  attribute.type === "swatch"
                     ? styles.colorAttribute
                     : styles.attributeOptions;
                 const active = options.some(
