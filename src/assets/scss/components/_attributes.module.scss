@@ -1,0 +1,14 @@
+@mixin attributeName {
+  margin-bottom: 15px;
+  font-family: "roboto condensed";
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+@mixin attributeOption {
+  padding: 7px 20px;
+  font-family: "Source Sans Pro";
+  font-weight: 400;
+  cursor: pointer;
+}
