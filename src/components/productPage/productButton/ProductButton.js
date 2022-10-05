@@ -10,20 +10,35 @@ class ProductButton extends Component {
   handleCartCheck = () => {
     const { product, activeAttributes, cart } = this.props;
 
+    if (
+      product.attributes.length > 0 &&
+      product.attributes.length !== activeAttributes.length
+    ) {
+      if (
+        window.confirm(
+          "Not all attributes were selected, Do you want to continue with default attributes?"
+        )
+      ) {
+        let result = handleAddToCart(product, activeAttributes, cart);
+        this.updateCart(result);
+      }
+      return;
+    }
     let result = handleAddToCart(product, activeAttributes, cart);
+    this.updateCart(result);
+  };
 
+  updateCart(result) {
     if (result.equal) {
       this.props.onChangeQuantity(result.equal);
-      alert("Product with chosen attributes is already in cart");
+      alert(
+        "Product with chosen attributes is already in cart, updated quantity"
+      );
     } else {
       this.props.onAddToCart(result);
       alert("Product added to cart");
     }
-
-    if (activeAttributes.length > 0) {
-      this.props.onGetActiveAttributes([]);
-    }
-  };
+  }
 
   render() {
     const { product } = this.props;

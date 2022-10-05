@@ -6,7 +6,10 @@ import CartIcon from "../ProductCartIcon/CartIcon";
 import OutOfStock from "../OutOfStock/OutOfStock";
 import ProductCardDescription from "../ProductCardDescription/ProductCardDescription";
 import { setAddCart, setChangeQuantity } from "../../../actions/CartAction";
-import { setProductId } from "../../../actions/ActiveAction";
+import {
+  setActiveAttributes,
+  setProductId,
+} from "../../../actions/ActiveAction";
 import { handleAddToCart } from "../../../utils/HandleAddToCart";
 
 class ProductCard extends Component {
@@ -14,19 +17,44 @@ class ProductCard extends Component {
     this.props.onGetProductId(productId);
   };
 
-  handleAddCart = () => {
+  handleCartCheck = () => {
     const { product, activeAttributes, cart } = this.props;
+    let result;
 
-    let result = handleAddToCart(product, activeAttributes, cart);
+    if (product.attributes.length === 0) {
+      result = handleAddToCart(product, activeAttributes, cart);
+    } else {
+      if (
+        window.confirm(
+          "Not all attributes were selected, Do you want to continue with default attributes?"
+        )
+      ) {
+        result = handleAddToCart(product, activeAttributes, cart);
+      } else {
+        return;
+      }
+    }
 
     if (result.equal) {
       this.props.onChangeQuantity(result.equal);
-      alert("Product with chosen attributes is already in cart");
+      alert(
+        "Product with chosen attributes is already in cart, updated quantity"
+      );
     } else {
       this.props.onAddToCart(result);
       alert("Product added to cart");
     }
   };
+
+  componentDidMount() {
+    if (this.props.activeAttributes.length > 0) {
+      this.handleActiveAttributes();
+    }
+  }
+
+  handleActiveAttributes() {
+    this.props.onGetActiveAttributes([]);
+  }
 
   render() {
     const { currency, product } = this.props;
@@ -58,7 +86,7 @@ class ProductCard extends Component {
           <CartIcon
             className={styles.addCartButton}
             id={product.id}
-            onClick={this.handleAddCart}
+            onClick={this.handleCartCheck}
           />
         )}
       </div>
@@ -70,6 +98,8 @@ const mapDispatchToProps = (dispatch) => ({
   onGetProductId: (id) => dispatch(setProductId(id)),
   onAddToCart: (product) => dispatch(setAddCart(product)),
   onChangeQuantity: (uniqueId) => dispatch(setChangeQuantity(uniqueId)),
+  onGetActiveAttributes: (attribute) =>
+    dispatch(setActiveAttributes(attribute)),
 });
 
 const mapStateToProps = (state) => ({
