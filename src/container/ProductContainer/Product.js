@@ -63,7 +63,7 @@ class Product extends Component {
               <section className={styles.descriptionContainer}>
                 <BrandName product={product} />
                 <ProductAttributes product={product} />
-                <span className={styles.price}>Price:</span>
+                <span className={styles.price}>PRICE:</span>
                 <Price product={product} currency={currency} />
                 <ProductButton product={product} />
                 <ProductDescription product={product} />

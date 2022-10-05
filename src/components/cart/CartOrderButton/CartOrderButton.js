@@ -12,7 +12,7 @@ class CartOrderButton extends Component {
   render() {
     return (
       <Button
-        text="Order"
+        text="ORDER"
         className={styles.cartOrderButton}
         onClick={this.handleCheckOut}
       />
