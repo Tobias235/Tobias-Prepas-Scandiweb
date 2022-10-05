@@ -2,7 +2,6 @@ import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { withRouter } from "react-router";
 import { Component } from "react";
 import styles from "./NavigationLinks.module.scss";
 import { setChangeCategory } from "../../../actions/ActiveAction";
@@ -55,7 +54,4 @@ const mapStateToProps = (state) => ({
   category: state.activeReducer.category,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(NavigationLinks));
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationLinks);
