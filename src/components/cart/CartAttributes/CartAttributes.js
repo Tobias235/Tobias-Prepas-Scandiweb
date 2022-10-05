@@ -25,7 +25,6 @@ class CartAttributes extends Component {
                   attribute.type === "swatch"
                     ? styles.colorAttribute
                     : styles.attributeOptions;
-                console.log(styleClass);
                 const active = product.activeAttributes.some(
                   (option) =>
                     option.name === attribute.name &&
