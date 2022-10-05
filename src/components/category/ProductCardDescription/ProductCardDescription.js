@@ -8,7 +8,7 @@ class ProductCardDescription extends Component {
     return (
       <div className={styles.descriptionContainer}>
         <span id={product.id} className={styles.productName}>
-          {product.name}
+          {product.brand} {product.name}
         </span>
         <span id={product.id} className={styles.productPrice}>
           {product.prices.map(
