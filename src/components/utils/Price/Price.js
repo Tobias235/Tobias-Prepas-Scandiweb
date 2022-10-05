@@ -7,7 +7,6 @@ class Price extends Component {
     const { product, currency } = this.props;
     return (
       <span className={`${styles.price} ${this.props.className}`}>
-        {!this.props.miniCart && "Price:"}
         {product.prices.map((cur) => {
           return (
             cur.currency.symbol === currency && (
