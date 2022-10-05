@@ -15,6 +15,7 @@
 
 .attributeOptions {
   @include attributes.attributeOption;
+  cursor: default;
 }
 .attributeName {
   @include attributes.attributeName;
