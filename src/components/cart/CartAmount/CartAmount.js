@@ -41,16 +41,22 @@ class CartAmount extends Component {
 
     return (
       <div className={styles.cartAmount}>
-        <section>
+        <div>
           <span>Tax 21%:</span>
           <span>Quantity:</span>
           <span>Total:</span>
-        </section>
-        <section>
-          <span>{(currency, tax.toFixed(2))}</span>
+        </div>
+        <div>
+          <span>
+            {currency}
+            {tax.toFixed(2)}
+          </span>
           <span>{quantity}</span>
-          <span>{(currency, total.toFixed(2))}</span>
-        </section>
+          <span>
+            {currency}
+            {total.toFixed(2)}
+          </span>
+        </div>
       </div>
     );
   }
