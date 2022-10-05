@@ -9,9 +9,9 @@ import styles from "./MiniCartButton.module.scss";
 
 class MiniCartButton extends Component {
   handleCheckOut = () => {
-    this.props.onSetCheckOut();
     alert("Your order has been placed!");
     this.props.onSetShowCart(false);
+    this.props.onSetCheckOut();
   };
 
   handleCloseModal = () => {
@@ -19,6 +19,8 @@ class MiniCartButton extends Component {
   };
 
   render() {
+    const { cart } = this.props;
+    const isDisabled = cart.length === 0 ? true : false;
     return (
       <div className={styles.miniCartButton}>
         <Link
@@ -30,7 +32,12 @@ class MiniCartButton extends Component {
         >
           VIEW BAG
         </Link>
-        <Button text="CHECK OUT" onClick={this.handleCheckOut} />
+        <Button
+          text="CHECK OUT"
+          onClick={this.handleCheckOut}
+          disabled={isDisabled}
+          className={isDisabled ? styles.disabled : null}
+        />
       </div>
     );
   }
@@ -41,4 +48,8 @@ const mapDispatchToProps = (dispatch) => ({
   onSetShowCart: (showCart) => dispatch(setShowMiniCart(showCart)),
 });
 
-export default connect(null, mapDispatchToProps)(MiniCartButton);
+const mapStateToProps = (state) => ({
+  cart: state.cartReducer.cart,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MiniCartButton);
