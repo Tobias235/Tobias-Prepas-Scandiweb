@@ -3,15 +3,19 @@ import NavigationLinks from "./NavigationLinks/NavigationLinks";
 import NavigationLogo from "./NavigationLogo/NavigationLogo";
 import NavigationCurrency from "./NavigationCurrencyOption/NavigationCurrency";
 import styles from "./NavigationBar.module.scss";
+import MiniCartModal from "../../container/MiniCartModal/MiniCartModal";
 
 class NavigationBar extends Component {
   render() {
     return (
       <nav className={styles.navigationBar}>
         <div className={styles.navContainer}>
-          <NavigationLinks />
-          <NavigationLogo />
-          <NavigationCurrency />
+          <div className={styles.componentContainer}>
+            <NavigationLinks />
+            <NavigationLogo />
+            <NavigationCurrency />
+            <MiniCartModal />
+          </div>
         </div>
       </nav>
     );
