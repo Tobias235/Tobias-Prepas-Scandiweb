@@ -1,14 +1,17 @@
 .navigationBar {
-  position: relative;
   height: 80px;
-  width: 100%;
-  background-color: #ffffff;
-  z-index: 25;
 
   .navContainer {
-    width: 80%;
+    position: fixed;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 25;
+  }
+
+  .componentContainer {
     display: flex;
     align-items: center;
+    width: 80%;
     margin: auto;
   }
 }
