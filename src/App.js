@@ -7,7 +7,6 @@ import NavigationBar from "./components/navigation/NavigationBar";
 import Category from "./container/CategoryContainer/Category";
 import Product from "./container/ProductContainer/Product";
 import Cart from "./container/CartContainer/Cart";
-import MiniCartModal from "./container/MiniCartModal/MiniCartModal";
 
 const customHistory = createBrowserHistory();
 
@@ -40,7 +39,6 @@ class App extends Component {
       <>
         <Router history={customHistory}>
           <NavigationBar />
-          <MiniCartModal />
           <Switch>
             <Route exact path={["/", "/:name"]} component={Category} />
             <Route exact path="/details/:productId" component={Product} />
