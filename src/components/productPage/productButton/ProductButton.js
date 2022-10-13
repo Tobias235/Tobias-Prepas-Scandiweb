@@ -45,7 +45,7 @@ class ProductButton extends Component {
     const disabled = !product.inStock ? true : false;
     return (
       <Button
-        text="ADD TO CART"
+        text={disabled ? "OUT OF STOCK" : "ADD TO CART"}
         className={`${styles.productButton} ${
           disabled ? styles.disabled : null
         }`}
