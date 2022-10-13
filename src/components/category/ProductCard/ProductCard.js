@@ -57,8 +57,7 @@ class ProductCard extends Component {
   }
 
   render() {
-    const { currency, product } = this.props;
-
+    const { currency, product, category } = this.props;
     return (
       <div
         className={`${styles.productCard} ${
@@ -69,16 +68,17 @@ class ProductCard extends Component {
           key={product.id}
           id={product.id}
           className={styles.link}
-          to={{ pathname: `/details/${product.id}` }}
+          to={{ pathname: `/${product.category}/${product.id}` }}
           onClick={() => this.handleGetId(product.id)}
         >
-          <img
-            src={product.gallery[0]}
-            alt="product"
-            id={product.id}
-            className={styles.productPicture}
-          />
-
+          <div className={styles.imageContainer}>
+            <img
+              src={product.gallery[0]}
+              alt="product"
+              id={product.id}
+              className={styles.productPicture}
+            />
+          </div>
           {!product.inStock && <OutOfStock />}
           <ProductCardDescription product={product} currency={currency} />
         </Link>

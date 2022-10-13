@@ -41,7 +41,7 @@ class App extends Component {
           <NavigationBar />
           <Switch>
             <Route exact path={["/", "/:name"]} component={Category} />
-            <Route exact path="/details/:productId" component={Product} />
+            <Route exact path="/:category/:productId" component={Product} />
             <Route exact path="/cart/:number" component={Cart} />
           </Switch>
         </Router>
