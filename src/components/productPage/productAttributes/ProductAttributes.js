@@ -76,9 +76,12 @@ class ProductAttributes extends Component {
                     option.name === attribute.name &&
                     option.value === item.value
                 );
+                const outOfStock = !product.inStock ? styles.inStock : null;
                 return (
                   <span
-                    className={`${styles.attribute} ${styleClass} ${
+                    className={`${
+                      styles.attribute
+                    } ${styleClass} ${outOfStock} ${
                       active ? styles.active : null
                     }`}
                     key={i}
