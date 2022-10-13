@@ -5,6 +5,7 @@ import styles from "./Price.module.scss";
 class Price extends Component {
   render() {
     const { product, currency } = this.props;
+
     return (
       <span className={`${styles.price} ${this.props.className}`}>
         {product.prices.map((cur) => {
@@ -12,7 +13,7 @@ class Price extends Component {
             cur.currency.symbol === currency && (
               <span className={`${styles.amount}`} key={cur.currency.symbol}>
                 {cur.currency.symbol}
-                {cur.amount}
+                {cur.amount.toFixed(2)}
               </span>
             )
           );

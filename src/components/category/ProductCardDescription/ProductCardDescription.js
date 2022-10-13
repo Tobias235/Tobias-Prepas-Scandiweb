@@ -14,7 +14,7 @@ class ProductCardDescription extends Component {
           {product.prices.map(
             (cur) =>
               cur.currency.symbol === currency &&
-              ` ${cur.currency.symbol}${cur.amount}`
+              `${cur.currency.symbol}${cur.amount.toFixed(2)}`
           )}
         </span>
       </section>
