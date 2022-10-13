@@ -21,9 +21,7 @@ class ImageGallery extends Component {
               <img
                 src={picture}
                 alt="placeholder"
-                className={`${styles.galleryImage} ${
-                  showPicture === i && styles.active
-                }`}
+                className={styles.galleryImage}
                 key={picture}
                 id={i}
                 onClick={this.handleImageClick}
