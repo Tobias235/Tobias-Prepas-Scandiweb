@@ -68,6 +68,11 @@ class NavigationCurrency extends Component {
                   <span
                     key={currencies.currency.label}
                     id={currencies.currency.symbol}
+                    className={
+                      currency === currencies.currency.symbol
+                        ? styles.activeCurrency
+                        : null
+                    }
                     onClick={this.selectCurrency}
                   >
                     {currencies.currency.symbol} {currencies.currency.label}
