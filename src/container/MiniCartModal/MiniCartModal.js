@@ -30,7 +30,7 @@ class MiniCartModal extends Component {
                 {cart.length > 0 ? (
                   <MiniCart />
                 ) : (
-                  <span className={styles.emptyCart}>Cart is empty! :(</span>
+                  <span className={styles.emptyCart}>The cart is empty!</span>
                 )}
                 <div>
                   {cart.length >= 1 && (
