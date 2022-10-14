@@ -57,7 +57,7 @@ class ProductCard extends Component {
   }
 
   render() {
-    const { currency, product, category } = this.props;
+    const { currency, product } = this.props;
     return (
       <div
         className={`${styles.productCard} ${
@@ -106,7 +106,6 @@ const mapStateToProps = (state) => ({
   currency: state.activeReducer.currency,
   cart: state.cartReducer.cart,
   activeAttributes: state.activeReducer.activeAttributes,
-  category: state.activeReducer.category,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
