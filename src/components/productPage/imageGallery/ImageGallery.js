@@ -18,14 +18,15 @@ class ImageGallery extends Component {
         <div className={styles.gallerySideBar}>
           {product.map((picture, i) => {
             return (
-              <img
-                src={picture}
-                alt="placeholder"
-                className={styles.galleryImage}
-                key={picture}
-                id={i}
-                onClick={this.handleImageClick}
-              />
+              <div className={styles.sidebarContainer} key={picture}>
+                <img
+                  src={picture}
+                  alt="placeholder"
+                  className={styles.galleryImage}
+                  id={i}
+                  onClick={this.handleImageClick}
+                />
+              </div>
             );
           })}
         </div>
