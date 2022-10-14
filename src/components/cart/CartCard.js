@@ -38,7 +38,7 @@ class CartCard extends Component {
             <CartOrderButton cart={cart} />
           </div>
         ) : (
-          <span className={styles.emptyCart}>The cart is empty! :( </span>
+          <span className={styles.emptyCart}>The cart is empty! </span>
         )}
       </>
     );
