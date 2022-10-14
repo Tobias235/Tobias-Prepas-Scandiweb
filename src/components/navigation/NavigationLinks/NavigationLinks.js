@@ -1,18 +1,10 @@
-import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Component } from "react";
 import styles from "./NavigationLinks.module.scss";
 import { setChangeCategory } from "../../../actions/ActiveAction";
-
-const GET_CATEGORIES = gql`
-  query getCategories {
-    categories {
-      name
-    }
-  }
-`;
+import { handleGetCategories } from "../../../utils/HandleFetchDataRequests";
 
 class NavigationLinks extends Component {
   handleCategory = (e) => {
@@ -22,7 +14,7 @@ class NavigationLinks extends Component {
     const { category } = this.props;
     return (
       <div className={styles.navigationLinks}>
-        <Query query={GET_CATEGORIES}>
+        <Query query={handleGetCategories()}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading…</p>;
             if (error) return <p>Error :(</p>;

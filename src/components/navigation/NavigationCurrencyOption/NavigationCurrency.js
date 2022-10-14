@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
 import styles from "./NavigationCurrency.module.scss";
@@ -9,21 +8,8 @@ import { setChangeCurrency } from "../../../actions/ActiveAction";
 import { setShowCurrencyModal } from "../../../actions/ModalAction";
 import NavigationCartIcon from "../NavigationCart/NavigationCartIcon";
 import Backdrop from "../../utils/Backdrop/Backdrop";
+import { handleGetCurrencies } from "../../../utils/HandleFetchDataRequests";
 
-const GET_CURRENCIES = gql`
-  query {
-    category {
-      products {
-        prices {
-          currency {
-            symbol
-            label
-          }
-        }
-      }
-    }
-  }
-`;
 class NavigationCurrency extends Component {
   handleButtonClick = () => {
     if (this.props.showCart) return;
@@ -60,22 +46,20 @@ class NavigationCurrency extends Component {
         </button>
         {showCurrencyModal && (
           <div className={styles.currencyOptions}>
-            <Query query={GET_CURRENCIES}>
+            <Query query={handleGetCurrencies()}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading…</p>;
                 if (error) return <p>Error :(</p>;
-                return data.category.products[0].prices.map((currencies) => (
+                return data.currencies.map((cur) => (
                   <span
-                    key={currencies.currency.label}
-                    id={currencies.currency.symbol}
+                    key={cur.label}
+                    id={cur.symbol}
                     className={
-                      currency === currencies.currency.symbol
-                        ? styles.activeCurrency
-                        : null
+                      currency === cur.symbol ? styles.activeCurrency : null
                     }
                     onClick={this.selectCurrency}
                   >
-                    {currencies.currency.symbol} {currencies.currency.label}
+                    {cur.symbol} {cur.label}
                   </span>
                 ));
               }}

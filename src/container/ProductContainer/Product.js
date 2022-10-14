@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
 import ImageGallery from "../../components/productPage/imageGallery/ImageGallery";
@@ -9,67 +8,31 @@ import ProductDescription from "../../components/productPage/productDescription/
 import BrandName from "../../components/utils/BrandName/BrandName";
 import Price from "../../components/utils/Price/Price";
 import styles from "./Product.module.scss";
-
-const GET_PRODUCTS = gql`
-  query {
-    category {
-      name
-      products {
-        id
-        name
-        brand
-        gallery
-        inStock
-        category
-        description
-        attributes {
-          type
-          name
-          items {
-            value
-          }
-        }
-        prices {
-          currency {
-            symbol
-            label
-          }
-          amount
-        }
-      }
-    }
-  }
-`;
+import { handleGetProductById } from "../../utils/HandleFetchDataRequests";
 
 class Product extends Component {
   render() {
     const { productId, currency } = this.props;
 
     return (
-      <Query query={GET_PRODUCTS}>
+      <Query query={handleGetProductById(productId)}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading…</p>;
           if (error) return <p>Error :(</p>;
-          const products =
-            productId === "all"
-              ? data.category.products
-              : Array.from(data.category.products).filter(
-                  (product) => product.id === productId
-                );
-          return products.map((product) => (
-            <main className={styles.product} key={product.id}>
-              <ImageGallery product={product.gallery} />
+          return (
+            <main className={styles.product} key={data.product.id}>
+              <ImageGallery product={data.product.gallery} />
               <div className={styles.spacer}></div>
               <section className={styles.descriptionContainer}>
-                <BrandName product={product} />
-                <ProductAttributes product={product} />
+                <BrandName product={data.product} />
+                <ProductAttributes product={data.product} />
                 <span className={styles.price}>PRICE:</span>
-                <Price product={product} currency={currency} />
-                <ProductButton product={product} />
-                <ProductDescription product={product} />
+                <Price product={data.product} currency={currency} />
+                <ProductButton product={data.product} />
+                <ProductDescription product={data.product} />
               </section>
             </main>
-          ));
+          );
         }}
       </Query>
     );
