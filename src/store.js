@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import sessionStorage from "redux-persist/lib/storage/session";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 import ActiveReducer from "./reducers/ActiveReducer";
 import ModalReducer from "./reducers/ModalReducer";
 import CartReducer from "./reducers/CartReducer";
@@ -20,7 +20,7 @@ const store = configureStore({
   reducer: persistReducer(persistConfig, rootReducer),
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(logger),
+    getDefaultMiddleware({ serializableCheck: false }).concat(),
 
   devTools: process.env.NODE_ENV === "development",
 });

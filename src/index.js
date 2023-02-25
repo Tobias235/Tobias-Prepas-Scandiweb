@@ -9,7 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import { PersistGate } from "redux-persist/integration/react";
 
 const client = new ApolloClient({
-  uri: "https://unique-alpaca-d19bca.netlify.app/.netlify/functions/graphql",
+  uri: "https://zesty-sunshine-366520.netlify.app/",
   cache: new InMemoryCache(),
   connectToDevTools: true,
 });
