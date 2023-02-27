@@ -40,11 +40,11 @@ class App extends Component {
         <Router history={customHistory}>
           <NavigationBar />
           <Switch>
+            <Route exact path="/" render={() => <Redirect to="/all" />} />
             <Route exact path={"/:name"} component={Category} />
             <Route exact path="/cart/:number" component={Cart} />
             <Route exact path="/:category/:productId" component={Product} />
           </Switch>
-          <Redirect from="/" to={`/all`} />
         </Router>
       </>
     );
