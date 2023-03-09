@@ -1,6 +1,12 @@
+@use "../../assets/scss/util/" as *;
+
 .categoryContainer {
   width: 78%;
   margin: auto;
+  margin-bottom: 40px;
+  @include respond-to("tablet") {
+    margin-bottom: 0;
+  }
 
   h1 {
     font-family: "Raleway";
@@ -10,5 +16,9 @@
     text-transform: capitalize;
     margin-top: 50px;
     margin-bottom: 50px;
+    text-align: center;
+    @include respond-to("tablet") {
+      text-align: unset;
+    }
   }
 }
