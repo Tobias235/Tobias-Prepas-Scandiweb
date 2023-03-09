@@ -16,6 +16,7 @@
   .spacer {
     display: none;
     @include respond-to("tablet") {
+      display: block;
       width: 10%;
     }
   }
@@ -26,6 +27,7 @@
     align-items: center;
     @include respond-to("tablet") {
       width: 45%;
+      align-items: normal;
     }
   }
 

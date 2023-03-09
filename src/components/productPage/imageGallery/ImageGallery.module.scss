@@ -14,10 +14,12 @@
     flex-direction: row;
     width: 100%;
     margin-top: 15px;
+    order: 2;
     @include respond-to("tablet") {
       flex-direction: column;
       width: 120px;
       max-height: 560px;
+      order: unset;
     }
   }
 
@@ -26,6 +28,7 @@
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
+    max-width: 100px;
     overflow: hidden;
     margin: 5px;
     @include respond-to("tablet") {
@@ -45,16 +48,10 @@
     max-width: 85%;
     max-height: 560px;
     align-self: center;
+    order: 1;
     @include respond-to("tablet") {
       align-self: flex-start;
+      order: unset;
     }
   }
-}
-
-.gallerySideBar {
-  order: 2;
-}
-
-.image {
-  order: 1;
 }
