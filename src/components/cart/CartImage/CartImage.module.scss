@@ -1,9 +1,13 @@
+@use "../../../assets/scss/util/" as *;
+
 .imageSlider {
-  width: 200px;
+  width: 100px;
   height: 100%;
   display: flex;
   align-items: center;
-  // box-shadow: 0 1px 5px rgba(110, 110, 110, 0.1);
+  @include respond-to("tablet") {
+    width: 200px;
+  }
 
   .mainImage {
     width: 100%;

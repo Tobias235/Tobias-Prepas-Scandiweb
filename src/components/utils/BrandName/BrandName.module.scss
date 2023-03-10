@@ -2,7 +2,7 @@
 
 .brandName {
   font-family: "raleway";
-  margin: 10px;
+  margin-bottom: 5px;
   @include respond-to("tablet") {
     margin-bottom: 20px;
   }
@@ -10,12 +10,18 @@
   h1 {
     margin: 0;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 18px;
+    @include respond-to("tablet") {
+      font-size: 30px;
+    }
   }
 
   h3 {
     margin: 0;
     font-weight: 300;
-    font-size: 30px;
+    font-size: 18px;
+    @include respond-to("tablet") {
+      font-size: 30px;
+    }
   }
 }
