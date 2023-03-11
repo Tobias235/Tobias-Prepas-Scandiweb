@@ -1,5 +1,11 @@
+@use "../../assets/scss/util/" as *;
+
 .navigationBar {
-  height: 80px;
+  display: none;
+  @include respond-to("tablet") {
+    height: 80px;
+    display: block;
+  }
 
   .navContainer {
     position: fixed;
