@@ -11,3 +11,10 @@ export const setShowCurrencyModal = (showCurrencyModal) => {
     payload: showCurrencyModal,
   };
 };
+
+export const setShowMobileNav = (mobileNav) => {
+  return {
+    type: "SET_SHOW_MOBILE_NAV",
+    payload: mobileNav,
+  };
+};
