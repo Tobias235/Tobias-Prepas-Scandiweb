@@ -5,15 +5,21 @@ import { Component } from "react";
 import styles from "./NavigationLinks.module.scss";
 import { setChangeCategory } from "../../../actions/ActiveAction";
 import { handleGetCategories } from "../../../utils/HandleFetchDataRequests";
+import { setShowMobileNav } from "../../../actions/ModalAction";
 
 class NavigationLinks extends Component {
   handleCategory = (e) => {
     this.props.onChangeCategory(e.target.id);
+
+    if (this.props.mobileNav) {
+      this.props.onShowMobileNav(false);
+    }
   };
+
   render() {
-    const { category } = this.props;
+    const { category, className } = this.props;
     return (
-      <div className={styles.navigationLinks}>
+      <div className={` ${styles.navigationLinks} ${className}`}>
         <Query query={handleGetCategories()}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading…</p>;
@@ -40,10 +46,12 @@ class NavigationLinks extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCategory: (category) => dispatch(setChangeCategory(category)),
+  onShowMobileNav: (mobileNav) => dispatch(setShowMobileNav(mobileNav)),
 });
 
 const mapStateToProps = (state) => ({
   category: state.activeReducer.category,
+  mobileNav: state.modalReducer.mobileNav,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationLinks);
