@@ -4,6 +4,7 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { setProductId, setChangeCategory } from "./actions/ActiveAction";
 import NavigationBar from "./components/navigation/NavigationBar";
+import MobileNavigation from "./components/mobileNavigation/MobileNavigation";
 import Category from "./container/CategoryContainer/Category";
 import Product from "./container/ProductContainer/Product";
 import Cart from "./container/CartContainer/Cart";
@@ -39,6 +40,7 @@ class App extends Component {
       <>
         <Router history={customHistory}>
           <NavigationBar />
+          <MobileNavigation />
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/all" />} />
             <Route exact path={"/:name"} component={Category} />
