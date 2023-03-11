@@ -1,0 +1,16 @@
+@use "../../assets/scss/util/" as *;
+
+.mobileNavigation {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  background-color: #ffffff;
+  @include respond-to("tablet") {
+    display: none;
+  }
+
+  .burgerIcon {
+    margin-left: 10px;
+  }
+}
