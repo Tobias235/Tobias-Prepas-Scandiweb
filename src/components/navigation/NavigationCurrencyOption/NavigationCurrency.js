@@ -29,7 +29,7 @@ class NavigationCurrency extends Component {
     const { currency, showCurrencyModal } = this.props;
 
     return (
-      <div className={styles.navigationCurrency}>
+      <div className={`${styles.navigationCurrency} ${this.props.className}`}>
         {showCurrencyModal && (
           <Backdrop
             onClose={this.handleCloseModal}
