@@ -1,3 +1,5 @@
+@use "../../../assets/scss/util/" as *;
+
 .navigationCurrency {
   display: flex;
   justify-content: flex-end;
@@ -15,7 +17,7 @@
 
   .currencyOptions {
     position: absolute;
-    top: 80px;
+    top: 50px;
     background-color: #ffffff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
     display: flex;
@@ -23,6 +25,9 @@
     align-items: center;
     z-index: 30;
     animation: 0.3s slideInFromTop;
+    @include respond-to("tablet") {
+      top: 80px;
+    }
 
     span {
       width: 114px;

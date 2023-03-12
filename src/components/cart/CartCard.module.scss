@@ -4,10 +4,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 75px;
-  @include respond-to("tablet") {
-    padding-bottom: 35px;
-  }
+  padding-bottom: 35px;
 
   .cartCard {
     min-height: 230px;
