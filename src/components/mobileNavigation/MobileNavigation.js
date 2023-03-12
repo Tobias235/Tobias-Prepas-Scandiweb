@@ -5,6 +5,8 @@ import { ReactComponent as BurgerIcon } from "../../assets/images/burgerIcon.svg
 import Backdrop from "../utils/Backdrop/Backdrop";
 import MobileNavigationDropdown from "./MobileNavigationDropdown/MobileNavigationDropdown";
 import styles from "./MobileNavigation.module.scss";
+import NavigationLogo from "../navigation/NavigationLogo/NavigationLogo";
+import NavigationCurrency from "../navigation/NavigationCurrencyOption/NavigationCurrency";
 
 class MobileNavigation extends Component {
   render() {
@@ -18,6 +20,8 @@ class MobileNavigation extends Component {
               console.log("this.props.mobileNav");
             }}
           />
+          <NavigationLogo className={styles.logo} />
+          <NavigationCurrency className={styles.currencyCart} />
         </nav>
 
         {this.props.mobileNav && (
