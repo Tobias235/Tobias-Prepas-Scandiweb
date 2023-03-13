@@ -5,8 +5,9 @@
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  width: 100%;
+  width: 95%;
   background-color: #ffffff;
+  margin: auto;
   @include respond-to("tablet") {
     display: none;
   }
