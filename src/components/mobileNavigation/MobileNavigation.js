@@ -17,7 +17,6 @@ class MobileNavigation extends Component {
             className={styles.burgerIcon}
             onClick={() => {
               this.props.onShowMobileNav(true);
-              console.log("this.props.mobileNav");
             }}
           />
           <NavigationLogo className={styles.logo} />
