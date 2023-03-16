@@ -1,12 +1,12 @@
 import { Component } from "react";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
-import ImageGallery from "../../Components/ProductPage/ImageGallery/ImageGallery";
-import ProductAttributes from "../../Components/ProductPage/ProductAttributes/ProductAttributes";
-import ProductButton from "../../Components/ProductPage/ProductButton/ProductButton";
-import ProductDescription from "../../Components/ProductPage/ProductDescription/ProductDescription";
-import BrandName from "../../Components/UI/BrandName/BrandName";
-import Price from "../../Components/UI/Price/Price";
+import ImageGallery from "../../components/ProductPage/ImageGallery/ImageGallery";
+import ProductAttributes from "../../components/ProductPage/ProductAttributes/ProductAttributes";
+import ProductButton from "../../components/ProductPage/ProductButton/ProductButton";
+import ProductDescription from "../../components/ProductPage/ProductDescription/ProductDescription";
+import BrandName from "../../components/UI/BrandName/BrandName";
+import Price from "../../components/UI/Price/Price";
 import styles from "./Product.module.scss";
 import { handleGetProductById } from "../../Utils/HandleFetchDataRequests";
 

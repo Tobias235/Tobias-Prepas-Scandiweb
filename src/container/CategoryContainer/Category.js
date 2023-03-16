@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import ProductGrid from "../../Components/Category/ProductGrid/ProductGrid";
+import ProductGrid from "../../components/Category/ProductGrid/ProductGrid";
 import styles from "./CategoryContainer.module.scss";
 
 class CategoryContainer extends Component {
