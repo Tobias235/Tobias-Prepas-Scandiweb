@@ -1,40 +1,40 @@
-export const setAddCart = (cart) => {
+export const setAddProductCart = (product, selectedAttributes) => {
   return {
-    type: "SET_ADD_CART",
-    payload: cart,
+    type: "ADD_PRODUCT_TO_CART",
+    payload: { product, selectedAttributes },
   };
 };
 
 export const setIncementQuantity = (increment) => {
   return {
-    type: "SET_INCREMENT_QUANTITY",
+    type: "INCREMENT_QUANTITY",
     payload: increment,
   };
 };
 
 export const setDecrementQuantity = (decrement) => {
   return {
-    type: "SET_DECREMENT_QUANTITY",
+    type: "DECREMENT_QUANTITY",
     payload: decrement,
   };
 };
 
 export const setDeleteProduct = (product) => {
   return {
-    type: "SET_DELETE_PRODUCT",
+    type: "DELETE_PRODUCT",
     payload: product,
   };
 };
 
 export const setChangeQuantity = (quantity) => {
   return {
-    type: "SET_CHANGE_QUANTITY",
+    type: "CHANGE_QUANTITY",
     payload: quantity,
   };
 };
 
 export const setCheckOut = () => {
   return {
-    type: "SET_CHECK_OUT",
+    type: "RES",
   };
 };
