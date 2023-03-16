@@ -8,11 +8,11 @@ import ProductCardDescription from "../ProductCardDescription/ProductCardDescrip
 import {
   setAddProductCart,
   setChangeQuantity,
-} from "../../../Actions/CartAction";
+} from "../../../actions/CartAction";
 import {
   setActiveAttributes,
   setProductId,
-} from "../../../Actions/ActiveAction";
+} from "../../../actions/ActiveAction";
 
 class ProductCard extends Component {
   handleGetId = (productId) => {

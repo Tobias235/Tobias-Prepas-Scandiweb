@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { setActiveAttributes } from "../../../Actions/ActiveAction";
+import { setActiveAttributes } from "../../../actions/ActiveAction";
 import styles from "./ProductAttributes.module.scss";
 
 class ProductAttributes extends Component {

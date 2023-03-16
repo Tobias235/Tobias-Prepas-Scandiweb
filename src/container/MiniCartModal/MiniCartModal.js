@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import ReactDOM from "react-dom";
-import { setShowMiniCart } from "../../Actions/ModalAction";
+import { setShowMiniCart } from "../../actions/ModalAction";
 import MiniCart from "../../Components/MiniCart/MiniCart";
 import MiniCartTotal from "../../Components/MiniCart/MiniCartTotal/MiniCartTotal";
 import MiniCartButton from "../../Components/MiniCart/MiniCartButton/MiniCartButton";

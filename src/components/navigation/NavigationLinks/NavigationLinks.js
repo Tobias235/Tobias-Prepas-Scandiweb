@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Component } from "react";
 import styles from "./NavigationLinks.module.scss";
-import { setChangeCategory } from "../../../Actions/ActiveAction";
+import { setChangeCategory } from "../../../actions/ActiveAction";
 import { handleGetCategories } from "../../../Utils/HandleFetchDataRequests";
-import { setShowMobileNav } from "../../../Actions/ModalAction";
+import { setShowMobileNav } from "../../../actions/ModalAction";
 
 class NavigationLinks extends Component {
   handleCategory = (e) => {
