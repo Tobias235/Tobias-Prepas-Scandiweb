@@ -7,11 +7,11 @@ class CartAttributes extends Component {
   };
 
   render() {
-    const { product } = this.props;
+    const { cartItem } = this.props;
 
     return (
       <div>
-        {product.attributes.map((attribute, i) => {
+        {cartItem.attributes.map((attribute, i) => {
           return (
             <div
               className={`${styles.attributes} ${this.props.attributeOptions}`}
@@ -25,15 +25,11 @@ class CartAttributes extends Component {
                   attribute.type === "swatch"
                     ? styles.colorAttribute
                     : styles.attributeOptions;
-                const active = product.activeAttributes.some(
-                  (option) =>
-                    option.name === attribute.name &&
-                    option.value === item.value
-                );
-                const activeColor = product.activeAttributes.some(
-                  (option) =>
-                    option.name === "Color" && option.value === item.value
-                );
+                const active =
+                  cartItem.activeAttributes[attribute.name] === item.value;
+                const activeColor =
+                  attribute.name === "Color" &&
+                  cartItem.activeAttributes[attribute.name] === item.value;
                 return (
                   <span
                     className={`${styles.attribute} ${styleClass} ${

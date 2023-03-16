@@ -1,60 +1,30 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { setActiveAttributes } from "../../../actions/ActiveAction";
+import { setActiveAttributes } from "../../../Actions/ActiveAction";
 import styles from "./ProductAttributes.module.scss";
 
 class ProductAttributes extends Component {
   state = {
-    options: [],
+    options: {},
   };
-
-  updateState = (options) => {
-    const { product } = this.props;
-    this.setState({ ...options });
-    if (product.attributes.length === options.length) {
-      this.props.onGetActiveAttributes(options);
-    }
-  };
-
-  handleAttributesAtPageMount() {
-    const { options } = this.state;
-    options.push(...this.props.activeAttributes);
-    this.updateState(options);
-  }
 
   handleActive = (e) => {
     const { options } = this.state;
-    const { productId } = this.props;
+    const { onGetActiveAttributes } = this.props;
     const parentElement = e.target.parentElement.children[0].innerHTML.replace(
       ":",
       ""
     );
 
-    if (options.some((option) => option.name === parentElement)) {
-      return this.setState((prevState) => ({
-        options: prevState.options.map((option) =>
-          option.name === parentElement
-            ? { ...option, value: e.target.id }
-            : option
-        ),
-      }));
-    }
+    const newOptions = {
+      ...options,
+      [parentElement]: e.target.id,
+    };
 
-    options.push({ id: productId, name: parentElement, value: e.target.id });
-    this.updateState(options);
+    onGetActiveAttributes(newOptions);
+
+    this.setState({ options: newOptions });
   };
-
-  componentDidMount() {
-    if (this.props.activeAttributes.length > 0) {
-      this.handleAttributesAtPageMount();
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.options !== this.state.options) {
-      this.updateState(this.state.options);
-    }
-  }
 
   render() {
     const { product } = this.props;
@@ -71,10 +41,9 @@ class ProductAttributes extends Component {
                   attribute.type === "swatch"
                     ? styles.colorAttribute
                     : styles.attributeOptions;
-                const active = options.some(
+                const active = Object.entries(options).some(
                   (option) =>
-                    option.name === attribute.name &&
-                    option.value === item.value
+                    option[0] === attribute.name && option[1] === item.value
                 );
                 const outOfStock = !product.inStock ? styles.inStock : null;
                 return (
@@ -110,7 +79,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  productId: state.activeReducer.productId,
   activeAttributes: state.activeReducer.activeAttributes,
 });
 
