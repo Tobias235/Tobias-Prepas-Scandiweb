@@ -1,20 +1,11 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import sessionStorage from "redux-persist/lib/storage/session";
-// import logger from "redux-logger";
-import ActiveReducer from "./reducers/ActiveReducer";
-import ModalReducer from "./reducers/ModalReducer";
-import CartReducer from "./reducers/CartReducer";
+import { rootReducer } from "./Reducers/RootReducer";
 const persistConfig = {
   key: "storage",
   storage: sessionStorage,
 };
-
-const rootReducer = combineReducers({
-  activeReducer: ActiveReducer,
-  modalReducer: ModalReducer,
-  cartReducer: CartReducer,
-});
 
 const store = configureStore({
   reducer: persistReducer(persistConfig, rootReducer),
@@ -27,5 +18,4 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default { store, persistor };
