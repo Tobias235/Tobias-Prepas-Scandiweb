@@ -1,44 +1,20 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { setAddCart, setChangeQuantity } from "../../../actions/CartAction";
-import { setActiveAttributes } from "../../../actions/ActiveAction";
-import { handleAddToCart } from "../../../utils/HandleAddToCart";
-import Button from "../../utils/Button/Button";
+import {
+  setAddProductCart,
+  setChangeQuantity,
+} from "../../../Actions/CartAction";
+import { setActiveAttributes } from "../../../Actions/ActiveAction";
+import Button from "../../UI/Button/Button";
 import styles from "./ProductButton.module.scss";
 
 class ProductButton extends Component {
-  handleCartCheck = () => {
-    const { product, activeAttributes, cart } = this.props;
-
-    if (
-      product.attributes.length > 0 &&
-      product.attributes.length !== activeAttributes.length
-    ) {
-      if (
-        window.confirm(
-          "Not all attributes were selected, Do you want to continue with default attributes?"
-        )
-      ) {
-        let result = handleAddToCart(product, activeAttributes, cart);
-        this.updateCart(result);
-      }
-      return;
-    }
-    let result = handleAddToCart(product, activeAttributes, cart);
-    this.updateCart(result);
+  handleAddProductToCart = () => {
+    const { product, activeAttributes, onAddToCart, onGetActiveAttributes } =
+      this.props;
+    onAddToCart(product, activeAttributes);
+    onGetActiveAttributes(null);
   };
-
-  updateCart(result) {
-    if (result.equal) {
-      this.props.onChangeQuantity(result.equal);
-      alert(
-        "Product with chosen attributes is already in cart, updated quantity"
-      );
-    } else {
-      this.props.onAddToCart(result);
-      alert("Product added to cart");
-    }
-  }
 
   render() {
     const { product } = this.props;
@@ -57,12 +33,13 @@ class ProductButton extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.cartReducer.cart,
+  cartItems: state.cartReducer.cartItems,
   activeAttributes: state.activeReducer.activeAttributes,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onAddToCart: (product) => dispatch(setAddCart(product)),
+  onAddToCart: (product, selectedAttributes) =>
+    dispatch(setAddProductCart(product, selectedAttributes)),
   onGetActiveAttributes: (attribute) =>
     dispatch(setActiveAttributes(attribute)),
   onChangeQuantity: (uniqueId) => dispatch(setChangeQuantity(uniqueId)),
