@@ -7,8 +7,8 @@ import CartBorder from "./CartBorder/CartBorder";
 import CartOrderButton from "./CartOrderButton/CartOrderButton";
 import CartAttributes from "./CartAttributes/CartAttributes";
 import CartProductQuantity from "./CartProductQuantity/CartProductQuantity";
-import BrandName from "../utils/BrandName/BrandName";
-import Price from "../utils/Price/Price";
+import BrandName from "../UI/BrandName/BrandName";
+import Price from "../UI/Price/Price";
 
 class CartCard extends Component {
   render() {

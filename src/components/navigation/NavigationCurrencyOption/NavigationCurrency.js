@@ -2,13 +2,13 @@ import { Component } from "react";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
 import styles from "./NavigationCurrency.module.scss";
-import arrowUp from "../../../assets/images/arrowUp.svg";
-import arrowDown from "../../../assets/images/arrowDown.svg";
-import { setChangeCurrency } from "../../../actions/ActiveAction";
-import { setShowCurrencyModal } from "../../../actions/ModalAction";
+import arrowUp from "../../../Assets/Images/arrowUp.svg";
+import arrowDown from "../../../Assets/Images/arrowDown.svg";
+import { setChangeCurrency } from "../../../Actions/ActiveAction";
+import { setShowCurrencyModal } from "../../../Actions/ModalAction";
 import NavigationCartIcon from "../NavigationCart/NavigationCartIcon";
-import Backdrop from "../../utils/Backdrop/Backdrop";
-import { handleGetCurrencies } from "../../../utils/HandleFetchDataRequests";
+import Backdrop from "../../UI/Backdrop/Backdrop";
+import { handleGetCurrencies } from "../../../Utils/HandleFetchDataRequests";
 
 class NavigationCurrency extends Component {
   handleButtonClick = () => {

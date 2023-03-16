@@ -1,6 +1,6 @@
 import { Component } from "react";
 import styles from "./CartIcon.module.scss";
-import cartButton from "../../../assets/images/productCartIcon.svg";
+import cartButton from "../../../Assets/Images/productCartIcon.svg";
 
 class CartIcon extends Component {
   render() {

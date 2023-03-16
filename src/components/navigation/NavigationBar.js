@@ -3,7 +3,7 @@ import NavigationLinks from "./NavigationLinks/NavigationLinks";
 import NavigationLogo from "./NavigationLogo/NavigationLogo";
 import NavigationCurrency from "./NavigationCurrencyOption/NavigationCurrency";
 import styles from "./NavigationBar.module.scss";
-import MiniCartModal from "../../container/MiniCartModal/MiniCartModal";
+import MiniCartModal from "../../Container/MiniCartModal/MiniCartModal";
 
 class NavigationBar extends Component {
   render() {

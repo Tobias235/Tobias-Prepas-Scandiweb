@@ -48,6 +48,7 @@ export const handleGetProductById = (productId) => {
   const GET_PRODUCT_BY_ID = gql`
     query getProductById {
         product(id: "${productId}"){
+          id
           name
           brand
           gallery

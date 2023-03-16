@@ -16,8 +16,6 @@ const CartReducer = (state = initialState, { type, payload }) => {
         return value ? { ...acc, [attribute.name]: value } : acc;
       }, {});
 
-      console.log(defaultActiveAttributes);
-
       const itemExists = cartItems?.some(
         (item) =>
           item?.id === id &&
@@ -55,7 +53,6 @@ const CartReducer = (state = initialState, { type, payload }) => {
         uniqueId: uuidv4(),
       };
 
-      console.log(newCartItem);
       return { ...state, cartItems: [...cartItems, newCartItem] };
     }
     case "INCREMENT_QUANTITY":

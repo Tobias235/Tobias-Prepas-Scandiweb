@@ -1,6 +1,6 @@
 import { Component } from "react";
-import { ReactComponent as ArrowLeft } from "../../../assets/images/arrowLeft.svg";
-import { ReactComponent as ArrowRight } from "../../../assets/images/arrowRight.svg";
+import { ReactComponent as ArrowLeft } from "../../../Assets/Images/arrowLeft.svg";
+import { ReactComponent as ArrowRight } from "../../../Assets/Images/arrowRight.svg";
 import styles from "./CartImage.module.scss";
 
 class CartImage extends Component {

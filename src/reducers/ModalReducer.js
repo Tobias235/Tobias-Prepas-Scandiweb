@@ -4,7 +4,7 @@ const initialState = {
   mobileNav: false,
 };
 
-const ModalReducer = (state = initialState(), { type, payload }) => {
+const ModalReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case "SET_CURRENCY_MODAL":
       return { ...state, showCurrencyModal: payload };

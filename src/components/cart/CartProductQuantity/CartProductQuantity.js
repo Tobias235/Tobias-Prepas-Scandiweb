@@ -4,9 +4,9 @@ import {
   setDecrementQuantity,
   setDeleteProduct,
   setIncementQuantity,
-} from "../../../actions/CartAction";
-import negativeButton from "../../../assets/images/negativeButton.svg";
-import positiveButton from "../../../assets/images/positiveButton.svg";
+} from "../../../Actions/CartAction";
+import negativeButton from "../../../Assets/Images/negativeButton.svg";
+import positiveButton from "../../../Assets/Images/positiveButton.svg";
 import styles from "./CartProductQuantity.module.scss";
 
 class CartProductQuantity extends Component {

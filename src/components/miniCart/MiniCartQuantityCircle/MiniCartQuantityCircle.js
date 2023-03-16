@@ -4,9 +4,9 @@ import styles from "./MiniCartQuantityCircle.module.scss";
 
 class MiniCartQuantityCircle extends Component {
   render() {
-    const { cart } = this.props;
-    const quantity = cart
-      .map((product) => product.quantity)
+    const { cartItems } = this.props;
+    const quantity = cartItems
+      .map((cartItem) => cartItem.quantity)
       .reduce((prevValue, currValue) => {
         return prevValue + currValue;
       }, 0);
@@ -23,7 +23,7 @@ class MiniCartQuantityCircle extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.cartReducer.cart,
+  cartItems: state.cartReducer.cartItems,
 });
 
 export default connect(mapStateToProps)(MiniCartQuantityCircle);

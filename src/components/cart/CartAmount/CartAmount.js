@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { HandleProductTotalValues } from "../../../utils/HandleProductTotalValues";
+import { HandleProductTotalValues } from "../../../Utils/HandleProductTotalValues";
 import styles from "./CartAmount.module.scss";
 
 class CartAmount extends Component {

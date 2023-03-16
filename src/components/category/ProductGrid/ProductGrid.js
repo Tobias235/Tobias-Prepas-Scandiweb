@@ -1,7 +1,7 @@
 import { Query } from "@apollo/client/react/components";
 import { Component } from "react";
 import { connect } from "react-redux";
-import { handleGetProductsByCategory } from "../../../utils/HandleFetchDataRequests";
+import { handleGetProductsByCategory } from "../../../Utils/HandleFetchDataRequests";
 import ProductCard from "../ProductCard/ProductCard";
 import styles from "./ProductGrid.module.scss";
 
@@ -13,9 +13,9 @@ class ProductGrid extends Component {
           {({ loading, error, data }) => {
             if (loading) return <p>Loading…</p>;
             if (error) return <p>Error :(</p>;
-            return data.category.products.map((product) => (
-              <ProductCard product={product} key={product.id} />
-            ));
+            return data.category.products.map((product) => {
+              return <ProductCard product={product} key={product.id} />;
+            });
           }}
         </Query>
       </div>

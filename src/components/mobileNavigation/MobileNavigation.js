@@ -1,12 +1,12 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { setShowMobileNav } from "../../actions/ModalAction";
-import { ReactComponent as BurgerIcon } from "../../assets/images/burgerIcon.svg";
-import Backdrop from "../utils/Backdrop/Backdrop";
+import { setShowMobileNav } from "../../Actions/ModalAction";
+import { ReactComponent as BurgerIcon } from "../../Assets/Images/burgerIcon.svg";
+import Backdrop from "../UI/Backdrop/Backdrop";
 import MobileNavigationDropdown from "./MobileNavigationDropdown/MobileNavigationDropdown";
 import styles from "./MobileNavigation.module.scss";
-import NavigationLogo from "../navigation/NavigationLogo/NavigationLogo";
-import NavigationCurrency from "../navigation/NavigationCurrencyOption/NavigationCurrency";
+import NavigationLogo from "../Navigation/NavigationLogo/NavigationLogo";
+import NavigationCurrency from "../Navigation/NavigationCurrencyOption/NavigationCurrency";
 
 class MobileNavigation extends Component {
   render() {

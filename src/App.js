@@ -2,12 +2,12 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
-import { setProductId, setChangeCategory } from "./actions/ActiveAction";
-import NavigationBar from "./components/navigation/NavigationBar";
-import MobileNavigation from "./components/mobileNavigation/MobileNavigation";
-import Category from "./container/CategoryContainer/Category";
-import Product from "./container/ProductContainer/Product";
-import Cart from "./container/CartContainer/Cart";
+import { setProductId, setChangeCategory } from "./Actions/ActiveAction";
+import NavigationBar from "./Components/Navigation/NavigationBar";
+import MobileNavigation from "./Components/MobileNavigation/MobileNavigation";
+import Category from "./Container/CategoryContainer/Category";
+import Product from "./Container/ProductContainer/Product";
+import Cart from "./Container/CartContainer/Cart";
 
 const customHistory = createBrowserHistory();
 

@@ -1,6 +1,6 @@
 import { Component } from "react";
 import styles from "./NavigationLogo.module.scss";
-import logo from "../../../assets/images/logo.svg";
+import logo from "../../../Assets/Images/logo.svg";
 
 class NavigationLogo extends Component {
   render() {

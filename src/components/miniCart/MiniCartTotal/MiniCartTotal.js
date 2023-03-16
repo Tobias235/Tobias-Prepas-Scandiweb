@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { HandleProductTotalValues } from "../../../utils/HandleProductTotalValues";
+import { HandleProductTotalValues } from "../../../Utils/HandleProductTotalValues";
 import styles from "./MiniCartTotal.module.scss";
 
 class MiniCartTotal extends Component {

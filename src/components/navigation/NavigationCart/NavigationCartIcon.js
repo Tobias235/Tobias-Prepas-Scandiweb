@@ -1,9 +1,9 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { setShowMiniCart } from "../../../actions/ModalAction";
+import { setShowMiniCart } from "../../../Actions/ModalAction";
 import styles from "./NavigationCartIcon.module.scss";
-import cartIcon from "../../../assets/images/cart.svg";
-import MiniCartQuantityCircle from "../../miniCart/MiniCartQuantityCircle/MiniCartQuantityCircle";
+import cartIcon from "../../../Assets/Images/cart.svg";
+import MiniCartQuantityCircle from "../../MiniCart/MiniCartQuantityCircle/MiniCartQuantityCircle";
 class NavigationCartIcon extends Component {
   render() {
     const handleOpenCart = () => {

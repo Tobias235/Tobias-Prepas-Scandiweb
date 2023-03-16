@@ -2,9 +2,9 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { setShowMiniCart } from "../../../actions/ModalAction";
-import { setCheckOut } from "../../../actions/CartAction";
-import Button from "../../utils/Button/Button";
+import { setShowMiniCart } from "../../../Actions/ModalAction";
+import { setCheckOut } from "../../../Actions/CartAction";
+import Button from "../../UI/Button/Button";
 import styles from "./MiniCartButton.module.scss";
 
 class MiniCartButton extends Component {
@@ -19,8 +19,8 @@ class MiniCartButton extends Component {
   };
 
   render() {
-    const { cart } = this.props;
-    const isDisabled = cart.length === 0 ? true : false;
+    const { cartItems } = this.props;
+    const isDisabled = cartItems.length === 0 ? true : false;
     return (
       <div className={styles.miniCartButton}>
         <Link
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  cart: state.cartReducer.cart,
+  cartItems: state.cartReducer.cartItems,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MiniCartButton);

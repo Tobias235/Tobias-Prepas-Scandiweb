@@ -1,5 +1,5 @@
 import { Component } from "react";
-import NavigationLinks from "../../navigation/NavigationLinks/NavigationLinks";
+import NavigationLinks from "../../Navigation/NavigationLinks/NavigationLinks";
 import styles from "./MobileNavigationDropdown.module.scss";
 
 class MobileNavigationDropdown extends Component {

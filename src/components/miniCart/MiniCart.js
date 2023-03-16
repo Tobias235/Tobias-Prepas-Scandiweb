@@ -1,31 +1,30 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import MiniCartHeader from "./MiniCartHeader/MiniCartHeader";
-import CartProductQuantity from "../cart/CartProductQuantity/CartProductQuantity";
-import CartAttributes from "../cart/CartAttributes/CartAttributes";
-import BrandName from "../utils/BrandName/BrandName";
-import Price from "../utils/Price/Price";
+import CartProductQuantity from "../Cart/CartProductQuantity/CartProductQuantity";
+import CartAttributes from "../Cart/CartAttributes/CartAttributes";
+import BrandName from "../UI/BrandName/BrandName";
+import Price from "../UI/Price/Price";
 import styles from "./MiniCart.module.scss";
 
 class MiniCart extends Component {
   render() {
-    const { cart } = this.props;
-
+    const { cartItems } = this.props;
     return (
       <div className={styles.cartCardContainer}>
-        <MiniCartHeader cart={cart} />
+        <MiniCartHeader cart={cartItems} />
         <div className={styles.cartProductContainer}>
-          {cart.map((product) => {
+          {cartItems.map((cartItem) => {
             return (
-              <div key={product.uniqueId} className={styles.miniCartCard}>
+              <div key={cartItem.uniqueId} className={styles.miniCartCard}>
                 <section className={styles.cartLeft}>
                   <BrandName
-                    product={product}
+                    product={cartItem}
                     className={styles.miniCartNames}
                   />
-                  <Price product={product} className={styles.productPrice} />
+                  <Price product={cartItem} className={styles.productPrice} />
                   <CartAttributes
-                    product={product}
+                    cartItem={cartItem}
                     className={styles.attributeName}
                     attributeStyle={styles.attributeOptions}
                     attributeOptions={styles.attributes}
@@ -33,11 +32,11 @@ class MiniCart extends Component {
                 </section>
                 <section className={styles.cartRight}>
                   <CartProductQuantity
-                    product={product}
+                    product={cartItem}
                     className={styles.cartProductQuantity}
                   />
                   <img
-                    src={product.gallery[0]}
+                    src={cartItem.gallery[0]}
                     alt="product"
                     className={styles.productImage}
                   />
@@ -52,7 +51,7 @@ class MiniCart extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.cartReducer.cart,
+  cartItems: state.cartReducer.cartItems,
 });
 
 export default connect(mapStateToProps, null)(MiniCart);
