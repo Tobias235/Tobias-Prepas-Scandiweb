@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { setCheckOut } from "../../../actions/CartAction";
+import { setCheckOut } from "../../../Actions/CartAction";
 import Button from "../../UI/Button/Button";
 import styles from "./CartOrderButton.module.scss";
 

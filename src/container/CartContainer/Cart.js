@@ -1,5 +1,5 @@
 import { Component } from "react";
-import CartCard from "../../components/Cart/CartCard";
+import CartCard from "../../Components/Cart/CartCard";
 import styles from "./Cart.module.scss";
 
 class Cart extends Component {

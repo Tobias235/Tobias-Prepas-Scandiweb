@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import {
   setAddProductCart,
   setChangeQuantity,
-} from "../../../actions/CartAction";
-import { setActiveAttributes } from "../../../actions/ActiveAction";
+} from "../../../Actions/CartAction";
+import { setActiveAttributes } from "../../../Actions/ActiveAction";
 import Button from "../../UI/Button/Button";
 import styles from "./ProductButton.module.scss";
 

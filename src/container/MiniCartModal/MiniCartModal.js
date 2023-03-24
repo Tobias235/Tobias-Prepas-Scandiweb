@@ -1,11 +1,11 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import ReactDOM from "react-dom";
-import { setShowMiniCart } from "../../actions/ModalAction";
-import MiniCart from "../../components/MiniCart/MiniCart";
-import MiniCartTotal from "../../components/MiniCart/MiniCartTotal/MiniCartTotal";
-import MiniCartButton from "../../components/MiniCart/MiniCartButton/MiniCartButton";
-import Backdrop from "../../components/UI/Backdrop/Backdrop";
+import { setShowMiniCart } from "../../Actions/ModalAction";
+import MiniCart from "../../Components/MiniCart/MiniCart";
+import MiniCartTotal from "../../Components/MiniCart/MiniCartTotal/MiniCartTotal";
+import MiniCartButton from "../../Components/MiniCart/MiniCartButton/MiniCartButton";
+import Backdrop from "../../Components/UI/Backdrop/Backdrop";
 import styles from "./MiniCartModal.module.scss";
 
 const portalElement = document.getElementById("overlays");

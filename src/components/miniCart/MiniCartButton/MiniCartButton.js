@@ -2,8 +2,8 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { setShowMiniCart } from "../../../actions/ModalAction";
-import { setCheckOut } from "../../../actions/CartAction";
+import { setShowMiniCart } from "../../../Actions/ModalAction";
+import { setCheckOut } from "../../../Actions/CartAction";
 import Button from "../../UI/Button/Button";
 import styles from "./MiniCartButton.module.scss";
 

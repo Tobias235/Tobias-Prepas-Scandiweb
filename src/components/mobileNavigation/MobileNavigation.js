@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { setShowMobileNav } from "../../actions/ModalAction";
+import { setShowMobileNav } from "../../Actions/ModalAction";
 import { ReactComponent as BurgerIcon } from "../../Assets/Images/burgerIcon.svg";
 import Backdrop from "../UI/Backdrop/Backdrop";
 import MobileNavigationDropdown from "./MobileNavigationDropdown/MobileNavigationDropdown";
