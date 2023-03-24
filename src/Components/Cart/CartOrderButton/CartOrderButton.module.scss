@@ -1,0 +1,11 @@
+@use "../../../assets/scss/util/" as *;
+
+.cartOrderButton {
+  margin: 0 auto;
+  width: 20%;
+  min-width: 200px;
+  align-items: center;
+  @include respond-to("tablet") {
+    margin-top: 20px;
+  }
+}

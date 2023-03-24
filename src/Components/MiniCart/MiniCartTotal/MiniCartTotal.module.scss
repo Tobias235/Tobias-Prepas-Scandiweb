@@ -1,0 +1,14 @@
+.miniCartTotal {
+  width: 85%;
+  margin: 15px auto;
+  display: flex;
+  justify-content: space-between;
+  .total {
+    font-family: "roboto";
+    font-weight: 500;
+  }
+  .amount {
+    font-family: "raleway";
+    font-weight: 700;
+  }
+}

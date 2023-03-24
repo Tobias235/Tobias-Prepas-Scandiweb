@@ -1,0 +1,19 @@
+@use "../../assets/scss/util/" as *;
+
+.cartContainer {
+  width: 95%;
+  margin: auto;
+  margin-top: 50px;
+  @include respond-to("tablet") {
+    width: 85%;
+  }
+  .cartTitle {
+    font-family: "raleway";
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    @include respond-to("tablet") {
+      text-align: unset;
+    }
+  }
+}

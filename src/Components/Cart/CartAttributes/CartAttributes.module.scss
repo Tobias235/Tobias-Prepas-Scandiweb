@@ -1,0 +1,31 @@
+@use "../../../assets/scss/Mixins/attributes.module" as attributes;
+
+.attributes {
+  margin-bottom: 8px;
+}
+
+.attribute {
+  margin: 8px;
+  box-shadow: 0 1px 5px rgba(110, 110, 110, 0.5);
+}
+
+.colorAttribute {
+  padding: 5px 14px;
+}
+
+.attributeOptions {
+  @include attributes.attributeOption;
+  cursor: default;
+}
+.attributeName {
+  @include attributes.attributeName;
+}
+
+.active {
+  background: #1d1f22;
+  color: white;
+}
+
+.activeColor {
+  border: 1px solid #5ece7b;
+}

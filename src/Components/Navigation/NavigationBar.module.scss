@@ -1,0 +1,23 @@
+@use "../../assets/scss/util/" as *;
+
+.navigationBar {
+  display: none;
+  @include respond-to("tablet") {
+    height: 80px;
+    display: block;
+  }
+
+  .navContainer {
+    position: fixed;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 25;
+  }
+
+  .componentContainer {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+  }
+}

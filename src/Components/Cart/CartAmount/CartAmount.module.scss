@@ -1,0 +1,32 @@
+@use "../../../assets/scss/util/" as *;
+
+.cartAmount {
+  width: 62%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 24px;
+  font-family: "raleway";
+  margin: 15px auto;
+  text-align: center;
+  @include respond-to("tablet") {
+    width: 13%;
+    margin-top: 34px;
+  }
+  div:first-of-type {
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+    span:last-of-type {
+      font-weight: 500;
+    }
+  }
+  div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+  }
+  span {
+    margin: 3px;
+  }
+}

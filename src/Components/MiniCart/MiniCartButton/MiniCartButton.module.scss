@@ -1,0 +1,27 @@
+.miniCartButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: auto;
+  padding-bottom: 20px;
+
+  .viewBag {
+    height: 43px;
+    width: 40%;
+    border: 1px solid #1d1f22;
+    background-color: transparent;
+    color: black;
+    font-family: "raleway";
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 43px;
+  }
+
+  .disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}

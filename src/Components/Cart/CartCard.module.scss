@@ -1,0 +1,45 @@
+@use "../../assets/scss/util/" as *;
+
+.cartContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 35px;
+
+  .cartCard {
+    min-height: 230px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 25px;
+
+    .cartLeft {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: 15px 5px 15px 0;
+      @include respond-to("tablet") {
+        margin: 15px 15px 15px 0;
+      }
+    }
+  }
+
+  .cartRight {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0px 15px 0;
+    @include respond-to("tablet") {
+      margin: 15px 0px 15px 15px;
+    }
+  }
+}
+
+.emptyCart {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 32px;
+  font-family: "raleway";
+  font-weight: 400;
+}

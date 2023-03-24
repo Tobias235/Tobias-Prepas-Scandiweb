@@ -1,0 +1,21 @@
+@use "../../../assets/scss/util/" as *;
+
+.navigationCartIcon {
+  display: flex;
+  justify-content: center;
+  margin-left: 5px;
+  cursor: pointer;
+
+  @include respond-to("tablet") {
+    margin-left: 10px;
+  }
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
+  @include respond-to("tablet") {
+    width: initial;
+    height: inherit;
+  }
+}

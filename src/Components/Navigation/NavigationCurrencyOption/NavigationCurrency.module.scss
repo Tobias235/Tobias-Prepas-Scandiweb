@@ -1,0 +1,63 @@
+@use "../../../assets/scss/util/" as *;
+
+.navigationCurrency {
+  display: flex;
+  justify-content: flex-end;
+  width: 22%;
+
+  button {
+    background-color: transparent;
+    border: none;
+
+    img {
+      vertical-align: middle;
+      margin-left: 10px;
+    }
+  }
+
+  .currencyOptions {
+    position: absolute;
+    top: 50px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 30;
+    animation: 0.3s slideInFromTop;
+    @include respond-to("tablet") {
+      top: 80px;
+    }
+
+    span {
+      width: 114px;
+      height: 45px;
+      text-align: center;
+      line-height: 45px;
+      &:hover {
+        background: #eeeeee;
+      }
+    }
+
+    .activeCurrency {
+      background: #eeeeee;
+    }
+  }
+}
+
+.background {
+  background-color: transparent !important;
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translatey(-17%);
+    opacity: 0;
+    display: none;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    display: block;
+  }
+}
