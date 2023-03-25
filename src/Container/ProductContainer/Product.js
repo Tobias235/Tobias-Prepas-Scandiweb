@@ -12,7 +12,7 @@ import { handleGetProductById } from "../../Utils/HandleFetchDataRequests";
 
 class Product extends Component {
   render() {
-    const { productId, currency } = this.props;
+    const { productId } = this.props;
 
     return (
       <Query query={handleGetProductById(productId)}>
@@ -27,7 +27,7 @@ class Product extends Component {
                 <BrandName product={data.product} />
                 <ProductAttributes product={data.product} />
                 <span className={styles.price}>PRICE:</span>
-                <Price product={data.product} currency={currency} />
+                <Price product={data.product} />
                 <ProductButton product={data.product} />
                 <ProductDescription product={data.product} />
               </section>
@@ -41,6 +41,5 @@ class Product extends Component {
 
 const mapStateToProps = (state) => ({
   productId: state.activeReducer.productId,
-  currency: state.activeReducer.currency,
 });
 export default connect(mapStateToProps)(Product);

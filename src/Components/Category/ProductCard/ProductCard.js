@@ -5,10 +5,7 @@ import styles from "./ProductCard.module.scss";
 import CartIcon from "../ProductCartIcon/CartIcon";
 import OutOfStock from "../OutOfStock/OutOfStock";
 import ProductCardDescription from "../ProductCardDescription/ProductCardDescription";
-import {
-  setAddProductCart,
-  setChangeQuantity,
-} from "../../../Actions/CartAction";
+import { addProductCart, calculateTotal } from "../../../Actions/CartAction";
 import {
   setActiveAttributes,
   setProductId,
@@ -20,12 +17,19 @@ class ProductCard extends Component {
   };
 
   handleAddProductToCart = () => {
-    const { product, activeAttributes, onAddToCart } = this.props;
+    const {
+      product,
+      activeAttributes,
+      currencySymbol,
+      onAddToCart,
+      onCalculateTotal,
+    } = this.props;
     onAddToCart(product, activeAttributes);
+    onCalculateTotal(currencySymbol);
   };
 
   render() {
-    const { currency, product } = this.props;
+    const { currencySymbol, product } = this.props;
     return (
       <div
         className={`${styles.productCard} ${
@@ -48,13 +52,16 @@ class ProductCard extends Component {
             />
           </div>
           {!product.inStock && <OutOfStock />}
-          <ProductCardDescription product={product} currency={currency} />
+          <ProductCardDescription
+            product={product}
+            currencySymbol={currencySymbol}
+          />
         </Link>
         {product.inStock && (
           <CartIcon
             className={styles.addCartButton}
             id={product.id}
-            onClick={this.handleCartCheck}
+            onClick={this.handleAddProductToCart}
           />
         )}
       </div>
@@ -64,14 +71,15 @@ class ProductCard extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   onGetProductId: (id) => dispatch(setProductId(id)),
-  onAddToCart: (product) => dispatch(setAddProductCart(product)),
-  onChangeQuantity: (uniqueId) => dispatch(setChangeQuantity(uniqueId)),
+  onAddToCart: (product) => dispatch(addProductCart(product)),
   onGetActiveAttributes: (attribute) =>
     dispatch(setActiveAttributes(attribute)),
+  onCalculateTotal: (currencySymbol) =>
+    dispatch(calculateTotal(currencySymbol)),
 });
 
 const mapStateToProps = (state) => ({
-  currency: state.activeReducer.currency,
+  currencySymbol: state.activeReducer.currencySymbol,
   cartItems: state.cartReducer.cartItems,
   activeAttributes: state.activeReducer.activeAttributes,
 });

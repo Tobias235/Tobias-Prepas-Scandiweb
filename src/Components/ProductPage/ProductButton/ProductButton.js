@@ -1,19 +1,23 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import {
-  setAddProductCart,
-  setChangeQuantity,
-} from "../../../Actions/CartAction";
+import { addProductCart, calculateTotal } from "../../../Actions/CartAction";
 import { setActiveAttributes } from "../../../Actions/ActiveAction";
 import Button from "../../UI/Button/Button";
 import styles from "./ProductButton.module.scss";
 
 class ProductButton extends Component {
   handleAddProductToCart = () => {
-    const { product, activeAttributes, onAddToCart, onGetActiveAttributes } =
-      this.props;
+    const {
+      product,
+      activeAttributes,
+      currencySymbol,
+      onAddToCart,
+      onGetActiveAttributes,
+      onCalculateTotal,
+    } = this.props;
     onAddToCart(product, activeAttributes);
     onGetActiveAttributes(null);
+    onCalculateTotal(currencySymbol);
   };
 
   render() {
@@ -25,7 +29,7 @@ class ProductButton extends Component {
         className={`${styles.productButton} ${
           disabled ? styles.disabled : null
         }`}
-        onClick={this.handleCartCheck}
+        onClick={this.handleAddProductToCart}
         disabled={disabled}
       />
     );
@@ -35,14 +39,15 @@ class ProductButton extends Component {
 const mapStateToProps = (state) => ({
   cartItems: state.cartReducer.cartItems,
   activeAttributes: state.activeReducer.activeAttributes,
+  currencySymbol: state.activeReducer.currencySymbol,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onAddToCart: (product, selectedAttributes) =>
-    dispatch(setAddProductCart(product, selectedAttributes)),
+    dispatch(addProductCart(product, selectedAttributes)),
   onGetActiveAttributes: (attribute) =>
     dispatch(setActiveAttributes(attribute)),
-  onChangeQuantity: (uniqueId) => dispatch(setChangeQuantity(uniqueId)),
+  onCalculateTotal: (currency) => dispatch(calculateTotal(currency)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductButton);

@@ -1,5 +1,5 @@
 const initialState = {
-  currency: "$",
+  currencySymbol: "$",
   category: "all",
   productId: null,
   activeAttributes: null,
@@ -8,7 +8,7 @@ const initialState = {
 const ActiveReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case "SET_CURRENCY_LIST":
-      return { ...state, currency: payload };
+      return { ...state, currencySymbol: payload };
     case "SET_CATEGORY":
       return { ...state, category: payload };
     case "SET_PRODUCT_ID":

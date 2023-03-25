@@ -24,7 +24,7 @@ class ProductGrid extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currency: state.activeReducer.currency,
+  currencySymbol: state.activeReducer.currencySymbol,
   category: state.activeReducer.category,
 });
 

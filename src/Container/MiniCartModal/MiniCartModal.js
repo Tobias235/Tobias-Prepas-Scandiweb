@@ -16,7 +16,7 @@ class MiniCartModal extends Component {
   };
 
   render() {
-    const { showCart, cartItems, currency } = this.props;
+    const { showCart, cartItems, currencySymbol } = this.props;
 
     return (
       <>
@@ -35,7 +35,10 @@ class MiniCartModal extends Component {
                 )}
                 <div>
                   {cartItems.length >= 1 && (
-                    <MiniCartTotal currency={currency} cart={cartItems} />
+                    <MiniCartTotal
+                      currencySymbol={currencySymbol}
+                      cartItem={cartItems}
+                    />
                   )}
                   <MiniCartButton />
                 </div>
@@ -52,7 +55,7 @@ class MiniCartModal extends Component {
 const mapStateToProps = (state) => ({
   showCart: state.modalReducer.showCart,
   cartItems: state.cartReducer.cartItems,
-  currency: state.activeReducer.currency,
+  currencySymbol: state.activeReducer.currencySymbol,
 });
 
 const mapDispatchToProps = (dispatch) => ({

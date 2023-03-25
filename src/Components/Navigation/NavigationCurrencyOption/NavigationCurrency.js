@@ -9,6 +9,7 @@ import { setShowCurrencyModal } from "../../../Actions/ModalAction";
 import NavigationCartIcon from "../NavigationCart/NavigationCartIcon";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import { handleGetCurrencies } from "../../../Utils/HandleFetchDataRequests";
+import { calculateTotal } from "../../../Actions/CartAction";
 
 class NavigationCurrency extends Component {
   handleButtonClick = () => {
@@ -17,8 +18,11 @@ class NavigationCurrency extends Component {
   };
 
   selectCurrency = (e) => {
-    this.props.onChangeCurrency(e.target.id);
-    this.props.onShowCurrencyModal(false);
+    const { onChangeCurrency, onShowCurrencyModal, onCalculateTotal } =
+      this.props;
+    onChangeCurrency(e.target.id);
+    onShowCurrencyModal(false);
+    onCalculateTotal(e.target.id);
   };
 
   handleCloseModal = () => {
@@ -26,7 +30,7 @@ class NavigationCurrency extends Component {
   };
 
   render() {
-    const { currency, showCurrencyModal } = this.props;
+    const { currencySymbol, showCurrencyModal } = this.props;
 
     return (
       <div className={`${styles.navigationCurrency} ${this.props.className}`}>
@@ -37,7 +41,7 @@ class NavigationCurrency extends Component {
           />
         )}
         <button onClick={this.handleButtonClick}>
-          {currency}
+          {currencySymbol}
           {showCurrencyModal ? (
             <img src={arrowUp} alt="ArrowIcon Up" />
           ) : (
@@ -50,16 +54,18 @@ class NavigationCurrency extends Component {
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading…</p>;
                 if (error) return <p>Error :(</p>;
-                return data.currencies.map((cur) => (
+                return data.currencies.map((currency) => (
                   <span
-                    key={cur.label}
-                    id={cur.symbol}
+                    key={currency.label}
+                    id={currency.symbol}
                     className={
-                      currency === cur.symbol ? styles.activeCurrency : null
+                      currencySymbol === currency.symbol
+                        ? styles.activeCurrency
+                        : null
                     }
                     onClick={this.selectCurrency}
                   >
-                    {cur.symbol} {cur.label}
+                    {currency.symbol} {currency.label}
                   </span>
                 ));
               }}
@@ -73,15 +79,18 @@ class NavigationCurrency extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currency: state.activeReducer.currency,
+  currencySymbol: state.activeReducer.currencySymbol,
   showCart: state.modalReducer.showCart,
   showCurrencyModal: state.modalReducer.showCurrencyModal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeCurrency: (currency) => dispatch(setChangeCurrency(currency)),
+  onChangeCurrency: (currencySymbol) =>
+    dispatch(setChangeCurrency(currencySymbol)),
   onShowCurrencyModal: (currencyModal) =>
     dispatch(setShowCurrencyModal(currencyModal)),
+  onCalculateTotal: (currencySymbol) =>
+    dispatch(calculateTotal(currencySymbol)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationCurrency);
