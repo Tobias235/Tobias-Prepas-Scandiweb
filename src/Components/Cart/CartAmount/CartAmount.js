@@ -1,43 +1,15 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { HandleProductTotalValues } from "../../../Utils/HandleProductTotalValues";
 import styles from "./CartAmount.module.scss";
 
 class CartAmount extends Component {
-  state = {
-    total: 0,
-    tax: 0,
-    quantity: 0,
-  };
-
-  handleTotalValues = () => {
-    const { cart, currency } = this.props;
-    let result = HandleProductTotalValues(cart, currency);
-    this.setState({
-      total: result[0].total,
-      tax: result[0].tax,
-      quantity: result[0].quantity,
-    });
-  };
-
-  componentDidMount() {
-    this.handleTotalValues();
-  }
-
-  componentDidUpdate(prevProps) {
-    for (let i = 0; i < this.props.cart.length; i++) {
-      if (
-        this.props.cart[i].quantity !== prevProps.cart[i].quantity ||
-        this.props.cart.length !== prevProps.cart.length
-      ) {
-        this.handleTotalValues();
-      }
-    }
-  }
-
   render() {
-    const { total, tax, quantity } = this.state;
-    const { currency } = this.props;
+    const { totalValue, currencySymbol, cartItems } = this.props;
+
+    const totalQuantity = cartItems?.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
 
     return (
       <div className={styles.cartAmount}>
@@ -48,13 +20,13 @@ class CartAmount extends Component {
         </div>
         <div>
           <span>
-            {currency}
-            {tax.toFixed(2)}
+            {currencySymbol}
+            {(totalValue * 0.21).toFixed(2)}
           </span>
-          <span>{quantity}</span>
+          <span>{totalQuantity}</span>
           <span>
-            {currency}
-            {total.toFixed(2)}
+            {currencySymbol}
+            {totalValue.toFixed(2)}
           </span>
         </div>
       </div>
@@ -62,7 +34,8 @@ class CartAmount extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  currency: state.activeReducer.currency,
+  currencySymbol: state.activeReducer.currencySymbol,
+  totalValue: state.cartReducer.totalValue,
 });
 
 export default connect(mapStateToProps, null)(CartAmount);

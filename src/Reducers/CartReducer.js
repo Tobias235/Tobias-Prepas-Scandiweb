@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
   cartItems: [],
+  totalValue: 0,
 };
 
 const CartReducer = (state = initialState, { type, payload }) => {
@@ -55,46 +56,56 @@ const CartReducer = (state = initialState, { type, payload }) => {
 
       return { ...state, cartItems: [...cartItems, newCartItem] };
     }
+
     case "INCREMENT_QUANTITY":
+      const updatedCartItemsQuantityInc = state.cartItems.map((cartItem) => {
+        if (cartItem.uniqueId === payload.productId) {
+          let quantity = cartItem.quantity + 1;
+          return { ...cartItem, quantity };
+        }
+        return cartItem;
+      });
+
       return {
         ...state,
-        cartItems: state.cartItems.map((cartItem) => {
-          if (cartItem.uniqueId === payload) {
-            let quantity = cartItem.quantity + 1;
-            return { ...cartItem, quantity };
-          }
-          return cartItem;
-        }),
+        cartItems: updatedCartItemsQuantityInc,
+        totalValue: calculateTotal(
+          updatedCartItemsQuantityInc,
+          payload.currencySymbol
+        ),
       };
+
     case "DECREMENT_QUANTITY":
+      const updatedCartItemsQuantityDec = state.cartItems.map((cartItem) => {
+        if (cartItem.uniqueId === payload.productId && cartItem.quantity > 1) {
+          let quantity = cartItem.quantity - 1;
+          return { ...cartItem, quantity };
+        }
+        return cartItem;
+      });
       return {
         ...state,
-        cartItems: state.cartItems.map((cartItem) => {
-          if (cartItem.uniqueId === payload && cartItem.quantity > 1) {
-            let quantity = cartItem.quantity - 1;
-            return { ...cartItem, quantity };
-          }
-          return cartItem;
-        }),
+        cartItems: updatedCartItemsQuantityDec,
+        totalValue: calculateTotal(
+          updatedCartItemsQuantityDec,
+          payload.currencySymbol
+        ),
       };
-    case "CHANGE_QUANTITY":
-      return {
-        ...state,
-        cartItems: state.cartItems.map((cartItem) => {
-          if (cartItem.uniqueId === payload) {
-            let quantity = cartItem.quantity + 1;
-            return { ...cartItem, quantity };
-          }
-          return cartItem;
-        }),
-      };
-    case "DELETE_PRODUCT":
+
+    case "DELETE_CART_ITEM":
       return {
         ...state,
         cartItems: state.cartItems.filter(
           (cartItem) => cartItem.uniqueId !== payload
         ),
       };
+
+    case "CALCULATE_TOTAL":
+      const currencySymbol = payload;
+      const { cartItems } = state;
+      const total = calculateTotal(cartItems, currencySymbol);
+      return { ...state, totalValue: total };
+
     case "RESET_CART":
       return { ...initialState };
     default:
@@ -105,4 +116,17 @@ export default CartReducer;
 
 const attributesMatch = (itemAttributes, targetAttributes) => {
   return JSON.stringify(itemAttributes) === JSON.stringify(targetAttributes);
+};
+
+const calculateTotal = (cartItems, currencySymbol) => {
+  return cartItems.reduce((acc, item) => {
+    const matchingPrice = item.prices.find(
+      (price) => price.currency.symbol === currencySymbol
+    );
+    if (matchingPrice) {
+      return acc + matchingPrice.amount * item.quantity;
+    } else {
+      return acc;
+    }
+  }, 0);
 };
