@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { addProductCart, calculateTotal } from "../../../Actions/CartAction";
-import { setActiveAttributes } from "../../../Actions/ActiveAction";
+import { setSelectedAttributes } from "../../../Actions/ActiveAction";
 import Button from "../../UI/Button/Button";
 import styles from "./ProductButton.module.scss";
 
@@ -9,14 +9,14 @@ class ProductButton extends Component {
   handleAddProductToCart = () => {
     const {
       product,
-      activeAttributes,
+      selectedAttributes,
       currencySymbol,
-      onAddToCart,
-      onGetActiveAttributes,
+      addProductToCart,
+      updateSelectedAttributes,
       onCalculateTotal,
     } = this.props;
-    onAddToCart(product, activeAttributes);
-    onGetActiveAttributes(null);
+    addProductToCart(product, selectedAttributes);
+    updateSelectedAttributes(null);
     onCalculateTotal(currencySymbol);
   };
 
@@ -38,15 +38,15 @@ class ProductButton extends Component {
 
 const mapStateToProps = (state) => ({
   cartItems: state.cartReducer.cartItems,
-  activeAttributes: state.activeReducer.activeAttributes,
+  selectedAttributes: state.activeReducer.selectedAttributes,
   currencySymbol: state.activeReducer.currencySymbol,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onAddToCart: (product, selectedAttributes) =>
+  addProductToCart: (product, selectedAttributes) =>
     dispatch(addProductCart(product, selectedAttributes)),
-  onGetActiveAttributes: (attribute) =>
-    dispatch(setActiveAttributes(attribute)),
+  updateSelectedAttributes: (selectedAttributes) =>
+    dispatch(setSelectedAttributes(selectedAttributes)),
   onCalculateTotal: (currency) => dispatch(calculateTotal(currency)),
 });
 

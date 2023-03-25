@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { setActiveAttributes } from "../../../Actions/ActiveAction";
+import { setSelectedAttributes } from "../../../Actions/ActiveAction";
 import styles from "./ProductAttributes.module.scss";
 
 class ProductAttributes extends Component {
@@ -10,7 +10,7 @@ class ProductAttributes extends Component {
 
   handleActive = (e) => {
     const { options } = this.state;
-    const { onGetActiveAttributes } = this.props;
+    const { updateSelectedAttributes } = this.props;
     const parentElement = e.target.parentElement.children[0].innerHTML.replace(
       ":",
       ""
@@ -21,7 +21,7 @@ class ProductAttributes extends Component {
       [parentElement]: e.target.id,
     };
 
-    onGetActiveAttributes(newOptions);
+    updateSelectedAttributes(newOptions);
 
     this.setState({ options: newOptions });
   };
@@ -74,12 +74,12 @@ class ProductAttributes extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetActiveAttributes: (attribute) =>
-    dispatch(setActiveAttributes(attribute)),
+  updateSelectedAttributes: (selectedAttributes) =>
+    dispatch(setSelectedAttributes(selectedAttributes)),
 });
 
 const mapStateToProps = (state) => ({
-  activeAttributes: state.activeReducer.activeAttributes,
+  selectedAttributes: state.activeReducer.selectedAttributes,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductAttributes);

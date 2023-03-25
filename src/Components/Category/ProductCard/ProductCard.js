@@ -6,10 +6,7 @@ import CartIcon from "../ProductCartIcon/CartIcon";
 import OutOfStock from "../OutOfStock/OutOfStock";
 import ProductCardDescription from "../ProductCardDescription/ProductCardDescription";
 import { addProductCart, calculateTotal } from "../../../Actions/CartAction";
-import {
-  setActiveAttributes,
-  setProductId,
-} from "../../../Actions/ActiveAction";
+import { setProductId } from "../../../Actions/ActiveAction";
 
 class ProductCard extends Component {
   handleGetId = (productId) => {
@@ -17,14 +14,9 @@ class ProductCard extends Component {
   };
 
   handleAddProductToCart = () => {
-    const {
-      product,
-      activeAttributes,
-      currencySymbol,
-      onAddToCart,
-      onCalculateTotal,
-    } = this.props;
-    onAddToCart(product, activeAttributes);
+    const { product, currencySymbol, onAddToCart, onCalculateTotal } =
+      this.props;
+    onAddToCart(product);
     onCalculateTotal(currencySymbol);
   };
 
@@ -72,8 +64,6 @@ class ProductCard extends Component {
 const mapDispatchToProps = (dispatch) => ({
   onGetProductId: (id) => dispatch(setProductId(id)),
   onAddToCart: (product) => dispatch(addProductCart(product)),
-  onGetActiveAttributes: (attribute) =>
-    dispatch(setActiveAttributes(attribute)),
   onCalculateTotal: (currencySymbol) =>
     dispatch(calculateTotal(currencySymbol)),
 });
@@ -81,7 +71,6 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   currencySymbol: state.activeReducer.currencySymbol,
   cartItems: state.cartReducer.cartItems,
-  activeAttributes: state.activeReducer.activeAttributes,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
