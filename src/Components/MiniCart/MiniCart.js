@@ -19,10 +19,10 @@ class MiniCart extends Component {
               <div key={cartItem.uniqueId} className={styles.miniCartCard}>
                 <section className={styles.cartLeft}>
                   <BrandName
-                    product={cartItem}
+                    cartItem={cartItem}
                     className={styles.miniCartNames}
                   />
-                  <Price product={cartItem} className={styles.productPrice} />
+                  <Price cartItem={cartItem} className={styles.productPrice} />
                   <CartAttributes
                     cartItem={cartItem}
                     className={styles.attributeName}
@@ -32,7 +32,7 @@ class MiniCart extends Component {
                 </section>
                 <section className={styles.cartRight}>
                   <CartProductQuantity
-                    product={cartItem}
+                    cartItem={cartItem}
                     className={styles.cartProductQuantity}
                   />
                   <img

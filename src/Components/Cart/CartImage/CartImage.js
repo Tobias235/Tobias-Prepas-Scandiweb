@@ -8,16 +8,16 @@ class CartImage extends Component {
     currentImage: 0,
   };
   render() {
-    const { product } = this.props;
+    const { cartItem } = this.props;
     const { currentImage } = this.state;
 
-    const showArrow = product.gallery.length - 1;
+    const showArrow = cartItem.gallery.length - 1;
 
     const handleNextImage = (e) => {
-      if (e.target.id === product.uniqueId && currentImage < showArrow) {
+      if (e.target.id === cartItem.uniqueId && currentImage < showArrow) {
         this.setState({ currentImage: currentImage + 1 });
       } else if (
-        e.target.id === product.uniqueId &&
+        e.target.id === cartItem.uniqueId &&
         currentImage === showArrow
       ) {
         this.setState({ currentImage: 0 });
@@ -25,10 +25,10 @@ class CartImage extends Component {
     };
 
     const handlePrevImage = (e) => {
-      if (e.target.id === product.uniqueId && currentImage === 0) {
+      if (e.target.id === cartItem.uniqueId && currentImage === 0) {
         this.setState({ currentImage: showArrow });
       } else if (
-        e.target.id === product.uniqueId &&
+        e.target.id === cartItem.uniqueId &&
         currentImage <= showArrow
       ) {
         this.setState({ currentImage: currentImage - 1 });
@@ -38,7 +38,7 @@ class CartImage extends Component {
     return (
       <div className={styles.imageSlider}>
         <img
-          src={product.gallery[currentImage]}
+          src={cartItem.gallery[currentImage]}
           alt="placeholder"
           className={`${styles.mainImage}`}
         />
@@ -46,12 +46,12 @@ class CartImage extends Component {
           <div className={styles.arrowContainer}>
             <div>
               <ArrowLeft
-                id={product.uniqueId}
+                id={cartItem.uniqueId}
                 className={styles.arrowButton}
                 onClick={handlePrevImage}
               />
               <ArrowRight
-                id={product.uniqueId}
+                id={cartItem.uniqueId}
                 className={styles.arrowButton}
                 onClick={handleNextImage}
               />

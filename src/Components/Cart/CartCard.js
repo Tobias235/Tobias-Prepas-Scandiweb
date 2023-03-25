@@ -12,30 +12,30 @@ import Price from "../UI/Price/Price";
 
 class CartCard extends Component {
   render() {
-    const { cart, currency } = this.props;
+    const { cartItems, currency } = this.props;
 
     return (
       <>
-        {cart.length ? (
+        {cartItems.length ? (
           <div className={styles.cartContainer}>
-            {cart.map((product) => {
+            {cartItems.map((cartItem) => {
               return (
-                <div className={styles.cartCard} key={product.uniqueId}>
+                <div className={styles.cartCard} key={cartItem.uniqueId}>
                   <section className={styles.cartLeft}>
-                    <BrandName product={product} />
-                    <Price product={product} currency={currency} />
-                    <CartAttributes product={product} />
+                    <BrandName cartItem={cartItem} />
+                    <Price cartItem={cartItem} currency={currency} />
+                    <CartAttributes cartItem={cartItem} />
                   </section>
                   <section className={styles.cartRight}>
-                    <CartProductQuantity product={product} />
-                    <CartImage product={product} />
+                    <CartProductQuantity cartItem={cartItem} />
+                    <CartImage cartItem={cartItem} />
                   </section>
                 </div>
               );
             })}
             <CartBorder />
-            <CartAmount cart={cart} />
-            <CartOrderButton cart={cart} />
+            <CartAmount cartItems={cartItems} />
+            <CartOrderButton cart={cartItems} />
           </div>
         ) : (
           <span className={styles.emptyCart}>The cart is empty! </span>
@@ -46,8 +46,8 @@ class CartCard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.cartReducer.cart,
-  currency: state.activeReducer.currency,
+  cartItems: state.cartReducer.cartItems,
+  currencySymbol: state.activeReducer.currencySymbol,
 });
 
 export default connect(mapStateToProps, null)(CartCard);
