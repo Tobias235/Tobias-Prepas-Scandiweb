@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import {
+  deleteCartItem,
   setDecrementQuantity,
-  setDeleteProduct,
   setIncementQuantity,
 } from "../../../Actions/CartAction";
 import negativeButton from "../../../Assets/Images/negativeButton.svg";
@@ -11,29 +11,31 @@ import styles from "./CartProductQuantity.module.scss";
 
 class CartProductQuantity extends Component {
   render() {
-    const { product } = this.props;
+    const { cartItem, className } = this.props;
 
     const handleIncrement = () => {
-      this.props.onIncrementQuantity(product.uniqueId);
+      const { onIncrementQuantity, currencySymbol } = this.props;
+      onIncrementQuantity(cartItem.uniqueId, currencySymbol);
     };
 
     const handleDecrement = () => {
-      if (product.quantity <= 1) {
-        if (window.confirm("Do you want to delete product from cart?")) {
-          this.props.onDeleteProduct(product.uniqueId);
-        }
+      const { onDeleteProduct, onDecrementQuantity, currencySymbol } =
+        this.props;
+
+      if (cartItem.quantity <= 1) {
+        onDeleteProduct(cartItem.uniqueId);
       }
-      this.props.onDecrementQuantity(product.uniqueId);
+      onDecrementQuantity(cartItem.uniqueId, currencySymbol);
     };
 
     return (
-      <div className={`${styles.buttonContainer} ${this.props.className}`}>
+      <div className={`${styles.buttonContainer} ${className}`}>
         <img
           src={positiveButton}
           alt="Negative sign for increase quantity"
           onClick={handleIncrement}
         />
-        <span>{product.quantity}</span>
+        <span>{cartItem.quantity}</span>
         <img
           src={negativeButton}
           alt="Negative sign for decrease quantity"
@@ -44,13 +46,16 @@ class CartProductQuantity extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  cart: state.cartReducer.cart,
+  cartItems: state.cartReducer.cartItems,
+  currencySymbol: state.activeReducer.currencySymbol,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onIncrementQuantity: (increment) => dispatch(setIncementQuantity(increment)),
-  onDecrementQuantity: (decrement) => dispatch(setDecrementQuantity(decrement)),
-  onDeleteProduct: (deleteProduct) => dispatch(setDeleteProduct(deleteProduct)),
+  onIncrementQuantity: (increment, currencySymbol) =>
+    dispatch(setIncementQuantity(increment, currencySymbol)),
+  onDecrementQuantity: (decrement, currencySymbol) =>
+    dispatch(setDecrementQuantity(decrement, currencySymbol)),
+  onDeleteProduct: (item) => dispatch(deleteCartItem(item)),
 });
 
 export default connect(
