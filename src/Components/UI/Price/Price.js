@@ -4,16 +4,17 @@ import styles from "./Price.module.scss";
 
 class Price extends Component {
   render() {
-    const { product, currency } = this.props;
+    const { cartItem, product, currencySymbol, className } = this.props;
 
+    const item = cartItem || product;
     return (
-      <span className={`${styles.price} ${this.props.className}`}>
-        {product.prices.map((cur) => {
+      <span className={`${styles.price} ${className}`}>
+        {item.prices.map((price) => {
           return (
-            cur.currency.symbol === currency && (
-              <span className={`${styles.amount}`} key={cur.currency.symbol}>
-                {cur.currency.symbol}
-                {cur.amount.toFixed(2)}
+            price.currency.symbol === currencySymbol && (
+              <span className={`${styles.amount}`} key={price.currency.symbol}>
+                {price.currency.symbol}
+                {price.amount.toFixed(2)}
               </span>
             )
           );
@@ -24,7 +25,7 @@ class Price extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currency: state.activeReducer.currency,
+  currencySymbol: state.activeReducer.currencySymbol,
 });
 
 export default connect(mapStateToProps, null)(Price);
