@@ -3,7 +3,7 @@ import styles from "./ProductCardDescription.module.scss";
 
 class ProductCardDescription extends Component {
   render() {
-    const { product, currency } = this.props;
+    const { product, currencySymbol } = this.props;
 
     return (
       <section className={styles.descriptionContainer}>
@@ -12,9 +12,9 @@ class ProductCardDescription extends Component {
         </span>
         <span id={product.id} className={styles.productPrice}>
           {product.prices.map(
-            (cur) =>
-              cur.currency.symbol === currency &&
-              `${cur.currency.symbol}${cur.amount.toFixed(2)}`
+            (price) =>
+              price.currency.symbol === currencySymbol &&
+              `${price.currency.symbol}${price.amount.toFixed(2)}`
           )}
         </span>
       </section>
