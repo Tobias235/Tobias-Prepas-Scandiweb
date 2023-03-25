@@ -2,7 +2,7 @@ const initialState = {
   currencySymbol: "$",
   category: "all",
   productId: null,
-  activeAttributes: null,
+  selectedAttributes: null,
 };
 
 const ActiveReducer = (state = initialState, { type, payload }) => {
@@ -14,7 +14,7 @@ const ActiveReducer = (state = initialState, { type, payload }) => {
     case "SET_PRODUCT_ID":
       return { ...state, productId: payload };
     case "SET_ACTIVE_ATTRIBUTES":
-      return { ...state, activeAttributes: payload };
+      return { ...state, selectedAttributes: payload };
     default:
       return state;
   }

@@ -19,9 +19,9 @@ export const setProductId = (productId) => {
   };
 };
 
-export const setActiveAttributes = (attribute) => {
+export const setSelectedAttributes = (selectedAttributes) => {
   return {
     type: "SET_ACTIVE_ATTRIBUTES",
-    payload: attribute,
+    payload: selectedAttributes,
   };
 };

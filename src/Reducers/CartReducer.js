@@ -46,7 +46,7 @@ const CartReducer = (state = initialState, { type, payload }) => {
 
       const newCartItem = {
         ...product,
-        activeAttributes: {
+        selectedAttributes: {
           ...defaultActiveAttributes,
           ...(selectedAttributes || {}),
         },
