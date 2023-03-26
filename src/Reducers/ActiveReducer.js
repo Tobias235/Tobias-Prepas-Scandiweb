@@ -7,14 +7,18 @@ const initialState = {
 
 const ActiveReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case "SET_CURRENCY_LIST":
-      return { ...state, currencySymbol: payload };
+    case "SET_CURRENT_CURRENCY":
+      const { currentSymbol } = payload;
+      return { ...state, currencySymbol: currentSymbol };
     case "SET_CATEGORY":
-      return { ...state, category: payload };
+      const { currentCategory } = payload;
+      return { ...state, category: currentCategory };
     case "SET_PRODUCT_ID":
-      return { ...state, productId: payload };
-    case "SET_ACTIVE_ATTRIBUTES":
-      return { ...state, selectedAttributes: payload };
+      const { productId } = payload;
+      return { ...state, productId: productId };
+    case "SET_SELECTED_ATTRIBUTES":
+      const { selectedAttributes } = payload;
+      return { ...state, selectedAttributes: selectedAttributes };
     default:
       return state;
   }

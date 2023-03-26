@@ -7,11 +7,14 @@ const initialState = {
 const ModalReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case "SET_CURRENCY_MODAL":
-      return { ...state, showCurrencyModal: payload };
+      const { isShowCurrencyModal } = payload;
+      return { ...state, showCurrencyModal: isShowCurrencyModal };
     case "SET_SHOW_MINI_CART":
-      return { ...state, showCart: payload };
+      const { isShowCart } = payload;
+      return { ...state, showCart: isShowCart };
     case "SET_SHOW_MOBILE_NAV":
-      return { ...state, mobileNav: payload };
+      const { isMobileNav } = payload;
+      return { ...state, mobileNav: isMobileNav };
     default:
       return state;
   }

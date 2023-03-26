@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
   cartItems: [],
-  totalValue: 0,
+  totalAmount: 0,
 };
 
 const CartReducer = (state = initialState, { type, payload }) => {
@@ -21,7 +21,7 @@ const CartReducer = (state = initialState, { type, payload }) => {
         (item) =>
           item?.id === id &&
           attributesMatch(
-            item?.activeAttributes,
+            item?.selectedAttributes,
             selectedAttributes || defaultActiveAttributes
           )
       );
@@ -30,7 +30,7 @@ const CartReducer = (state = initialState, { type, payload }) => {
         if (
           item?.id === id &&
           attributesMatch(
-            item?.activeAttributes,
+            item?.selectedAttributes,
             selectedAttributes || defaultActiveAttributes
           )
         ) {
@@ -57,54 +57,35 @@ const CartReducer = (state = initialState, { type, payload }) => {
       return { ...state, cartItems: [...cartItems, newCartItem] };
     }
 
-    case "INCREMENT_QUANTITY":
-      const updatedCartItemsQuantityInc = state.cartItems.map((cartItem) => {
-        if (cartItem.uniqueId === payload.productId) {
-          let quantity = cartItem.quantity + 1;
-          return { ...cartItem, quantity };
-        }
-        return cartItem;
-      });
+    case "CHANGE_QUANTITY":
+      const { uniqueId, currencySymbol, amount } = payload;
 
-      return {
-        ...state,
-        cartItems: updatedCartItemsQuantityInc,
-        totalValue: calculateTotal(
-          updatedCartItemsQuantityInc,
-          payload.currencySymbol
-        ),
-      };
-
-    case "DECREMENT_QUANTITY":
-      const updatedCartItemsQuantityDec = state.cartItems.map((cartItem) => {
-        if (cartItem.uniqueId === payload.productId && cartItem.quantity > 1) {
-          let quantity = cartItem.quantity - 1;
-          return { ...cartItem, quantity };
+      const newCartItems = state.cartItems.map((item) => {
+        if (item.uniqueId === uniqueId) {
+          const newQuantity = item.quantity + amount;
+          return { ...item, quantity: newQuantity };
+        } else {
+          return item;
         }
-        return cartItem;
       });
-      return {
-        ...state,
-        cartItems: updatedCartItemsQuantityDec,
-        totalValue: calculateTotal(
-          updatedCartItemsQuantityDec,
-          payload.currencySymbol
-        ),
-      };
+      const newTotalAmount = calculateTotalAmount(newCartItems, currencySymbol);
+      return { ...state, cartItems: newCartItems, totalAmount: newTotalAmount };
+
+    case "CALCULATE_TOTAL_AMOUNT":
+      const { totalCurrencySymbol } = payload;
+      const { cartItems } = state;
+
+      const total = calculateTotalAmount(cartItems, totalCurrencySymbol);
+      return { ...state, totalAmount: total };
 
     case "DELETE_CART_ITEM":
+      const { item } = payload;
       return {
         ...state,
         cartItems: state.cartItems.filter(
-          (cartItem) => cartItem.uniqueId !== payload
+          (cartItem) => cartItem.uniqueId !== item
         ),
       };
-
-    case "CALCULATE_TOTAL":
-      const currencySymbol = payload;
-      const { cartItems } = state;
-      const total = calculateTotal(cartItems, currencySymbol);
-      return { ...state, totalValue: total };
 
     case "RESET_CART":
       return { ...initialState };
@@ -118,7 +99,7 @@ const attributesMatch = (itemAttributes, targetAttributes) => {
   return JSON.stringify(itemAttributes) === JSON.stringify(targetAttributes);
 };
 
-const calculateTotal = (cartItems, currencySymbol) => {
+const calculateTotalAmount = (cartItems, currencySymbol) => {
   return cartItems.reduce((acc, item) => {
     const matchingPrice = item.prices.find(
       (price) => price.currency.symbol === currencySymbol

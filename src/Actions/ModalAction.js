@@ -1,20 +1,20 @@
-export const setShowMiniCart = (showCart) => {
+export const setShowMiniCart = (isShowCart) => {
   return {
     type: "SET_SHOW_MINI_CART",
-    payload: showCart,
+    payload: { isShowCart },
   };
 };
 
-export const setShowCurrencyModal = (showCurrencyModal) => {
+export const setShowCurrencyModal = (isShowCurrencyModal) => {
   return {
     type: "SET_CURRENCY_MODAL",
-    payload: showCurrencyModal,
+    payload: { isShowCurrencyModal },
   };
 };
 
-export const setShowMobileNav = (mobileNav) => {
+export const setShowMobileNav = (isMobileNav) => {
   return {
     type: "SET_SHOW_MOBILE_NAV",
-    payload: mobileNav,
+    payload: { isMobileNav },
   };
 };

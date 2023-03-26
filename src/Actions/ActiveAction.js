@@ -1,27 +1,27 @@
-export const setChangeCurrency = (currentCurrency) => {
+export const setChangeCurrency = (currentSymbol) => {
   return {
-    type: "SET_CURRENCY_LIST",
-    payload: currentCurrency,
+    type: "SET_CURRENT_CURRENCY",
+    payload: { currentSymbol },
   };
 };
 
 export const setChangeCategory = (currentCategory) => {
   return {
     type: "SET_CATEGORY",
-    payload: currentCategory,
+    payload: { currentCategory },
   };
 };
 
 export const setProductId = (productId) => {
   return {
     type: "SET_PRODUCT_ID",
-    payload: productId,
+    payload: { productId },
   };
 };
 
 export const setSelectedAttributes = (selectedAttributes) => {
   return {
-    type: "SET_ACTIVE_ATTRIBUTES",
-    payload: selectedAttributes,
+    type: "SET_SELECTED_ATTRIBUTES",
+    payload: { selectedAttributes },
   };
 };

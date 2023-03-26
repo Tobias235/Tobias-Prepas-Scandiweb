@@ -5,35 +5,28 @@ export const addProductCart = (product, selectedAttributes) => {
   };
 };
 
-export const setIncementQuantity = (productId, currencySymbol) => {
+export const changeQuantity = (uniqueId, currencySymbol, amount) => {
   return {
-    type: "INCREMENT_QUANTITY",
-    payload: { productId, currencySymbol },
+    type: "CHANGE_QUANTITY",
+    payload: { uniqueId, currencySymbol, amount },
   };
 };
 
-export const setDecrementQuantity = (productId, currencySymbol) => {
+export const calculateTotalAmount = (totalCurrencySymbol) => {
   return {
-    type: "DECREMENT_QUANTITY",
-    payload: { productId, currencySymbol },
-  };
-};
-
-export const calculateTotal = (currencySymbol) => {
-  return {
-    type: "CALCULATE_TOTAL",
-    payload: currencySymbol,
+    type: "CALCULATE_TOTAL_AMOUNT",
+    payload: { totalCurrencySymbol },
   };
 };
 
 export const deleteCartItem = (item) => {
   return {
     type: "DELETE_CART_ITEM",
-    payload: item,
+    payload: { item },
   };
 };
 
-export const setCheckOut = () => {
+export const resetCart = () => {
   return {
     type: "RESET_CART",
   };
