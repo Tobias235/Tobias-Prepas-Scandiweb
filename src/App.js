@@ -13,20 +13,15 @@ const customHistory = createBrowserHistory();
 
 class App extends Component {
   componentDidMount() {
-    let arr = [];
-    let category = "";
-    this.backListener = customHistory.listen((history) => {
-      if (customHistory.action === "POP") {
-        category = history.pathname.replace(/[/]/g, " ").trim().split(" ");
-        arr.push(category);
-        if (arr[0].length <= 1 && this.props.category !== arr[0].toString()) {
-          let isStringEmpty =
-            arr[0].toString() === "" ? "all" : arr[0].toString();
-          this.props.onChangeCategory(isStringEmpty);
-        } else {
-          this.props.onGetProductId(arr[0][1]);
-        }
-        arr = [];
+    const { onChangeCategory, onGetProductId } = this.props;
+    this.backListener = customHistory.listen(({ pathname }) => {
+      const [, urlCategory, productId] = pathname.split("/");
+      if (urlCategory || urlCategory === "all") {
+        const isStringEmpty = urlCategory === "" ? "all" : urlCategory;
+        onChangeCategory(isStringEmpty);
+      }
+      if (productId) {
+        onGetProductId(productId);
       }
     });
   }
@@ -58,8 +53,4 @@ const mapDispatchToProps = (dispatch) => ({
   onGetProductId: (id) => dispatch(setProductId(id)),
 });
 
-const mapStateToProps = (state) => ({
-  category: state.activeReducer.category,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
