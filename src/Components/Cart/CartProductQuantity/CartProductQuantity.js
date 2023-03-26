@@ -1,10 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import {
-  deleteCartItem,
-  setDecrementQuantity,
-  setIncementQuantity,
-} from "../../../Actions/CartAction";
+import { deleteCartItem, changeQuantity } from "../../../Actions/CartAction";
 import negativeButton from "../../../Assets/Images/negativeButton.svg";
 import positiveButton from "../../../Assets/Images/positiveButton.svg";
 import styles from "./CartProductQuantity.module.scss";
@@ -14,20 +10,19 @@ class CartProductQuantity extends Component {
     const { cartItem, className } = this.props;
 
     const handleIncrement = () => {
-      const { onIncrementQuantity, currencySymbol } = this.props;
-      onIncrementQuantity(cartItem.uniqueId, currencySymbol);
+      const { changeQuantity, currencySymbol } = this.props;
+      changeQuantity(cartItem.uniqueId, currencySymbol, 1);
     };
 
     const handleDecrement = () => {
-      const { onDeleteProduct, onDecrementQuantity, currencySymbol } =
-        this.props;
+      const { deleteProduct, changeQuantity, currencySymbol } = this.props;
 
       if (cartItem.quantity <= 1) {
-        onDeleteProduct(cartItem.uniqueId);
+        deleteProduct(cartItem.uniqueId);
+      } else {
+        changeQuantity(cartItem.uniqueId, currencySymbol, -1);
       }
-      onDecrementQuantity(cartItem.uniqueId, currencySymbol);
     };
-
     return (
       <div className={`${styles.buttonContainer} ${className}`}>
         <img
@@ -51,11 +46,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onIncrementQuantity: (increment, currencySymbol) =>
-    dispatch(setIncementQuantity(increment, currencySymbol)),
-  onDecrementQuantity: (decrement, currencySymbol) =>
-    dispatch(setDecrementQuantity(decrement, currencySymbol)),
-  onDeleteProduct: (item) => dispatch(deleteCartItem(item)),
+  changeQuantity: (uniqueId, currencySymbol, amount) =>
+    dispatch(changeQuantity(uniqueId, currencySymbol, amount)),
+  deleteProduct: (item) => dispatch(deleteCartItem(item)),
 });
 
 export default connect(

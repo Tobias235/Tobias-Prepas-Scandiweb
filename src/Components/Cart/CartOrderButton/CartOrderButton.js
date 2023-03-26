@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { setCheckOut } from "../../../Actions/CartAction";
+import { resetCart } from "../../../Actions/CartAction";
 import Button from "../../UI/Button/Button";
 import styles from "./CartOrderButton.module.scss";
 
@@ -21,7 +21,7 @@ class CartOrderButton extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onSetCheckOut: () => dispatch(setCheckOut()),
+  onSetCheckOut: () => dispatch(resetCart()),
 });
 
 export default connect(null, mapDispatchToProps)(CartOrderButton);

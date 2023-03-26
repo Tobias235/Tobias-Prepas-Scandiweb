@@ -4,12 +4,12 @@ import styles from "./MiniCartTotal.module.scss";
 
 class MiniCartTotal extends Component {
   render() {
-    const { currencySymbol, totalValue } = this.props;
+    const { currencySymbol, totalAmount } = this.props;
     return (
       <div className={styles.miniCartTotal}>
         <span className={styles.total}>Total:</span>
         <span className={styles.amount}>
-          {currencySymbol} {totalValue.toFixed(2)}
+          {currencySymbol} {totalAmount.toFixed(2)}
         </span>
       </div>
     );
@@ -17,7 +17,7 @@ class MiniCartTotal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  totalValue: state.cartReducer.totalValue,
+  totalAmount: state.cartReducer.totalAmount,
 });
 
 export default connect(mapStateToProps, null)(MiniCartTotal);

@@ -4,7 +4,7 @@ import styles from "./CartAmount.module.scss";
 
 class CartAmount extends Component {
   render() {
-    const { totalValue, currencySymbol, cartItems } = this.props;
+    const { totalAmount, currencySymbol, cartItems } = this.props;
 
     const totalQuantity = cartItems?.reduce(
       (acc, item) => acc + item.quantity,
@@ -21,12 +21,12 @@ class CartAmount extends Component {
         <div>
           <span>
             {currencySymbol}
-            {(totalValue * 0.21).toFixed(2)}
+            {(totalAmount * 0.21).toFixed(2)}
           </span>
           <span>{totalQuantity}</span>
           <span>
             {currencySymbol}
-            {totalValue.toFixed(2)}
+            {totalAmount.toFixed(2)}
           </span>
         </div>
       </div>
@@ -35,7 +35,7 @@ class CartAmount extends Component {
 }
 const mapStateToProps = (state) => ({
   currencySymbol: state.activeReducer.currencySymbol,
-  totalValue: state.cartReducer.totalValue,
+  totalAmount: state.cartReducer.totalAmount,
 });
 
 export default connect(mapStateToProps, null)(CartAmount);

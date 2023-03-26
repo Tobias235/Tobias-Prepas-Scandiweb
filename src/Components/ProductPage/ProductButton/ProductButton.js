@@ -1,6 +1,9 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { addProductCart, calculateTotal } from "../../../Actions/CartAction";
+import {
+  addProductCart,
+  calculateTotalAmount,
+} from "../../../Actions/CartAction";
 import { setSelectedAttributes } from "../../../Actions/ActiveAction";
 import Button from "../../UI/Button/Button";
 import styles from "./ProductButton.module.scss";
@@ -47,7 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(addProductCart(product, selectedAttributes)),
   updateSelectedAttributes: (selectedAttributes) =>
     dispatch(setSelectedAttributes(selectedAttributes)),
-  onCalculateTotal: (currency) => dispatch(calculateTotal(currency)),
+  onCalculateTotal: (currency) => dispatch(calculateTotalAmount(currency)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductButton);

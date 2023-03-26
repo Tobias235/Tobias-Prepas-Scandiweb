@@ -9,7 +9,7 @@ import { setShowCurrencyModal } from "../../../Actions/ModalAction";
 import NavigationCartIcon from "../NavigationCart/NavigationCartIcon";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import { handleGetCurrencies } from "../../../Utils/HandleFetchDataRequests";
-import { calculateTotal } from "../../../Actions/CartAction";
+import { calculateTotalAmount } from "../../../Actions/CartAction";
 
 class NavigationCurrency extends Component {
   handleButtonClick = () => {
@@ -90,7 +90,7 @@ const mapDispatchToProps = (dispatch) => ({
   onShowCurrencyModal: (currencyModal) =>
     dispatch(setShowCurrencyModal(currencyModal)),
   onCalculateTotal: (currencySymbol) =>
-    dispatch(calculateTotal(currencySymbol)),
+    dispatch(calculateTotalAmount(currencySymbol)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationCurrency);

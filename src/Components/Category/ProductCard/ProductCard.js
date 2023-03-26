@@ -5,7 +5,10 @@ import styles from "./ProductCard.module.scss";
 import CartIcon from "../ProductCartIcon/CartIcon";
 import OutOfStock from "../OutOfStock/OutOfStock";
 import ProductCardDescription from "../ProductCardDescription/ProductCardDescription";
-import { addProductCart, calculateTotal } from "../../../Actions/CartAction";
+import {
+  addProductCart,
+  calculateTotalAmount,
+} from "../../../Actions/CartAction";
 import { setProductId } from "../../../Actions/ActiveAction";
 
 class ProductCard extends Component {
@@ -65,7 +68,7 @@ const mapDispatchToProps = (dispatch) => ({
   onGetProductId: (id) => dispatch(setProductId(id)),
   onAddToCart: (product) => dispatch(addProductCart(product)),
   onCalculateTotal: (currencySymbol) =>
-    dispatch(calculateTotal(currencySymbol)),
+    dispatch(calculateTotalAmount(currencySymbol)),
 });
 
 const mapStateToProps = (state) => ({

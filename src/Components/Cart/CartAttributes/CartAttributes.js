@@ -26,10 +26,10 @@ class CartAttributes extends Component {
                     ? styles.colorAttribute
                     : styles.attributeOptions;
                 const active =
-                  cartItem.activeAttributes[attribute.name] === item.value;
+                  cartItem.selectedAttributes[attribute.name] === item.value;
                 const activeColor =
                   attribute.name === "Color" &&
-                  cartItem.activeAttributes[attribute.name] === item.value;
+                  cartItem.selectedAttributes[attribute.name] === item.value;
                 return (
                   <span
                     className={`${styles.attribute} ${styleClass} ${

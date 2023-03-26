@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { setShowMiniCart } from "../../../Actions/ModalAction";
-import { setCheckOut } from "../../../Actions/CartAction";
+import { resetCart } from "../../../Actions/CartAction";
 import Button from "../../UI/Button/Button";
 import styles from "./MiniCartButton.module.scss";
 
@@ -44,7 +44,7 @@ class MiniCartButton extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onSetCheckOut: () => dispatch(setCheckOut()),
+  onSetCheckOut: () => dispatch(resetCart()),
   onSetShowCart: (showCart) => dispatch(setShowMiniCart(showCart)),
 });
 
