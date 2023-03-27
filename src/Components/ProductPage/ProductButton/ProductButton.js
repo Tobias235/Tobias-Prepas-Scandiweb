@@ -26,6 +26,7 @@ class ProductButton extends Component {
   render() {
     const { product } = this.props;
     const disabled = !product.inStock ? true : false;
+
     return (
       <Button
         text={disabled ? "OUT OF STOCK" : "ADD TO CART"}

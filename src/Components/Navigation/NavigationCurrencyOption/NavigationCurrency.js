@@ -1,20 +1,21 @@
 import { Component } from "react";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
-import styles from "./NavigationCurrency.module.scss";
-import arrowUp from "../../../Assets/Images/arrowUp.svg";
-import arrowDown from "../../../Assets/Images/arrowDown.svg";
-import { setChangeCurrency } from "../../../Actions/ActiveAction";
-import { setShowCurrencyModal } from "../../../Actions/ModalAction";
-import NavigationCartIcon from "../NavigationCart/NavigationCartIcon";
-import Backdrop from "../../UI/Backdrop/Backdrop";
 import { handleGetCurrencies } from "../../../Utils/HandleFetchDataRequests";
 import { calculateTotalAmount } from "../../../Actions/CartAction";
+import { setChangeCurrency } from "../../../Actions/ActiveAction";
+import { setShowCurrencyModal } from "../../../Actions/ModalAction";
+import arrowUp from "../../../Assets/Images/arrowUp.svg";
+import arrowDown from "../../../Assets/Images/arrowDown.svg";
+import NavigationCartIcon from "../NavigationCart/NavigationCartIcon";
+import Backdrop from "../../UI/Backdrop/Backdrop";
+import styles from "./NavigationCurrency.module.scss";
 
 class NavigationCurrency extends Component {
   handleButtonClick = () => {
-    if (this.props.showCart) return;
-    this.props.onShowCurrencyModal(!this.props.showCurrencyModal);
+    const { showCart, onShowCurrencyModal, showCurrencyModal } = this.props;
+    if (showCart) return;
+    onShowCurrencyModal(!showCurrencyModal);
   };
 
   selectCurrency = (e) => {
@@ -26,14 +27,15 @@ class NavigationCurrency extends Component {
   };
 
   handleCloseModal = () => {
-    this.props.onShowCurrencyModal(false);
+    const { onShowCurrencyModal } = this.props;
+    onShowCurrencyModal(false);
   };
 
   render() {
-    const { currencySymbol, showCurrencyModal } = this.props;
+    const { currencySymbol, showCurrencyModal, className } = this.props;
 
     return (
-      <div className={`${styles.navigationCurrency} ${this.props.className}`}>
+      <div className={`${styles.navigationCurrency} ${className}`}>
         {showCurrencyModal && (
           <Backdrop
             onClose={this.handleCloseModal}

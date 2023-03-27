@@ -3,11 +3,9 @@ import styles from "./Backdrop.module.scss";
 
 class Backdrop extends Component {
   render() {
+    const { className, onClose } = this.props;
     return (
-      <div
-        className={`${styles.backdrop} ${this.props.className}`}
-        onClick={this.props.onClose}
-      />
+      <div className={`${styles.backdrop} ${className}`} onClick={onClose} />
     );
   }
 }

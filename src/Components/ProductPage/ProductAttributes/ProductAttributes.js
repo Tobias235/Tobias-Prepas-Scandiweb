@@ -11,10 +11,8 @@ class ProductAttributes extends Component {
   handleActive = (e) => {
     const { options } = this.state;
     const { updateSelectedAttributes } = this.props;
-    const parentElement = e.target.parentElement.children[0].innerHTML.replace(
-      ":",
-      ""
-    );
+    const parentElement =
+      e.target.parentElement.children[0].textContent.replace(":", "");
 
     const newOptions = {
       ...options,
@@ -36,7 +34,7 @@ class ProductAttributes extends Component {
           return (
             <div className={styles.attributes} key={i}>
               <p className={styles.attributeName}>{attribute.name}:</p>
-              {attribute.items.map((item, i) => {
+              {attribute.items.map((item) => {
                 const styleClass =
                   attribute.type === "swatch"
                     ? styles.colorAttribute
@@ -53,7 +51,7 @@ class ProductAttributes extends Component {
                     } ${styleClass} ${outOfStock} ${
                       active ? styles.active : null
                     }`}
-                    key={i}
+                    key={item.value}
                     id={item.value}
                     style={{
                       backgroundColor:

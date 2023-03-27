@@ -7,7 +7,7 @@ class ImageGallery extends Component {
   };
 
   handleImageClick = (e) => {
-    this.setState({ showPicture: Number(e.target.id) });
+    this.setState({ showPicture: e.target.id });
   };
 
   render() {
@@ -21,7 +21,7 @@ class ImageGallery extends Component {
               <div className={styles.sidebarContainer} key={picture}>
                 <img
                   src={picture}
-                  alt="placeholder"
+                  alt={`Thumbnail ${i}`}
                   className={styles.galleryImage}
                   id={i}
                   onClick={this.handleImageClick}
@@ -32,7 +32,7 @@ class ImageGallery extends Component {
         </div>
         <img
           src={product[showPicture]}
-          alt="placeholder"
+          alt="Product"
           className={styles.image}
         />
       </div>

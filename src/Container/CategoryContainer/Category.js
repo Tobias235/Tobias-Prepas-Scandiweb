@@ -5,9 +5,10 @@ import styles from "./CategoryContainer.module.scss";
 
 class CategoryContainer extends Component {
   render() {
+    const { category } = this.props;
     return (
       <main className={styles.categoryContainer}>
-        <h1>{this.props.category}</h1>
+        <h1>{category}</h1>
         <ProductGrid />
       </main>
     );

@@ -3,14 +3,15 @@ import styles from "./Button.module.scss";
 
 class Button extends Component {
   render() {
+    const { className, onClick, disabled, text } = this.props;
     return (
       <button
         type="button"
-        className={`${styles.button} ${this.props.className}`}
-        onClick={this.props.onClick}
-        disabled={this.props.disabled}
+        className={`${styles.button} ${className}`}
+        onClick={onClick}
+        disabled={disabled}
       >
-        {this.props.text}
+        {text}
       </button>
     );
   }

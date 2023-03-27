@@ -1,21 +1,19 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { setShowMiniCart } from "../../../Actions/ModalAction";
-import styles from "./NavigationCartIcon.module.scss";
 import cartIcon from "../../../Assets/Images/cart.svg";
 import MiniCartQuantityCircle from "../../MiniCart/MiniCartQuantityCircle/MiniCartQuantityCircle";
+import styles from "./NavigationCartIcon.module.scss";
+
 class NavigationCartIcon extends Component {
+  handleOpenCart = () => {
+    const { showCart, onSetShowCart } = this.props;
+    onSetShowCart(!showCart);
+  };
+
   render() {
-    const handleOpenCart = () => {
-      if (this.props.showCurrencyModal) return;
-      if (this.props.showCart) {
-        return this.props.onSetShowCart(false);
-      } else {
-        this.props.onSetShowCart(true);
-      }
-    };
     return (
-      <span className={styles.navigationCartIcon} onClick={handleOpenCart}>
+      <span className={styles.navigationCartIcon} onClick={this.handleOpenCart}>
         <img src={cartIcon} alt="Cart Icon" />
         <MiniCartQuantityCircle />
       </span>
@@ -24,7 +22,6 @@ class NavigationCartIcon extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.cartReducer.cart,
   showCart: state.modalReducer.showCart,
   showCurrencyModal: state.modalReducer.showCurrencyModal,
 });
