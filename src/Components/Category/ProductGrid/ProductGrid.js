@@ -7,13 +7,16 @@ import styles from "./ProductGrid.module.scss";
 
 class ProductGrid extends Component {
   render() {
+    const { category } = this.props;
     return (
       <div className={styles.productGrid}>
-        <Query query={handleGetProductsByCategory(this.props.category)}>
+        <Query query={handleGetProductsByCategory(category)}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading…</p>;
             if (error) return <p>Error :(</p>;
-            return data.category.products.map((product) => {
+            const { category } = data;
+
+            return category.products.map((product) => {
               return <ProductCard product={product} key={product.id} />;
             });
           }}

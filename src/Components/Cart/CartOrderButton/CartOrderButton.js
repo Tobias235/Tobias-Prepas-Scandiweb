@@ -6,7 +6,8 @@ import styles from "./CartOrderButton.module.scss";
 
 class CartOrderButton extends Component {
   handleCheckOut = () => {
-    this.props.onSetCheckOut();
+    const { onSetCheckOut } = this.props;
+    onSetCheckOut();
     alert("Your order has been placed!");
   };
   render() {

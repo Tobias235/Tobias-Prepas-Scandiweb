@@ -19,17 +19,19 @@ class Product extends Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading…</p>;
           if (error) return <p>Error :(</p>;
+
+          const { product } = data;
           return (
-            <main className={styles.product} key={data.product.id}>
-              <ImageGallery product={data.product.gallery} />
+            <main className={styles.product} key={product.id}>
+              <ImageGallery product={product.gallery} />
               <div className={styles.spacer}></div>
               <section className={styles.descriptionContainer}>
-                <BrandName product={data.product} />
-                <ProductAttributes product={data.product} />
+                <BrandName product={product} />
+                <ProductAttributes product={product} />
                 <span className={styles.price}>PRICE:</span>
-                <Price product={data.product} />
-                <ProductButton product={data.product} />
-                <ProductDescription product={data.product} />
+                <Price product={product} />
+                <ProductButton product={product} />
+                <ProductDescription product={product} />
               </section>
             </main>
           );

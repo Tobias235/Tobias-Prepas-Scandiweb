@@ -11,16 +11,19 @@ class CartProductQuantity extends Component {
 
     const handleIncrement = () => {
       const { changeQuantity, currencySymbol } = this.props;
-      changeQuantity(cartItem.uniqueId, currencySymbol, 1);
+      const { uniqueId } = cartItem;
+
+      changeQuantity(uniqueId, currencySymbol, 1);
     };
 
     const handleDecrement = () => {
       const { deleteProduct, changeQuantity, currencySymbol } = this.props;
+      const { uniqueId, quantity } = cartItem;
 
-      if (cartItem.quantity <= 1) {
-        deleteProduct(cartItem.uniqueId);
+      if (quantity <= 1) {
+        deleteProduct(uniqueId);
       } else {
-        changeQuantity(cartItem.uniqueId, currencySymbol, -1);
+        changeQuantity(uniqueId, currencySymbol, -1);
       }
     };
     return (

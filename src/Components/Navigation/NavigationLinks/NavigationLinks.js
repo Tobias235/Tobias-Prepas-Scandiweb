@@ -2,17 +2,18 @@ import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Component } from "react";
-import styles from "./NavigationLinks.module.scss";
 import { setChangeCategory } from "../../../Actions/ActiveAction";
 import { handleGetCategories } from "../../../Utils/HandleFetchDataRequests";
 import { setShowMobileNav } from "../../../Actions/ModalAction";
+import styles from "./NavigationLinks.module.scss";
 
 class NavigationLinks extends Component {
   handleCategory = (e) => {
-    this.props.onChangeCategory(e.target.id);
+    const { onChangeCategory, onShowMobileNav, mobileNav } = this.props;
+    onChangeCategory(e.target.id);
 
-    if (this.props.mobileNav) {
-      this.props.onShowMobileNav(false);
+    if (mobileNav) {
+      onShowMobileNav(false);
     }
   };
 
@@ -24,7 +25,10 @@ class NavigationLinks extends Component {
           {({ loading, error, data }) => {
             if (loading) return <p>Loading…</p>;
             if (error) return <p>Error :(</p>;
-            return data.categories.map(({ name }) => (
+
+            const { categories } = data;
+
+            return categories.map(({ name }) => (
               <NavLink
                 key={name}
                 id={name}

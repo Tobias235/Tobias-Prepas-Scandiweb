@@ -56,7 +56,10 @@ class NavigationCurrency extends Component {
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading…</p>;
                 if (error) return <p>Error :(</p>;
-                return data.currencies.map((currency) => (
+
+                const { currencies } = data;
+
+                return currencies.map((currency) => (
                   <span
                     key={currency.label}
                     id={currency.symbol}

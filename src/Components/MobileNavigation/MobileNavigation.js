@@ -4,29 +4,30 @@ import { setShowMobileNav } from "../../Actions/ModalAction";
 import { ReactComponent as BurgerIcon } from "../../Assets/Images/burgerIcon.svg";
 import Backdrop from "../UI/Backdrop/Backdrop";
 import MobileNavigationDropdown from "./MobileNavigationDropdown/MobileNavigationDropdown";
-import styles from "./MobileNavigation.module.scss";
 import NavigationLogo from "../Navigation/NavigationLogo/NavigationLogo";
 import NavigationCurrency from "../Navigation/NavigationCurrencyOption/NavigationCurrency";
+import styles from "./MobileNavigation.module.scss";
 
 class MobileNavigation extends Component {
   render() {
+    const { onShowMobileNav, mobileNav } = this.props;
     return (
       <>
-        <nav className={styles.mobileNavigation}>
+        <nav className={styles.mobileNavigationContainer}>
           <BurgerIcon
             className={styles.burgerIcon}
             onClick={() => {
-              this.props.onShowMobileNav(true);
+              onShowMobileNav(true);
             }}
           />
           <NavigationLogo className={styles.logo} />
           <NavigationCurrency className={styles.currencyCart} />
         </nav>
 
-        {this.props.mobileNav && (
+        {mobileNav && (
           <>
             <MobileNavigationDropdown />
-            <Backdrop onClose={() => this.props.onShowMobileNav(false)} />
+            <Backdrop onClose={() => onShowMobileNav(false)} />
           </>
         )}
       </>

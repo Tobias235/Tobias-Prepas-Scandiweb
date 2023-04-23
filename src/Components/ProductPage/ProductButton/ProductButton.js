@@ -25,16 +25,16 @@ class ProductButton extends Component {
 
   render() {
     const { product } = this.props;
-    const disabled = !product.inStock ? true : false;
+    const productInStock = !product.inStock ? true : false;
 
     return (
       <Button
-        text={disabled ? "OUT OF STOCK" : "ADD TO CART"}
+        text={productInStock ? "OUT OF STOCK" : "ADD TO CART"}
         className={`${styles.productButton} ${
-          disabled ? styles.disabled : null
+          productInStock ? styles.outOfStock : null
         }`}
         onClick={this.handleAddProductToCart}
-        disabled={disabled}
+        disabled={productInStock}
       />
     );
   }

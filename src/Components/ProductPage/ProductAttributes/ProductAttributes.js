@@ -32,14 +32,14 @@ class ProductAttributes extends Component {
       <div>
         {product.attributes.map((attribute, i) => {
           return (
-            <div className={styles.attributes} key={i}>
+            <div className={styles.attributesContainer} key={i}>
               <p className={styles.attributeName}>{attribute.name}:</p>
               {attribute.items.map((item) => {
-                const styleClass =
+                const isAttributeTypeColor =
                   attribute.type === "swatch"
                     ? styles.colorAttribute
                     : styles.attributeOptions;
-                const active = Object.entries(options).some(
+                const isAttributeActive = Object.entries(options).some(
                   (option) =>
                     option[0] === attribute.name && option[1] === item.value
                 );
@@ -48,8 +48,8 @@ class ProductAttributes extends Component {
                   <span
                     className={`${
                       styles.attribute
-                    } ${styleClass} ${outOfStock} ${
-                      active ? styles.active : null
+                    } ${isAttributeTypeColor} ${outOfStock} ${
+                      isAttributeActive ? styles.active : null
                     }`}
                     key={item.value}
                     id={item.value}

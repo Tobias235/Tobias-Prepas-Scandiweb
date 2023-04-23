@@ -14,7 +14,7 @@ class ImageGallery extends Component {
     const { product } = this.props;
     const { showPicture } = this.state;
     return (
-      <div className={styles.galleryPics}>
+      <div className={styles.galleryPicturesContainer}>
         <div className={styles.gallerySideBar}>
           {product.map((picture, i) => {
             return (
@@ -22,7 +22,7 @@ class ImageGallery extends Component {
                 <img
                   src={picture}
                   alt={`Thumbnail ${i}`}
-                  className={styles.galleryImage}
+                  className={styles.sideBarImage}
                   id={i}
                   onClick={this.handleImageClick}
                 />
@@ -33,7 +33,7 @@ class ImageGallery extends Component {
         <img
           src={product[showPicture]}
           alt="Product"
-          className={styles.image}
+          className={styles.mainImage}
         />
       </div>
     );

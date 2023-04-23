@@ -13,7 +13,8 @@ import { setProductId } from "../../../Actions/ActiveAction";
 
 class ProductCard extends Component {
   handleGetId = (productId) => {
-    this.props.onGetProductId(productId);
+    const { onGetProductId } = this.props;
+    onGetProductId(productId);
   };
 
   handleAddProductToCart = () => {
@@ -28,7 +29,7 @@ class ProductCard extends Component {
     return (
       <div
         className={`${styles.productCard} ${
-          product.inStock ? null : styles.noStock
+          product.inStock ? null : styles.outOfStock
         }`}
       >
         <Link

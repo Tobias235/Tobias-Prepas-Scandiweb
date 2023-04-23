@@ -4,14 +4,16 @@ import cartButton from "../../../Assets/Images/productCartIcon.svg";
 
 class CartIcon extends Component {
   render() {
+    const { className, id, onClick } = this.props;
+
     return (
       <div className={styles.cartIcon}>
         <img
           src={cartButton}
           alt="Add to cart button"
-          className={`${styles.showCartButton} ${this.props.className}`}
-          id={this.props.id}
-          onClick={this.props.onClick}
+          className={`${styles.showCartButton} ${className}`}
+          id={id}
+          onClick={onClick}
         />
       </div>
     );
