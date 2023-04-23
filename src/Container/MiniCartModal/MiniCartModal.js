@@ -12,7 +12,8 @@ const portalElement = document.getElementById("overlays");
 
 class MiniCartModal extends Component {
   onCloseCart = () => {
-    this.props.onSetShowCart(false);
+    const { onSetShowCart } = this.props;
+    onSetShowCart(false);
   };
 
   render() {
