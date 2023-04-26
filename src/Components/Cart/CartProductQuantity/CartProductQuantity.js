@@ -6,38 +6,39 @@ import positiveButton from "../../../Assets/Images/positiveButton.svg";
 import styles from "./CartProductQuantity.module.scss";
 
 class CartProductQuantity extends Component {
+  handleIncrement = () => {
+    const { changeQuantity, currencySymbol, cartItem } = this.props;
+    const { uniqueId } = cartItem;
+
+    changeQuantity(uniqueId, currencySymbol, 1);
+  };
+
+  handleDecrement = () => {
+    const { deleteProduct, changeQuantity, currencySymbol, cartItem } =
+      this.props;
+    const { uniqueId, quantity } = cartItem;
+
+    if (quantity <= 1) {
+      deleteProduct(uniqueId);
+    } else {
+      changeQuantity(uniqueId, currencySymbol, -1);
+    }
+  };
   render() {
     const { cartItem, className } = this.props;
 
-    const handleIncrement = () => {
-      const { changeQuantity, currencySymbol } = this.props;
-      const { uniqueId } = cartItem;
-
-      changeQuantity(uniqueId, currencySymbol, 1);
-    };
-
-    const handleDecrement = () => {
-      const { deleteProduct, changeQuantity, currencySymbol } = this.props;
-      const { uniqueId, quantity } = cartItem;
-
-      if (quantity <= 1) {
-        deleteProduct(uniqueId);
-      } else {
-        changeQuantity(uniqueId, currencySymbol, -1);
-      }
-    };
     return (
       <div className={`${styles.buttonContainer} ${className}`}>
         <img
           src={positiveButton}
           alt="Negative sign for increase quantity"
-          onClick={handleIncrement}
+          onClick={this.handleIncrement}
         />
         <span>{cartItem.quantity}</span>
         <img
           src={negativeButton}
           alt="Negative sign for decrease quantity"
-          onClick={handleDecrement}
+          onClick={this.handleDecrement}
         />
       </div>
     );

@@ -7,33 +7,38 @@ class CartImage extends Component {
   state = {
     currentImage: 0,
   };
+
+  handleNextImage = (e) => {
+    const { cartItem } = this.props;
+    const { currentImage } = this.state;
+    const showArrow = cartItem.gallery.length - 1;
+
+    if (e.target.id === cartItem.uniqueId && currentImage < showArrow) {
+      this.setState({ currentImage: currentImage + 1 });
+    } else if (
+      e.target.id === cartItem.uniqueId &&
+      currentImage === showArrow
+    ) {
+      this.setState({ currentImage: 0 });
+    }
+  };
+
+  handlePrevImage = (e) => {
+    const { cartItem } = this.props;
+    const { currentImage } = this.state;
+    const showArrow = cartItem.gallery.length - 1;
+
+    if (e.target.id === cartItem.uniqueId && currentImage === 0) {
+      this.setState({ currentImage: showArrow });
+    } else if (e.target.id === cartItem.uniqueId && currentImage <= showArrow) {
+      this.setState({ currentImage: currentImage - 1 });
+    }
+  };
+
   render() {
     const { cartItem } = this.props;
     const { currentImage } = this.state;
-
     const showArrow = cartItem.gallery.length - 1;
-
-    const handleNextImage = (e) => {
-      if (e.target.id === cartItem.uniqueId && currentImage < showArrow) {
-        this.setState({ currentImage: currentImage + 1 });
-      } else if (
-        e.target.id === cartItem.uniqueId &&
-        currentImage === showArrow
-      ) {
-        this.setState({ currentImage: 0 });
-      }
-    };
-
-    const handlePrevImage = (e) => {
-      if (e.target.id === cartItem.uniqueId && currentImage === 0) {
-        this.setState({ currentImage: showArrow });
-      } else if (
-        e.target.id === cartItem.uniqueId &&
-        currentImage <= showArrow
-      ) {
-        this.setState({ currentImage: currentImage - 1 });
-      }
-    };
 
     return (
       <div className={styles.imageSlider}>
@@ -48,12 +53,12 @@ class CartImage extends Component {
               <ArrowLeft
                 id={cartItem.uniqueId}
                 className={styles.arrowButton}
-                onClick={handlePrevImage}
+                onClick={this.handlePrevImage}
               />
               <ArrowRight
                 id={cartItem.uniqueId}
                 className={styles.arrowButton}
-                onClick={handleNextImage}
+                onClick={this.handleNextImage}
               />
             </div>
           </div>
