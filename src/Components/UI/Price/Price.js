@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import styles from "./Price.module.scss";
 
@@ -23,6 +24,13 @@ class Price extends Component {
     );
   }
 }
+
+Price.propTypes = {
+  cartItem: PropTypes.object,
+  product: PropTypes.object,
+  className: PropTypes.string,
+  currencySymbol: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   currencySymbol: state.activeReducer.currencySymbol,

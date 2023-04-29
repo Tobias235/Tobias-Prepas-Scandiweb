@@ -1,4 +1,5 @@
 import { Query } from "@apollo/client/react/components";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Component } from "react";
@@ -47,6 +48,14 @@ class NavigationLinks extends Component {
     );
   }
 }
+
+NavigationLinks.propTypes = {
+  category: PropTypes.string.isRequired,
+  mobileNav: PropTypes.bool.isRequired,
+  className: PropTypes.string,
+  onChangeCategory: PropTypes.func.isRequired,
+  onShowMobileNav: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCategory: (category) => dispatch(setChangeCategory(category)),

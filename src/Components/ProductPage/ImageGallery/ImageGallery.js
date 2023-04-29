@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import styles from "./ImageGallery.module.scss";
 
 class ImageGallery extends Component {
@@ -39,5 +40,9 @@ class ImageGallery extends Component {
     );
   }
 }
+
+ImageGallery.propTypes = {
+  product: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
 
 export default ImageGallery;

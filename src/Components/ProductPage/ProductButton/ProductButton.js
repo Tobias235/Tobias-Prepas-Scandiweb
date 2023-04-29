@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   addProductCart,
@@ -39,6 +40,15 @@ class ProductButton extends Component {
     );
   }
 }
+
+ProductButton.propTypes = {
+  product: PropTypes.object.isRequired,
+  selectedAttributes: PropTypes.object,
+  currencySymbol: PropTypes.string,
+  addProductToCart: PropTypes.func.isRequired,
+  updateSelectedAttributes: PropTypes.func.isRequired,
+  onCalculateTotal: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   cartItems: state.cartReducer.cartItems,

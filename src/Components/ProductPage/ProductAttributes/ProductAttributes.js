@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { setSelectedAttributes } from "../../../Actions/ActiveAction";
 import styles from "./ProductAttributes.module.scss";
@@ -70,6 +71,12 @@ class ProductAttributes extends Component {
     );
   }
 }
+
+ProductAttributes.propTypes = {
+  selectedAttributes: PropTypes.object,
+  updateSelectedAttributes: PropTypes.func.isRequired,
+  product: PropTypes.object.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   updateSelectedAttributes: (selectedAttributes) =>

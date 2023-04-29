@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ReactDOM from "react-dom";
 import { setShowMiniCart } from "../../Actions/ModalAction";
@@ -52,6 +53,12 @@ class MiniCartModal extends Component {
     );
   }
 }
+
+MiniCartModal.propTypes = {
+  showCart: PropTypes.bool.isRequired,
+  cartItems: PropTypes.arrayOf(PropTypes.any).isRequired,
+  currencySymbol: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   showCart: state.modalReducer.showCart,

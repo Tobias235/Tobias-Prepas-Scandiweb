@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteCartItem, changeQuantity } from "../../../Actions/CartAction";
 import negativeButton from "../../../Assets/Images/negativeButton.svg";
@@ -44,9 +45,17 @@ class CartProductQuantity extends Component {
     );
   }
 }
+
+CartProductQuantity.propTypes = {
+  cartItems: PropTypes.arrayOf(PropTypes.any).isRequired,
+  currencySymbol: PropTypes.string.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   cartItems: state.cartReducer.cartItems,
   currencySymbol: state.activeReducer.currencySymbol,
+  deleteProduct: PropTypes.func.isRequired,
+  changeQuantity: PropTypes.func.isRequired,
 });
 
 const mapDispatchToProps = (dispatch) => ({

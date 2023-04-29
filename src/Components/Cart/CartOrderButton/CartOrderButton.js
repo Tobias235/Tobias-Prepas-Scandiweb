@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { resetCart } from "../../../Actions/CartAction";
 import Button from "../../UI/Button/Button";
@@ -20,6 +21,10 @@ class CartOrderButton extends Component {
     );
   }
 }
+
+CartOrderButton.propTypes = {
+  onSetCheckOut: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onSetCheckOut: () => dispatch(resetCart()),

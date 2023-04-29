@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import styles from "./MiniCartQuantityCircle.module.scss";
 
@@ -21,6 +22,10 @@ class MiniCartQuantityCircle extends Component {
     );
   }
 }
+
+MiniCartQuantityCircle.propTypes = {
+  cartItems: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
 
 const mapStateToProps = (state) => ({
   cartItems: state.cartReducer.cartItems,

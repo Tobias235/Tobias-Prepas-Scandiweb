@@ -1,4 +1,5 @@
 import { Query } from "@apollo/client/react/components";
+import PropTypes from "prop-types";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { handleGetProductsByCategory } from "../../../Utils/HandleFetchDataRequests";
@@ -25,6 +26,11 @@ class ProductGrid extends Component {
     );
   }
 }
+
+ProductGrid.propTypes = {
+  currencySymbol: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   currencySymbol: state.activeReducer.currencySymbol,

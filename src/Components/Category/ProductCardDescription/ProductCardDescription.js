@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import styles from "./ProductCardDescription.module.scss";
 
 class ProductCardDescription extends Component {
@@ -21,4 +22,10 @@ class ProductCardDescription extends Component {
     );
   }
 }
+
+ProductCardDescription.propTypes = {
+  product: PropTypes.object.isRequired,
+  currencySymbol: PropTypes.string.isRequired,
+};
+
 export default ProductCardDescription;

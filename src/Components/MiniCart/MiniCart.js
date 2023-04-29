@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MiniCartHeader from "./MiniCartHeader/MiniCartHeader";
 import CartProductQuantity from "../Cart/CartProductQuantity/CartProductQuantity";
@@ -49,6 +50,10 @@ class MiniCart extends Component {
     );
   }
 }
+
+MiniCart.propTypes = {
+  cartItems: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
 
 const mapStateToProps = (state) => ({
   cartItems: state.cartReducer.cartItems,

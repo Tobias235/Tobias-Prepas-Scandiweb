@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import styles from "./CartIcon.module.scss";
 import cartButton from "../../../Assets/Images/productCartIcon.svg";
 
@@ -19,5 +20,11 @@ class CartIcon extends Component {
     );
   }
 }
+
+CartIcon.propTypes = {
+  className: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 export default CartIcon;

@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "./ProductCard.module.scss";
@@ -64,6 +65,14 @@ class ProductCard extends Component {
     );
   }
 }
+
+ProductCard.propTypes = {
+  currencySymbol: PropTypes.string.isRequired,
+  cartItems: PropTypes.arrayOf(PropTypes.any).isRequired,
+  onGetProductId: PropTypes.func.isRequired,
+  onAddToCart: PropTypes.func.isRequired,
+  onCalculateTotal: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onGetProductId: (id) => dispatch(setProductId(id)),

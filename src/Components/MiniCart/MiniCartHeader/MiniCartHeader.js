@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import styles from "./MiniCartHeader.module.scss";
 
 class MiniCartHeader extends Component {
@@ -21,5 +22,9 @@ class MiniCartHeader extends Component {
     );
   }
 }
+
+MiniCartHeader.propTypes = {
+  cart: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
 
 export default MiniCartHeader;

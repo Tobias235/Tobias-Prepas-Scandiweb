@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { ReactComponent as ArrowLeft } from "../../../Assets/Images/arrowLeft.svg";
 import { ReactComponent as ArrowRight } from "../../../Assets/Images/arrowRight.svg";
 import styles from "./CartImage.module.scss";
@@ -67,5 +68,9 @@ class CartImage extends Component {
     );
   }
 }
+
+CartImage.propTypes = {
+  cartItem: PropTypes.object.isRequired,
+};
 
 export default CartImage;

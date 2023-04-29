@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import parse from "html-react-parser";
 import styles from "./ProductDescription.module.scss";
 
@@ -10,5 +11,9 @@ class ProductDescription extends Component {
     );
   }
 }
+
+ProductDescription.propTypes = {
+  product: PropTypes.object.isRequired,
+};
 
 export default ProductDescription;

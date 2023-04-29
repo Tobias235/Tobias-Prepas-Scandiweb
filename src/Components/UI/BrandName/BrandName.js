@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import styles from "./BrandName.module.scss";
 class BrandName extends Component {
   render() {
@@ -14,5 +15,11 @@ class BrandName extends Component {
     );
   }
 }
+
+BrandName.propTypes = {
+  cartItem: PropTypes.object,
+  product: PropTypes.object,
+  className: PropTypes.string,
+};
 
 export default BrandName;

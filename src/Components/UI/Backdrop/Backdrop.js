@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import styles from "./Backdrop.module.scss";
 
 class Backdrop extends Component {
@@ -9,5 +10,10 @@ class Backdrop extends Component {
     );
   }
 }
+
+Backdrop.propTypes = {
+  className: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default Backdrop;

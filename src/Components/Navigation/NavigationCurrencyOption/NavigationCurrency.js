@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
 import { handleGetCurrencies } from "../../../Utils/HandleFetchDataRequests";
@@ -82,6 +83,16 @@ class NavigationCurrency extends Component {
     );
   }
 }
+
+NavigationCurrency.propTypes = {
+  currencySymbol: PropTypes.string.isRequired,
+  showCart: PropTypes.bool.isRequired,
+  showCurrencyModal: PropTypes.bool.isRequired,
+  className: PropTypes.string,
+  onChangeCurrency: PropTypes.func.isRequired,
+  onShowCurrencyModal: PropTypes.func.isRequired,
+  onCalculateTotal: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   currencySymbol: state.activeReducer.currencySymbol,

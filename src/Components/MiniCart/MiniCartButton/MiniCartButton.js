@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
@@ -45,6 +46,12 @@ class MiniCartButton extends Component {
     );
   }
 }
+
+MiniCartButton.propTypes = {
+  cartItems: PropTypes.arrayOf(PropTypes.any).isRequired,
+  onSetShowCart: PropTypes.func.isRequired,
+  onSetCheckOut: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onSetCheckOut: () => dispatch(resetCart()),

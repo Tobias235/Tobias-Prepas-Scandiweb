@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { setShowMiniCart } from "../../../Actions/ModalAction";
 import cartIcon from "../../../Assets/Images/cart.svg";
@@ -20,6 +21,12 @@ class NavigationCartIcon extends Component {
     );
   }
 }
+
+NavigationCartIcon.propTypes = {
+  showCart: PropTypes.bool.isRequired,
+  showCurrencyModal: PropTypes.bool.isRequired,
+  onSetShowCart: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   showCart: state.modalReducer.showCart,

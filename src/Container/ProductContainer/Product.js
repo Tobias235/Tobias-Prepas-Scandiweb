@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
 import ImageGallery from "../../Components/ProductPage/ImageGallery/ImageGallery";
@@ -40,6 +41,10 @@ class Product extends Component {
     );
   }
 }
+
+Product.propTypes = {
+  productId: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   productId: state.activeReducer.productId,

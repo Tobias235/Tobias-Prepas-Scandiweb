@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import styles from "./MiniCartTotal.module.scss";
 
@@ -15,6 +16,11 @@ class MiniCartTotal extends Component {
     );
   }
 }
+
+MiniCartTotal.propTypes = {
+  totalAmount: PropTypes.number.isRequired,
+  currencySymbol: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   totalAmount: state.cartReducer.totalAmount,

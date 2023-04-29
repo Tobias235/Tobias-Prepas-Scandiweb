@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import styles from "./NavigationLogo.module.scss";
 import logo from "../../../Assets/Images/logo.svg";
 
@@ -13,4 +14,9 @@ class NavigationLogo extends Component {
     );
   }
 }
+
+NavigationLogo.propTypes = {
+  className: PropTypes.string,
+};
+
 export default NavigationLogo;

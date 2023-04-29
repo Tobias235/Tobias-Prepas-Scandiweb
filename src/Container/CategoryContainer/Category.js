@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ProductGrid from "../../Components/Category/ProductGrid/ProductGrid";
 import styles from "./CategoryContainer.module.scss";
@@ -14,6 +15,10 @@ class CategoryContainer extends Component {
     );
   }
 }
+
+CategoryContainer.propTypes = {
+  category: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   category: state.activeReducer.category,

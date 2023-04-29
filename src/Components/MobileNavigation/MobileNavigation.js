@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { setShowMobileNav } from "../../Actions/ModalAction";
 import { ReactComponent as BurgerIcon } from "../../Assets/Images/burgerIcon.svg";
@@ -34,6 +35,11 @@ class MobileNavigation extends Component {
     );
   }
 }
+
+MobileNavigation.propTypes = {
+  mobileNav: PropTypes.bool.isRequired,
+  onShowMobileNav: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onShowMobileNav: (mobileNav) => dispatch(setShowMobileNav(mobileNav)),

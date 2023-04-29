@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import styles from "./CartCard.module.scss";
 import CartImage from "./CartImage/CartImage";
@@ -44,6 +45,11 @@ class CartCard extends Component {
     );
   }
 }
+
+CartCard.propTypes = {
+  cartItems: PropTypes.arrayOf(PropTypes.any).isRequired,
+  currencySymbol: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   cartItems: state.cartReducer.cartItems,

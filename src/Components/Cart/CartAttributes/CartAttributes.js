@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import styles from "./CartAttributes.module.scss";
 
 class CartAttributes extends Component {
@@ -49,5 +50,12 @@ class CartAttributes extends Component {
     );
   }
 }
+
+CartAttributes.propTypes = {
+  cartItem: PropTypes.object.isRequired,
+  attributeOptions: PropTypes.string,
+  className: PropTypes.string,
+  attributeStyle: PropTypes.string,
+};
 
 export default CartAttributes;
